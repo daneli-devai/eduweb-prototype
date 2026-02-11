@@ -9,6 +9,75 @@ import {
   ChevronRight, Plus, Minus, HelpCircle, Heart, Server, MessageCircle, Bot, BellRing, Cpu, Table, Target
 } from 'lucide-react';
 
+const DemoTabs = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const tabs = [
+    { id: 0, label: "Dashboard", icon: <Layout className='w-4 h-4' />, image: "/demo1.png", title: "Visión Global", desc: "Todo lo que pasa en tu colegio, en una sola pantalla. Métricas en tiempo real." },
+    { id: 1, label: "Libro de Clases", icon: <BookOpen className='w-4 h-4' />, image: "/screen2.jpg", title: "Registro de Aula", desc: "Asistencia, leccionario y firma digital. Todo el libro de clases en tu bolsillo." },
+    { id: 2, label: "Horario", icon: <Calendar className='w-4 h-4' />, image: "/screen3.jpg", title: "Bloques Académicos", desc: "Organización visual de cargas horarias para docentes y cursos." },
+    { id: 3, label: "Entrevistas", icon: <MessageCircle className='w-4 h-4' />, image: "/screen4.jpg", title: "Gestión de Reuniones", desc: "Registro de entrevistas con apoderados y seguimiento de casos." }
+  ];
+
+  return (
+    <div className="flex flex-col items-center">
+      {/* Tabs Navigation */}
+      <div className="flex flex-wrap justify-center gap-2 mb-12 bg-white/50 backdrop-blur-sm p-2 rounded-full border border-slate-200 shadow-sm">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 transition-all duration-300 ${activeTab === tab.id
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
+              : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50'
+              }`}
+          >
+            {tab.icon}
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content Display */}
+      <div className="relative w-full max-w-5xl aspect-[16/9] perspective-1000">
+        {tabs.map((tab) => (
+          <div
+            key={tab.id}
+            className={`absolute inset-0 transition-all duration-700 ease-out transform ${activeTab === tab.id
+              ? 'opacity-100 rotate-x-0 translate-y-0 scale-100 pointer-events-auto'
+              : 'opacity-0 rotate-x-12 translate-y-12 scale-95 pointer-events-none'
+              }`}
+          >
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200/60 h-full flex flex-col">
+              {/* Browser Header */}
+              <div className="bg-slate-50 border-b border-slate-100 px-6 py-3 flex items-center gap-2">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <div className="mx-auto bg-slate-200/50 px-4 py-1 rounded-md text-[10px] font-mono text-slate-400 tracking-wider">
+                  edusis.app / {tab.label.toLowerCase()}
+                </div>
+              </div>
+              {/* Image Area */}
+              <div className="relative flex-1 bg-slate-100 overflow-hidden group">
+                <img src={tab.image} alt={tab.label} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+
+                {/* Floating Caption/Badge */}
+                <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 bg-white/90 backdrop-blur-xl p-6 rounded-2xl border border-white/40 shadow-xl text-left translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                  <h4 className="text-lg font-black text-slate-900 mb-2">{tab.title}</h4>
+                  <p className="text-xs font-medium text-slate-500 leading-relaxed">{tab.desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -360,10 +429,10 @@ const LandingPage = () => {
               <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Fricción Cero</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
             </div>
             <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '200ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-[#5cb4ff] text-white flex items-center justify-center mb-10 shadow-xl shadow-blue-400/10"><Table className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Modo Excel Docente</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Carga notas a la velocidad de la luz. Navegación por teclado y promedios instantáneos para ahorrar horas de trabajo repetitivo en cada periodo.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">90% Más Rápido</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
+              <div className="w-16 h-16 rounded-2xl bg-[#5cb4ff] text-white flex items-center justify-center mb-10 shadow-xl shadow-blue-400/10"><Clock className="w-8 h-8" /></div>
+              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Gestión Inteligente de Atrasos</h3>
+              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Controla atrasos en tiempo real con registro ágil y alertas automáticas. Identificación inmediata de reincidencias para apoyar la toma de decisiones y mejorar la convivencia escolar.</p>
+              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Hasta 70% menos tiempo en gestión manual</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
             </div>
             <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '300ms' }}>
               <div className="w-16 h-16 rounded-2xl bg-[#ff6b9c] text-white flex items-center justify-center mb-10 shadow-xl shadow-pink-500/10"><Target className="w-8 h-8" /></div>
@@ -387,45 +456,18 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* --- SECCIÓN DEMO INTERACTIVA (Rediseñada con imágenes) --- */}
-      <section ref={demoRef} id="demo" className="py-20 px-6 bg-slate-50 relative border-t border-slate-100 overflow-hidden text-center">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[500px] bg-gradient-to-r from-blue-100/40 via-purple-100/40 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+      {/* --- SECCIÓN DEMO INTERACTIVA (Rediseñada con Tabs y enfoque UX moderno) --- */}
+      <section ref={demoRef} id="demo" className="py-24 px-6 bg-slate-50 relative border-t border-slate-100 overflow-hidden text-center">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[600px] bg-gradient-to-r from-blue-100/30 via-purple-100/30 blur-[120px] rounded-full z-0 pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10 text-center mb-20">
+        <div className="max-w-7xl mx-auto relative z-10 text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-none">Control Total Institucional</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Dashboard de Ingeniería Pedagógica</p>
+          <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Una plataforma, múltiples soluciones.</p>
         </div>
 
-        <div className={`max-w-7xl mx-auto relative transition-all duration-1000 ${demoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-          <div className="relative overflow-hidden rounded-[56px] bg-white shadow-3xl flex flex-col md:flex-row items-stretch min-h-[600px] border border-slate-100">
-
-            {/* Lado Izquierdo: Capturas de Pantalla (Stack dinámico) */}
-            <div className="w-full md:w-1/2 p-12 flex flex-col justify-center gap-6 z-20 bg-slate-50/50">
-              <div className="relative group cursor-pointer">
-                <div className="absolute -inset-2 bg-[#5cb4ff]/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <img src="/screen2.jpg" alt="Vista Asistencia" className="relative rounded-2xl shadow-xl border border-slate-200 transform -rotate-2 hover:rotate-0 transition-transform duration-500 w-[90%]" />
-              </div>
-              <div className="relative group cursor-pointer self-end">
-                <div className="absolute -inset-2 bg-[#ff6b9c]/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <img src="/screen3.jpg" alt="Vista Notas" className="relative rounded-2xl shadow-xl border border-slate-200 transform translate-x-4 rotate-1 hover:rotate-0 transition-transform duration-500 w-[90%]" />
-              </div>
-              <div className="relative group cursor-pointer">
-                <div className="absolute -inset-2 bg-[#5be6b4]/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <img src="/screen4.jpg" alt="Vista Alumnos" className="relative rounded-2xl shadow-xl border border-slate-200 transform -translate-x-2 rotate-1 hover:rotate-0 transition-transform duration-500 w-[90%]" />
-              </div>
-            </div>
-
-            {/* Lado Derecho: Imagen demo1.png difuminada hacia la izquierda */}
-            <div className="w-full md:w-1/2 relative min-h-[400px] md:min-h-full overflow-hidden">
-              {/* Máscara de degradado para el efecto de difuminado */}
-              <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white via-white/80 to-transparent z-10 hidden md:block"></div>
-              {/* Para móviles el degradado es de arriba hacia abajo */}
-              <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-white to-transparent z-10 md:hidden"></div>
-
-              <img src="/demo1.png" alt="Demo EduSIS principal" className="w-full h-full object-contain p-4" />
-            </div>
-
-          </div>
+        {/* Componente de Tabs Interactivo */}
+        <div className={`max-w-6xl mx-auto relative transition-all duration-1000 ${demoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+          <DemoTabs />
         </div>
       </section>
 
@@ -498,13 +540,15 @@ const LandingPage = () => {
           <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] mb-20 opacity-60 text-center">Compromiso con la Transformación Digital</p>
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { n: 'Fabián González', r: 'Director Educativo', c: 'border-indigo-100' },
-              { n: 'Roxana Rebolledo', r: 'Tecnología Educativa', c: 'border-purple-100' },
-              { n: 'José Mellado', r: 'Data Engineer', c: 'border-orange-100' },
-              { n: 'Danae González', r: 'Frontend AI Lead', c: 'border-blue-100' }
+              { n: 'Fabián González', r: 'Director Educativo', c: 'border-indigo-100', img: '/fabian.png' },
+              { n: 'Roxana Rebolledo', r: 'Tecnología Educativa', c: 'border-purple-100', img: '/roxana.png' },
+              { n: 'José Mellado', r: 'Data Engineer', c: 'border-orange-100', img: '/jose.png' },
+              { n: 'Danae González', r: 'Frontend AI Lead', c: 'border-blue-100', img: '/danae.png' }
             ].map((m, i) => (
               <div key={i} className={`bg-white p-10 rounded-[40px] shadow-sm border ${m.c} hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group text-center`}>
-                <div className="w-24 h-24 rounded-[32px] bg-slate-50 mx-auto mb-6 flex items-center justify-center text-slate-200 group-hover:bg-[#5c6eff]/5 group-hover:text-[#5c6eff] transition-all duration-500"><Users className="w-12 h-12" /></div>
+                <div className="w-24 h-24 rounded-[32px] bg-slate-50 mx-auto mb-6 flex items-center justify-center overflow-hidden border-2 border-slate-100 group-hover:border-[#5c6eff]/20 transition-all duration-500">
+                  <img src={m.img} alt={m.n} className="w-full h-full object-cover" />
+                </div>
                 <h3 className="font-black text-slate-900 tracking-tighter uppercase italic text-sm text-center">{m.n}</h3>
                 <p className="text-[10px] text-blue-600 uppercase font-black mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
               </div>
