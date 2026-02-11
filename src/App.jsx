@@ -407,6 +407,24 @@ const LandingPage = () => {
         </div>
       </div>
 
+      {/* --- MISION --- */}
+      <section ref={missionRef} className={`py-28 bg-white relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50"></div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center text-left">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#5c6eff] to-violet-600 rounded-[48px] transform rotate-3 scale-[1.02] opacity-10 blur-xl group-hover:rotate-6 transition-transform duration-500"></div>
+            <img src="/mision.png" alt="Misión" className="relative z-10 rounded-[48px] shadow-3xl object-cover w-full h-[400px]" />
+          </div>
+          <div className="text-left">
+            <Heart className="w-10 h-10 text-[#ffca5c] mb-8 fill-current text-left" />
+            <h2 className="text-5xl font-black mb-8 tracking-tighter uppercase italic leading-none text-slate-900 font-black text-left">Nuestra Misión</h2>
+            <p className="text-2xl font-medium text-slate-500 italic leading-relaxed text-left">
+              "Democratizar la gestión educativa de excelencia, permitiendo que cada colegio tenga las herramientas para <span className="text-[#5c6eff] font-black not-italic border-b-4 border-[#5c6eff]/20">formar el futuro</span>."
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* --- SECCIÓN DE BENEFICIOS (NUEVAS CARDS) --- */}
       <section ref={benefitsRef} id="beneficios" className="py-28 px-6 relative bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 overflow-hidden text-left">
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff10_0%,_transparent_50%)] pointer-events-none"></div>
@@ -471,23 +489,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* --- MISION --- */}
-      <section ref={missionRef} className={`py-28 bg-white relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50"></div>
-        <div className="max-w-6xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center text-left">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#5c6eff] to-violet-600 rounded-[48px] transform rotate-3 scale-[1.02] opacity-10 blur-xl group-hover:rotate-6 transition-transform duration-500"></div>
-            <img src="/mision.png" alt="Misión" className="relative z-10 rounded-[48px] shadow-3xl object-cover w-full h-[400px]" />
-          </div>
-          <div className="text-left">
-            <Heart className="w-10 h-10 text-[#ffca5c] mb-8 fill-current text-left" />
-            <h2 className="text-5xl font-black mb-8 tracking-tighter uppercase italic leading-none text-slate-900 font-black text-left">Nuestra Misión</h2>
-            <p className="text-2xl font-medium text-slate-500 italic leading-relaxed text-left">
-              "Democratizar la gestión educativa de excelencia, permitiendo que cada colegio tenga las herramientas para <span className="text-[#5c6eff] font-black not-italic border-b-4 border-[#5c6eff]/20">formar el futuro</span>."
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* --- HISTORIA / EVOLUCIÓN (Con Animación del Cohete) --- */}
       <section ref={storyRef} className={`py-28 bg-slate-900 text-white relative overflow-hidden transition-all duration-1000 ${storyVisible ? 'opacity-100' : 'opacity-0'} text-left`}>
