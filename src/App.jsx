@@ -6,7 +6,7 @@ import {
   Phone, Linkedin, Facebook, Instagram, Twitter, FileText, Monitor,
   Rocket, Check, BarChart3, PieChart, Search, Bell, Settings, LogOut,
   Calendar, BookOpen, Clock, AlertCircle, FileCheck, MoreHorizontal,
-  ChevronRight, Plus, Minus, HelpCircle, Heart, Server, MessageCircle, Bot, BellRing, Cpu, Table, Target
+  ChevronRight, Plus, Minus, HelpCircle, Heart, Server, MessageCircle, Bot, BellRing, Cpu, Table, Target, RotateCcw
 } from 'lucide-react';
 
 const DemoTabs = () => {
@@ -79,137 +79,253 @@ const DemoTabs = () => {
 };
 
 const LoginPage = ({ onBack }) => {
+  const [view, setView] = useState('login'); // 'login' or 'forgot'
+
+  if (view === 'forgot') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-violet-100 via-blue-50 to-rose-100 flex items-center justify-center p-6 relative overflow-hidden font-sans">
+        <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-blue-400/20 blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-400/20 blur-[150px] animate-float-slow"></div>
+
+        <div className="relative z-10 w-full max-w-md animate-fade-in-up">
+          <div className="bg-white/40 backdrop-blur-3xl border border-white/60 rounded-[48px] p-10 shadow-[0_32px_64px_-16px_rgba(31,38,135,0.15)] relative overflow-hidden">
+            <div className="text-center mb-10">
+              <div className="bg-blue-600/10 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-blue-600/20">
+                <ShieldCheck className="w-8 h-8 text-blue-600" />
+              </div>
+              <h2 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter mb-4">¿Olvidaste tu contraseña?</h2>
+              <p className="text-slate-500 font-bold text-sm leading-relaxed mb-2 px-4">
+                Ingresa tu correo institucional y te enviaremos un código de 6 dígitos para cambiar tu clave.
+              </p>
+              <p className="text-slate-400 font-medium text-[10px] uppercase tracking-widest italic">Recuerda revisar tu correo spam.</p>
+            </div>
+
+            <form className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-slate-800 uppercase tracking-widest ml-4">Tu Correo Institucional</label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="email"
+                    placeholder="ejemplo@colegio.cl"
+                    className="w-full bg-white/50 border border-white p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-blue-500/50 focus:shadow-lg transition-all font-bold placeholder:text-slate-400 text-sm"
+                  />
+                </div>
+              </div>
+
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-xl shadow-blue-600/20 transition-all active:scale-95 group flex items-center justify-center gap-3">
+                Enviar Código <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </form>
+
+            <button
+              onClick={() => setView('login')}
+              className="mt-8 text-center w-full text-blue-600 font-black text-[10px] uppercase tracking-widest hover:underline hover:text-indigo-700 transition-colors"
+            >
+              Volver a iniciar sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-blue-600/20 blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-600/20 blur-[150px] animate-float-slow"></div>
+    <div className="min-h-screen bg-gradient-to-br from-violet-100 via-blue-50 to-rose-100 flex items-center justify-center p-6 relative overflow-hidden font-sans">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-blue-400/20 blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-400/20 blur-[150px] animate-float-slow"></div>
+      <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] rounded-full bg-rose-300/20 blur-[100px]"></div>
 
       <div className="relative z-10 w-full max-w-md animate-fade-in-up">
-        {/* Logo and Back button */}
-        <div className="flex flex-col items-center mb-10">
+        {/* Logo and Welcome Message */}
+        <div className="flex flex-col items-center mb-8">
           <div className="cursor-pointer group flex flex-col items-center" onClick={onBack}>
-            <div className="bg-white/10 backdrop-blur-xl p-4 rounded-3xl border border-white/20 mb-4 group-hover:scale-110 transition-transform shadow-2xl">
-              <img src="/logosolo.png" alt="Logo" className="h-12 w-auto" />
+            <div className="bg-white/40 backdrop-blur-xl p-4 rounded-[2rem] border border-white/40 mb-6 group-hover:scale-110 transition-transform shadow-xl">
+              <img src="/logosolo.png" alt="Logo" className="h-10 w-auto" />
             </div>
-            <h1 className="font-display text-4xl text-white font-bold tracking-tight">EduSis</h1>
+            <h1 className="text-3xl font-black text-slate-900 tracking-tighter uppercase italic text-center leading-none">
+              Bienvenido a <span className="text-blue-600">EduSis</span>
+            </h1>
+            <p className="mt-3 text-slate-500 font-bold text-xs uppercase tracking-[0.2em] text-center">
+              Construyendo el futuro de la educación, hoy.
+            </p>
           </div>
         </div>
 
-        {/* Glassmorphism Card */}
-        <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[48px] p-10 shadow-3xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+        {/* High-End Glassmorphism Card */}
+        <div className="bg-white/40 backdrop-blur-3xl border border-white/60 rounded-[48px] p-10 shadow-[0_32px_64px_-16px_rgba(31,38,135,0.15)] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
 
           <div className="text-center mb-10">
-            <h2 className="text-2xl font-black text-white uppercase italic tracking-tighter mb-2">Bienvenido</h2>
-            <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">Gestión Educativa Inteligente</p>
+            <p className="text-indigo-600/70 text-[10px] font-black uppercase tracking-[0.3em] leading-none">Acceso Seguro al Ecosistema</p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-5">
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-blue-400 uppercase tracking-widest ml-4">Email Institucional</label>
+              <label className="text-[10px] font-black text-slate-800 uppercase tracking-widest ml-4">Email Corporativo</label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-500 transition-colors">
+                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
                   <Mail className="w-4 h-4" />
                 </div>
                 <input
                   type="email"
-                  placeholder="ejemplo@colegio.cl"
-                  className="w-full bg-white/5 border border-white/10 p-4 pl-14 rounded-2xl text-white outline-none focus:bg-white/10 focus:border-blue-500/50 transition-all font-medium placeholder:text-slate-600"
+                  placeholder="usuario@edusis.cl"
+                  className="w-full bg-white/50 border border-white p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-blue-500/50 focus:shadow-lg transition-all font-bold placeholder:text-slate-400 text-sm"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
               <div className="flex justify-between items-center ml-4 pr-4">
-                <label className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Contraseña</label>
-                <a href="#" className="text-[9px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-colors">¿Olvidaste tu clave?</a>
+                <label className="text-[10px] font-black text-slate-800 uppercase tracking-widest">Contraseña</label>
+                <button
+                  type="button"
+                  onClick={() => setView('forgot')}
+                  className="text-[9px] font-black text-blue-600 hover:text-indigo-700 uppercase tracking-widest transition-colors"
+                >
+                  ¿Olvidaste tu clave?
+                </button>
               </div>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-500 transition-colors">
+                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="w-full bg-white/5 border border-white/10 p-4 pl-14 rounded-2xl text-white outline-none focus:bg-white/10 focus:border-blue-500/50 transition-all font-medium placeholder:text-slate-600"
+                  className="w-full bg-white/50 border border-white p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-blue-500/50 focus:shadow-lg transition-all font-bold placeholder:text-slate-400 text-sm"
                 />
               </div>
             </div>
 
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs mt-4 hover:scale-[1.02] transition-all active:scale-95 shadow-2xl shadow-blue-600/20 group flex items-center justify-center gap-3">
-              Entrar al Ecosistema <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] mt-4 hover:scale-[1.02] transition-all active:scale-95 shadow-xl shadow-blue-600/20 group flex items-center justify-center gap-3">
+              Entrar al Sistema <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </form>
 
-          <div className="mt-10 pt-8 border-t border-white/5 text-center">
-            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-              ¿No tienes cuenta? <a href="#" className="text-white hover:text-blue-400 transition-colors">Contacta a tu administrador</a>
+          <div className="mt-10 pt-8 border-t border-slate-900/5 text-center">
+            <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+              ¿Problemas para entrar? <a href="#" className="text-blue-600 hover:underline transition-colors font-black">Contactar Soporte</a>
             </p>
           </div>
         </div>
 
         <button
           onClick={onBack}
-          className="mt-8 mx-auto flex items-center gap-2 text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-colors group"
+          className="mt-8 mx-auto flex items-center gap-2 text-[10px] font-black text-slate-500 hover:text-slate-900 uppercase tracking-widest transition-colors group"
         >
-          <ChevronRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Volver al Inicio
+          <RotateCcw className="w-4 h-4 group-hover:rotate-[-45deg] transition-transform" /> Volver al Inicio
         </button>
       </div>
     </div>
   );
 };
 
-const FlipCard = ({ icon, title, description, detailedInfo, colorClass }) => {
+const FlipCard = React.memo(({ icon, title, description, detailedInfo, colorClass }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const getTextColor = () => {
+    if (colorClass.startsWith('bg-[')) return 'text-' + colorClass.slice(3, -1);
+    return colorClass.replace('bg-', 'text-');
+  };
 
   return (
     <div
-      className="perspective-1000 w-full aspect-square cursor-pointer"
+      className="w-full aspect-[4/5] cursor-pointer group"
+      style={{ perspective: '2000px' }}
       onClick={() => setIsFlipped(!isFlipped)}
     >
-      <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
-        {/* Front Side */}
-        <div className="absolute inset-0 backface-hidden bg-slate-50 rounded-[40px] p-10 border border-slate-100 flex flex-col justify-between hover:shadow-2xl transition-all duration-500">
-          <div className={`w-16 h-16 rounded-2xl ${colorClass} text-white flex items-center justify-center shadow-lg transition-transform`}>
-            {icon}
+      <div
+        className="relative w-full h-full"
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.7s ease',
+          willChange: 'transform'
+        }}
+      >
+        {/* Front Face - Light Purple Gradient */}
+        <div
+          className="absolute inset-0 w-full h-full bg-gradient-to-br from-indigo-50 via-white to-violet-50 rounded-[48px] p-12 flex flex-col items-center justify-center text-center shadow-2xl border border-white"
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'translate3d(0, 0, 1px)', // Force GPU and order
+            willChange: 'transform'
+          }}
+        >
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,_rgba(139,92,246,0.05)_0%,_transparent_70%)] pointer-events-none"></div>
+          <div className={`w-24 h-24 rounded-[32px] ${colorClass} text-white flex items-center justify-center shadow-2xl mb-12 group-hover:scale-110 transition-all duration-500`}>
+            {React.cloneElement(icon, { size: 36, strokeWidth: 2.5 })}
           </div>
-          <div>
-            <h3 className="text-2xl font-black text-slate-900 uppercase italic tracking-tighter mb-4">{title}</h3>
-            <p className="text-slate-500 font-medium text-sm leading-relaxed">
-              {description}
-            </p>
-          </div>
-          <div className="flex justify-start items-center gap-2">
-            <span className="text-[10px] font-black uppercase tracking-widest text-blue-600/50">Haz clic para saber más</span>
+          <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter leading-none mb-16">
+            {title}
+          </h3>
+          <div className="mt-auto flex items-center justify-between w-full px-2 opacity-60">
+            <RotateCcw className="w-4 h-4 text-indigo-400" />
+            <span className="text-[10px] font-black uppercase tracking-[0.25em] text-indigo-500">HAZ CLIC PARA DESCUBRIR</span>
+            <div className="w-4"></div>
           </div>
         </div>
 
-        {/* Back Side */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 bg-slate-900 rounded-[40px] p-10 border border-slate-800 flex flex-col justify-center text-center">
-          <div className="mb-6 flex justify-center">
-            <div className={`w-12 h-12 rounded-xl ${colorClass} text-white flex items-center justify-center shadow-lg opacity-80`}>
-              {icon}
+        {/* Back Face */}
+        <div
+          className="absolute inset-0 w-full h-full bg-white rounded-[48px] border-4 border-blue-600 flex flex-col items-center shadow-2xl"
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg) translate3d(0, 0, 1px)', // Force GPU and order
+            willChange: 'transform'
+          }}
+        >
+          <div className="flex-1 flex flex-col items-center text-center p-10 justify-center">
+            <div className="mb-8">
+              <div className={getTextColor()}>
+                {React.cloneElement(icon, { size: 48, strokeWidth: 2.5 })}
+              </div>
+            </div>
+
+            <h3 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter mb-8 leading-tight">{title}</h3>
+
+            <div className="space-y-6">
+              <p className="text-slate-600 font-bold text-sm leading-relaxed px-2">
+                {description}
+              </p>
+              <p className="text-slate-400 font-semibold text-[11px] leading-relaxed px-4">
+                {detailedInfo}
+              </p>
             </div>
           </div>
-          <h3 className="text-xl font-black text-white uppercase italic tracking-tighter mb-4">{title}</h3>
-          <p className="text-slate-400 font-medium text-[13px] leading-relaxed">
-            {detailedInfo}
-          </p>
-          <div className="mt-8">
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">Haz clic para volver</span>
+
+          <div className="pb-10 flex items-center gap-2">
+            <span className={`text-[11px] font-black uppercase tracking-[0.25em] ${getTextColor()} font-bold`}>Volver</span>
+            <RotateCcw className={`w-4 h-4 ${getTextColor()}`} />
           </div>
         </div>
       </div>
     </div>
   );
-};
+});
 
 const EduBotPage = ({ onBack }) => {
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900 relative">
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-600/5 blur-[120px] animate-pulse"
+          style={{ willChange: 'transform, opacity' }}
+        ></div>
+        <div
+          className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-indigo-600/5 blur-[150px] animate-float-slow"
+          style={{ willChange: 'transform, opacity' }}
+        ></div>
+      </div>
+
       {/* Navbar Minimalista para EduBot */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 py-4">
+      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 py-4">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={onBack}>
             <img src="/logosolo.png" alt="Logo EduSis" className="h-10 w-auto object-contain" />
@@ -225,21 +341,20 @@ const EduBotPage = ({ onBack }) => {
       </nav>
 
       {/* Hero EduBot */}
-      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 min-h-[600px] flex items-center">
-        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,_#5c6eff10_0%,_transparent_50%)]"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[600px]">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-bold uppercase tracking-widest mb-6 uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 border border-blue-200 text-blue-600 text-[11px] font-bold uppercase tracking-widest mb-6 uppercase">
                 Inteligencia Artificial Educativa
               </div>
               <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-tight mb-6 tracking-tighter uppercase italic">
                 Conoce a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">EduBot</span>
               </h1>
-              <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg">
+              <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg mx-auto lg:mx-0">
                 El asistente de IA diseñado específicamente para ecosistemas educativos. Potencia la labor docente y optimiza la gestión institucional en tiempo real.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 justify-center lg:justify-start">
                 <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-500/20 transition-all active:scale-95">Solicitar Demo de EduBot</button>
               </div>
             </div>
@@ -254,7 +369,7 @@ const EduBotPage = ({ onBack }) => {
       </header>
 
       {/* Tarjetas Modern Square */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic">Potencia tu Colegio</h2>
@@ -263,25 +378,25 @@ const EduBotPage = ({ onBack }) => {
 
           <div className="grid md:grid-cols-3 gap-8">
             <FlipCard
-              icon={<Zap className="w-8 h-8" />}
+              icon={<Zap />}
               title="Ayuda a Planificar"
               description="Genera sugerencias de inicio, desarrollo y cierre alineadas al Mineduc en segundos. Automatiza la carga administrativa docente."
-              detailedInfo="EduBot analiza los Objetivos de Aprendizaje (OA) y genera secuencias didácticas personalizadas, actividades de evaluación y recursos sugeridos, ahorrando hasta 3 horas semanales de trabajo administrativo."
+              detailedInfo="EduBot analiza los Objetivos de Aprendizaje (OA) y genera secuencias didácticas personalizadas, actividades de evaluación y recursos sugeridos."
               colorClass="bg-blue-600"
             />
             <FlipCard
-              icon={<BookOpen className="w-8 h-8" />}
+              icon={<BookOpen />}
               title="Domina la Plataforma"
               description="Resuelve dudas técnicas y operativas de EduSis al instante. EduBot conoce cada detalle del sistema para guiarte."
-              detailedInfo="Acceso inmediato a manuales, flujos de trabajo y mejores prácticas. EduBot responde preguntas como: ¿Cómo firmo el leccionario? o ¿Cómo cargo notas masivamente?, permitiendo una adopción rápida y sin fricciones."
-              colorClass="bg-indigo-600"
+              detailedInfo="Acceso inmediato a manuales, flujos de trabajo y mejores prácticas. EduBot responde preguntas como: ¿Cómo firmo el leccionario? o ¿Cómo cargo notas masivamente?."
+              colorClass="bg-[#ffca5c]"
             />
             <FlipCard
-              icon={<Target className="w-8 h-8" />}
+              icon={<Target />}
               title="Radar de Riesgo"
               description="Identifica patrones de ausentismo y bajo rendimiento preventivamente. Actúa antes de que ocurra la deserción escolar."
-              detailedInfo="Utiliza algoritmos predictivos para detectar alumnos con alta probabilidad de reprobación o deserción basándose en asistencia, comportamiento y rendimiento histórico, entregando reportes accionables a Orientación y UTP."
-              colorClass="bg-purple-600"
+              detailedInfo="Utiliza algoritmos predictivos para detectar alumnos con alta probabilidad de reprobación o deserción basándose en asistencia."
+              colorClass="bg-[#ff6b8f]"
             />
           </div>
         </div>
@@ -316,6 +431,7 @@ const LandingPage = () => {
   const [faqVisible, setFaqVisible] = useState(false);
   const [missionVisible, setMissionVisible] = useState(false);
   const [blogVisible, setBlogVisible] = useState(false);
+  const [introVisible, setIntroVisible] = useState(false);
 
   const [openFaq, setOpenFaq] = useState(null);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -329,6 +445,7 @@ const LandingPage = () => {
   const faqRef = useRef(null);
   const missionRef = useRef(null);
   const blogRef = useRef(null);
+  const introRef = useRef(null);
 
   // Datos del Carrusel del Hero
   const heroSlides = [
@@ -340,7 +457,7 @@ const LandingPage = () => {
       desc: "La plataforma integral que conecta directivos, docentes y familias. Automatiza lo administrativo y enfócate 100% en educar.",
       image: "/profesora.png",
       gradient: "from-blue-600 via-indigo-600 to-purple-700",
-      imageStyling: "translate-y-8 h-[90%]",
+      imageStyling: "translate-y-20 h-[110%]",
       cards: [
         {
           id: 'c1',
@@ -379,8 +496,8 @@ const LandingPage = () => {
     {
       id: 1,
       badge: "Nuevo: EduBot IA",
-      title: "Tu asistente virtual",
-      highlight: "siempre activo.",
+      title: "Tu asistente",
+      highlight: "virtual.",
       desc: "Resuelve dudas de apoderados y docentes al instante. Nuestro Chatbot con IA optimiza la comunicación interna y externa 24/7.",
       image: "/edubot.png",
       gradient: "from-blue-400 via-indigo-300 to-sky-400",
@@ -428,7 +545,7 @@ const LandingPage = () => {
       desc: "Automatización de procesos críticos y Libro de Clases Digital diseñado específicamente para cumplir con los estándares del MINEDUC.",
       image: "/escritorio.png",
       gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
-      imageStyling: "translate-y-8 h-[90%]",
+      imageStyling: "translate-y-20 h-[110%]",
       cards: [
         {
           id: 'c7',
@@ -490,11 +607,12 @@ const LandingPage = () => {
           if (entry.target === faqRef.current) setFaqVisible(true);
           if (entry.target === missionRef.current) setMissionVisible(true);
           if (entry.target === blogRef.current) setBlogVisible(true);
+          if (entry.target === introRef.current) setIntroVisible(true);
         }
       });
     }, observerOptions);
 
-    const elementsToObserve = [storyRef, benefitsRef, teamRef, contactRef, demoRef, faqRef, missionRef, blogRef];
+    const elementsToObserve = [storyRef, benefitsRef, teamRef, contactRef, demoRef, faqRef, missionRef, blogRef, introRef];
     elementsToObserve.forEach(ref => {
       if (ref.current) observer.observe(ref.current);
     });
@@ -508,17 +626,8 @@ const LandingPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (page === 'edubot') {
-    return <EduBotPage onBack={() => setPage('home')} />;
-  }
-
-  if (page === 'login') {
-    return <LoginPage onBack={() => setPage('home')} />;
-  }
-
   return (
     <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
-
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Anta&family=Orbitron:wght@400;500;600;700&family=Allerta+Stencil&family=Noto+Sans:wght@200;300;400;500;700&family=Baumans&display=swap');
         @import url('https://fonts.cdnfonts.com/css/wrongo');
@@ -540,485 +649,532 @@ const LandingPage = () => {
         .animate-ping-once { animation: ping-once 1s ease-out forwards; }
         
         .glass-form { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2); }
-        .perspective-1000 { perspective: 1000px; }
-        .preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
+        .perspective-1000 { perspective: 1000px; -webkit-perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; -webkit-transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); -webkit-transform: rotateY(180deg); }
+        .transform-gpu { transform: translateZ(0); -webkit-transform: translateZ(0); }
       `}</style>
 
-      {/* --- NAVBAR --- */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100 ${isScrolled ? 'py-3 shadow-sm' : 'py-5'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-3 cursor-pointer group">
-            <img src="/logosolo.png" alt="Logo EduSis" className="h-14 w-auto object-contain transition-transform group-hover:scale-110" />
-            <span className="font-bold text-2xl tracking-normal text-slate-900 group-hover:text-blue-700 transition-colors font-display">EduSis</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 mr-2 lg:mr-6">
-            <a href="#demo" className="hover:text-blue-600 transition-colors">Demo</a>
-            <a href="#beneficios" className="hover:text-blue-600 transition-colors">Beneficios</a>
-            <a href="#equipo" className="hover:text-blue-600 transition-colors">Equipo</a>
-            <a href="#blog" className="hover:text-blue-600 transition-colors">Blog</a>
-            <button
-              onClick={() => setPage('edubot')}
-              className="hover:text-blue-600 transition-colors"
-            >
-              EduBot
-            </button>
-            <button
-              onClick={() => setPage('login')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2.5 rounded-full shadow-lg shadow-blue-500/20 transition-all active:scale-95 font-bold flex items-center gap-2 text-left"
-            >
-              Iniciar sesión <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-          <button className="md:hidden text-slate-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-100 mt-4 pt-4 px-6 flex flex-col gap-4 text-slate-800 animate-fadeIn bg-white">
-            <a href="#demo" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Demo</a>
-            <a href="#beneficios" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Beneficios</a>
-            <a href="#equipo" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Equipo</a>
-            <a href="#blog" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Blog</a>
-            <button
-              onClick={() => { setPage('edubot'); setMobileMenuOpen(false); }}
-              className="text-base font-medium py-2 text-left hover:text-blue-600 transition-colors"
-            >
-              EduBot
-            </button>
-            <button
-              onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
-              className="bg-blue-600 text-white px-4 py-3 rounded-xl w-full font-bold shadow-md"
-            >
-              Iniciar sesión
-            </button>
-          </div>
-        )}
-      </nav>
-
-      {/* --- HERO SECTION --- */}
-      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white min-h-[700px] flex items-center">
-        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-          <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-blue-100/40 blur-[100px]"></div>
-          <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-100/30 blur-[120px]"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-left">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="text-left animate-fade-in-up order-2 lg:order-1 min-h-[300px] flex flex-col justify-center">
-              <div key={currentHeroSlide} className="animate-fade-in-up text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-blue-700 text-[11px] font-bold uppercase tracking-widest mb-6 shadow-sm">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                  </span>
-                  {heroSlides[currentHeroSlide].badge}
-                </div>
-                <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight mb-6 uppercase italic text-left">
-                  {heroSlides[currentHeroSlide].title} <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5c6eff] to-[#5cb4ff]">
-                    {heroSlides[currentHeroSlide].highlight}
-                  </span>
-                </h1>
-                <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg text-left">
-                  {heroSlides[currentHeroSlide].desc}
-                </p>
+      {page === 'edubot' ? (
+        <EduBotPage onBack={() => setPage('home')} />
+      ) : page === 'login' ? (
+        <LoginPage onBack={() => setPage('home')} />
+      ) : (
+        <>
+          {/* --- NAVBAR --- */}
+          <nav className={`fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100 ${isScrolled ? 'py-3 shadow-sm' : 'py-5'}`}>
+            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+              <div className="flex items-center gap-3 cursor-pointer group">
+                <img src="/logosolo.png" alt="Logo EduSis" className="h-14 w-auto object-contain transition-transform group-hover:scale-110" />
+                <span className="font-bold text-2xl tracking-normal text-slate-900 group-hover:text-blue-700 transition-colors font-display">EduSis</span>
               </div>
-              <div className="flex gap-2 mb-8">
-                {heroSlides.map((_, idx) => (
-                  <button key={idx} onClick={() => setCurrentHeroSlide(idx)} className={`h-2.5 rounded-full transition-all duration-300 ${currentHeroSlide === idx ? 'w-8 bg-blue-600' : 'w-2.5 bg-slate-300 hover:bg-slate-400'}`} />
+              <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 mr-2 lg:mr-6">
+                <a href="#demo" className="hover:text-blue-600 transition-colors">Demo</a>
+                <a href="#beneficios" className="hover:text-blue-600 transition-colors">Beneficios</a>
+                <a href="#equipo" className="hover:text-blue-600 transition-colors">Equipo</a>
+                <a href="#blog" className="hover:text-blue-600 transition-colors">Blog</a>
+                <button
+                  onClick={() => setPage('edubot')}
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  EduBot
+                </button>
+                <button
+                  onClick={() => setPage('login')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2.5 rounded-full shadow-lg shadow-blue-500/20 transition-all active:scale-95 font-bold flex items-center gap-2 text-left"
+                >
+                  Iniciar sesión <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+              <button className="md:hidden text-slate-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                {mobileMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
+            {mobileMenuOpen && (
+              <div className="md:hidden border-t border-slate-100 mt-4 pt-4 px-6 flex flex-col gap-4 text-slate-800 animate-fadeIn bg-white">
+                <a href="#demo" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Demo</a>
+                <a href="#beneficios" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Beneficios</a>
+                <a href="#equipo" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Equipo</a>
+                <a href="#blog" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Blog</a>
+                <button
+                  onClick={() => { setPage('edubot'); setMobileMenuOpen(false); }}
+                  className="text-base font-medium py-2 text-left hover:text-blue-600 transition-colors"
+                >
+                  EduBot
+                </button>
+                <button
+                  onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
+                  className="bg-blue-600 text-white px-4 py-3 rounded-xl w-full font-bold shadow-md"
+                >
+                  Iniciar sesión
+                </button>
+              </div>
+            )}
+          </nav>
+
+          {/* --- HERO SECTION --- */}
+          <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white min-h-[700px] flex items-center">
+            <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+              <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-blue-100/40 blur-[100px]"></div>
+              <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-100/30 blur-[120px]"></div>
+            </div>
+            <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-left">
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="text-left animate-fade-in-up order-2 lg:order-1 min-h-[300px] flex flex-col justify-center">
+                  <div key={currentHeroSlide} className="animate-fade-in-up text-left">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-blue-700 text-[11px] font-bold uppercase tracking-widest mb-6 shadow-sm">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                      </span>
+                      {heroSlides[currentHeroSlide].badge}
+                    </div>
+                    <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight mb-6 uppercase italic text-left">
+                      {heroSlides[currentHeroSlide].title} <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5c6eff] to-[#5cb4ff]">
+                        {heroSlides[currentHeroSlide].highlight}
+                      </span>
+                    </h1>
+                    <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg text-left">
+                      {heroSlides[currentHeroSlide].desc}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mb-8">
+                    {heroSlides.map((_, idx) => (
+                      <button key={idx} onClick={() => setCurrentHeroSlide(idx)} className={`h-2.5 rounded-full transition-all duration-300 ${currentHeroSlide === idx ? 'w-8 bg-blue-600' : 'w-2.5 bg-slate-300 hover:bg-slate-400'}`} />
+                    ))}
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="#contacto" className="bg-[#5c6eff] hover:bg-blue-700 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:shadow-blue-600/30 flex items-center justify-center gap-2">Solicitar Asesoría</a>
+                    <a href="#demo" className="px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest text-slate-600 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md"><Play className="w-4 h-4 fill-current" /> Ver Demo</a>
+                  </div>
+                </div>
+                <div className="relative h-[550px] w-full flex items-center justify-center animate-fade-in-left delay-300 order-1 lg:order-2">
+                  <div key={currentHeroSlide} className={`relative z-10 w-full max-w-[500px] aspect-[4/5] rounded-[3rem] p-4 transition-all duration-700 shadow-2xl bg-gradient-to-br ${heroSlides[currentHeroSlide].gradient}`}>
+                    <div className="w-full h-full rounded-[2.5rem] bg-white/20 backdrop-blur-md border border-white/30 relative flex items-end justify-center">
+                      <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
+                      <img src={heroSlides[currentHeroSlide].image} alt="Ilustración 3D" className={`relative z-10 w-auto object-contain drop-shadow-2xl transition-all duration-500 ${heroSlides[currentHeroSlide].imageStyling}`} />
+                      {heroSlides[currentHeroSlide].cards.map((card) => (
+                        <div key={card.id} className={`absolute bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white/60 animate-float-slow z-30 ${card.position}`} style={{ animationDelay: card.delay || '0s' }}>{card.content}</div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* --- FRANJA DE PILARES (REDISEÑADA) --- */}
+          <div className="w-full bg-white py-12 relative z-20 border-b border-slate-100 text-left">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 md:gap-x-16 text-slate-400 font-black text-[11px] uppercase tracking-[0.2em]">
+                <div className="flex items-center gap-3 hover:text-blue-600 transition-colors"><Cpu className="w-5 h-5 text-blue-500" /> Tecnología</div>
+                <div className="hidden md:block opacity-20 text-slate-300">•</div>
+                <div className="flex items-center gap-3 hover:text-indigo-600 transition-colors"><GraduationCap className="w-5 h-5 text-indigo-500" /> Educación</div>
+                <div className="hidden md:block opacity-20 text-slate-300">•</div>
+                <div className="flex items-center gap-3 hover:text-violet-600 transition-colors"><Bot className="w-5 h-5 text-violet-500" /> Inteligencia Artificial</div>
+                <div className="hidden md:block opacity-20 text-slate-300">•</div>
+                <div className="flex items-center gap-3 hover:text-sky-600 transition-colors"><Cloud className="w-5 h-5 text-sky-500" /> Cloud</div>
+                <div className="hidden md:block opacity-20 text-slate-300">•</div>
+                <div className="flex items-center gap-3 hover:text-emerald-600 transition-colors"><ShieldCheck className="w-5 h-5 text-green-500" /> Seguridad</div>
+              </div>
+            </div>
+          </div>
+
+          {/* --- SECCIÓN INTRO: QUE ES EDUSIS --- */}
+          <section ref={introRef} className={`py-20 relative overflow-hidden transition-all duration-1000 ${introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-100/50 via-blue-50/50 to-violet-100/50"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_white_0%,_transparent_70%)] opacity-40"></div>
+
+            <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
+              <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[48px] p-12 lg:p-16 shadow-[0_32px_64px_-16px_rgba(31,38,135,0.1)]">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-blue-600/10 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+                  La Nueva Era Educativa
+                </div>
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter uppercase italic leading-tight">
+                  ¿Qué es <span className="text-blue-600">EduSis</span> y por qué elegir el cambio?
+                </h2>
+                <p className="text-lg md:text-xl text-slate-600 font-bold leading-relaxed max-w-3xl mx-auto mb-10">
+                  EduSis es el primer ecosistema inteligente diseñado para liberar a los colegios del peso de la burocracia. Elegir el cambio significa priorizar la enseñanza sobre el papeleo, integrando IA de vanguardia y cumplimiento normativo en una experiencia fluida que empodera a toda la comunidad escolar.
+                </p>
+                <div className="flex flex-wrap justify-center gap-8">
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-3xl font-black text-blue-600">IA</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Automatización</span>
+                  </div>
+                  <div className="w-[1px] h-10 bg-slate-200 hidden sm:block"></div>
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-3xl font-black text-indigo-600">v3.0</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Tecnología</span>
+                  </div>
+                  <div className="w-[1px] h-10 bg-slate-200 hidden sm:block"></div>
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-3xl font-black text-violet-600">100%</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Normativo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+
+          {/* --- SECCIÓN DE BENEFICIOS (NUEVAS CARDS) --- */}
+          <section ref={benefitsRef} id="beneficios" className="py-28 px-6 relative bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 overflow-hidden text-left">
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff10_0%,_transparent_50%)] pointer-events-none"></div>
+            <div className="max-w-7xl mx-auto px-4 relative z-10 text-left">
+              <div className={`text-center mb-24 transition-all duration-700 ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter mb-4 leading-none font-black text-center">¿Por qué elegir EduSis?</h2>
+                <p className="text-xl text-blue-100 max-w-2xl mx-auto font-medium text-center">Dejamos atrás los sistemas grises y complicados para ofrecerte una experiencia fluida.</p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+                  <div className="w-16 h-16 rounded-2xl bg-[#5be6b4] text-white flex items-center justify-center mb-10 shadow-xl shadow-green-500/10"><ShieldCheck className="w-8 h-8" /></div>
+                  <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Cumplimiento Normativo</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Diseñado bajo los estándares de la <strong>Circular N°30</strong> y el <strong>Decreto 67</strong>. Asegura la subvención y los procesos de evaluación formativa con un sistema 100% legal.</p>
+                  <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">100% Legal</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
+                </div>
+                <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '100ms' }}>
+                  <div className="w-16 h-16 rounded-2xl bg-[#5c6eff] text-white flex items-center justify-center mb-10 shadow-xl shadow-indigo-500/10"><Zap className="w-8 h-8" /></div>
+                  <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Planificación Inteligente</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Accede a las Bases Curriculares Mineduc precargadas. Selecciona tus OAs y automatiza tu leccionario en segundos sin perder tiempo administrativo.</p>
+                  <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Fricción Cero</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
+                </div>
+                <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '200ms' }}>
+                  <div className="w-16 h-16 rounded-2xl bg-[#5cb4ff] text-white flex items-center justify-center mb-10 shadow-xl shadow-blue-400/10"><Clock className="w-8 h-8" /></div>
+                  <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Gestión Inteligente de Atrasos</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Controla atrasos en tiempo real con registro ágil y alertas automáticas. Identificación inmediata de reincidencias para apoyar la toma de decisiones y mejorar la convivencia escolar.</p>
+                  <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Hasta 70% menos tiempo en gestión manual</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
+                </div>
+                <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '300ms' }}>
+                  <div className="w-16 h-16 rounded-2xl bg-[#ff6b9c] text-white flex items-center justify-center mb-10 shadow-xl shadow-pink-500/10"><Target className="w-8 h-8" /></div>
+                  <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Radar de Riesgo (RAT)</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Cruce de datos estratégico. Identifica automáticamente a estudiantes en riesgo por inasistencia o notas bajo 4.0 antes de que ocurran casos críticos.</p>
+                  <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Gestión Proactiva</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
+                </div>
+                <div className={`p-12 rounded-[48px] border border-white/30 bg-white/20 backdrop-blur-md shadow-2xl hover:scale-105 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '400ms' }}>
+                  <div className="w-16 h-16 rounded-2xl bg-[#ffca5c] text-slate-900 flex items-center justify-center mb-10 shadow-xl shadow-yellow-500/20"><BellRing className="w-8 h-8" /></div>
+                  <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Automatización de Alertas</h3>
+                  <p className="text-white text-sm leading-relaxed mb-10 font-medium opacity-90 text-left">EduBot monitorea tus datos 24/7 bajo reglas programadas. Recibe avisos automáticos si un alumno falta 3 lunes seguidos o bajan los promedios.</p>
+                  <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">IA Paramétrica</span><ArrowRight className="w-5 h-5 text-white" /></div>
+                </div>
+                <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '500ms' }}>
+                  <div className="w-16 h-16 rounded-2xl bg-slate-800 text-white flex items-center justify-center mb-10 shadow-xl"><MessageCircle className="w-8 h-8" /></div>
+                  <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Comunicación Fluida</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Mantén a los apoderados informados en tiempo real. Notificaciones automáticas de asistencia, atrasos y reuniones agendadas directamente desde el libro.</p>
+                  <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Vínculo Familia</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* --- SECCIÓN DEMO INTERACTIVA (Rediseñada con Tabs y enfoque UX moderno) --- */}
+          <section ref={demoRef} id="demo" className="py-24 px-6 bg-slate-50 relative border-t border-slate-100 overflow-hidden text-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[600px] bg-gradient-to-r from-blue-100/30 via-purple-100/30 blur-[120px] rounded-full z-0 pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto relative z-10 text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-none">Control Total Institucional</h2>
+              <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Una plataforma, múltiples soluciones.</p>
+            </div>
+
+            {/* Componente de Tabs Interactivo */}
+            <div className={`max-w-6xl mx-auto relative transition-all duration-1000 ${demoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+              <DemoTabs />
+            </div>
+          </section>
+
+
+          {/* --- HISTORIA / EVOLUCIÓN (Con Animación del Cohete) --- */}
+          <section ref={storyRef} className={`py-28 bg-slate-900 text-white relative overflow-hidden transition-all duration-1000 ${storyVisible ? 'opacity-100' : 'opacity-0'} text-left`}>
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff08_0%,_transparent_50%)] pointer-events-none"></div>
+            <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-20 relative z-10 text-left">
+
+              <div className="lg:w-1/2 w-full perspective-1000 text-left">
+                <div className="relative w-full aspect-[4/3] bg-white/5 backdrop-blur-md border border-white/10 rounded-[48px] overflow-hidden shadow-2xl p-12 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+                  <div className="relative w-full max-w-lg z-10">
+                    <div className="absolute top-6 left-0 w-full h-1 bg-white/10 rounded-full"></div>
+                    <div className={`absolute top-6 left-0 h-1 bg-gradient-to-r from-white to-[#5cb4ff] rounded-full origin-left w-full transition-transform duration-[4000ms] ease-linear ${storyVisible ? 'scale-x-100' : 'scale-x-0'}`}></div>
+                    <div className="flex justify-between relative mt-1">
+                      <div className={`flex flex-col items-center gap-4 transition-all duration-700 ${storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                        <div className="w-12 h-12 rounded-full border-2 border-white/20 bg-slate-800 flex items-center justify-center z-10 shadow-lg text-white font-black italic"><FileText className="w-5 h-5" /></div>
+                        <div className="text-center w-24"><p className="text-[10px] font-black uppercase tracking-widest text-blue-100">Manual</p></div>
+                      </div>
+                      <div className={`flex flex-col items-center gap-4 transition-all duration-700 delay-[2000ms] ${storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                        <div className="w-12 h-12 rounded-full bg-slate-800 border-2 border-white/40 flex items-center justify-center text-white z-10 shadow-lg relative">
+                          <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-md"></div>
+                          <Monitor className="w-5 h-5 relative z-10" />
+                          <div className={`absolute inset-0 rounded-full border-2 border-white/50 opacity-0 ${storyVisible ? 'animate-ping-once' : ''}`} style={{ animationDelay: '2.5s' }}></div>
+                        </div>
+                        <div className="text-center w-24"><p className="text-[10px] font-black uppercase tracking-widest text-blue-100">Digital</p></div>
+                      </div>
+                      <div className={`flex flex-col items-center gap-4 transition-all duration-700 delay-[4000ms] ${storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                        <div className="w-16 h-16 rounded-3xl bg-white text-[#5c6eff] flex items-center justify-center z-10 shadow-2xl relative transform scale-110 shadow-[#5c6eff]/40">
+                          <Rocket className="w-8 h-8" />
+                          <div className={`absolute inset-0 rounded-3xl border-2 border-white opacity-0 ${storyVisible ? 'animate-ping-once' : ''}`} style={{ animationDelay: '4.5s' }}></div>
+                        </div>
+                        <div className="text-center w-28"><p className="text-sm font-black uppercase italic text-white tracking-tighter drop-shadow-md text-center">Optimizado</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:w-1/2 text-left">
+                <h3 className="text-[#ffca5c] font-black uppercase tracking-[0.3em] text-[10px] mb-4 flex items-center gap-2 leading-none text-left"><span className="w-8 h-[2px] bg-[#ffca5c] rounded-full"></span> Nuestra Evolución</h3>
+                <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] tracking-tighter uppercase italic text-left">Más que software, <br /><span className="text-[#5cb4ff]">somos tus socios.</span></h2>
+                <p className="text-blue-100/70 text-lg mb-10 font-medium leading-relaxed max-w-lg text-left">Entendemos que cada colegio está en una etapa distinta. EduSIS te acompaña desde la digitalización básica hasta la automatización inteligente paramétrica bajo normativa vigente.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* --- EQUIPO --- */}
+          <section ref={teamRef} id="equipo" className="py-28 bg-slate-50 border-t border-slate-100 text-center transition-all duration-700 text-left">
+            <div className={`max-w-7xl mx-auto px-6 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <h2 className="text-4xl font-black mb-4 tracking-tighter uppercase italic text-slate-900 leading-none text-center">Liderado por Expertos</h2>
+              <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] mb-20 opacity-60 text-center">Compromiso con la Transformación Digital</p>
+              <div className="grid md:grid-cols-4 gap-8">
+                {[
+                  { n: 'Fabián González', r: 'Director Educativo', c: 'border-indigo-100', img: '/fabian.png' },
+                  { n: 'Roxana Rebolledo', r: 'Tecnología Educativa', c: 'border-purple-100', img: '/roxana.png' },
+                  { n: 'José Mellado', r: 'Data Engineer', c: 'border-orange-100', img: '/jose.png' },
+                  { n: 'Danae González', r: 'Frontend AI Lead', c: 'border-blue-100', img: '/danae.png' }
+                ].map((m, i) => (
+                  <div key={i} className={`bg-white p-10 rounded-[40px] shadow-sm border ${m.c} hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group text-center`}>
+                    <div className="w-24 h-24 rounded-[32px] bg-slate-50 mx-auto mb-6 flex items-center justify-center overflow-hidden border-2 border-slate-100 group-hover:border-[#5c6eff]/20 transition-all duration-500">
+                      <img src={m.img} alt={m.n} className="w-full h-full object-cover" />
+                    </div>
+                    <h3 className="font-black text-slate-900 tracking-tighter uppercase italic text-sm text-center">{m.n}</h3>
+                    <p className="text-[10px] text-blue-600 uppercase font-black mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
+                  </div>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <a href="#contacto" className="bg-[#5c6eff] hover:bg-blue-700 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:shadow-blue-600/30 flex items-center justify-center gap-2">Solicitar Asesoría</a>
-                <a href="#demo" className="px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest text-slate-600 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md"><Play className="w-4 h-4 fill-current" /> Ver Demo</a>
+            </div>
+          </section>
+
+          {/* --- BLOG SECTION --- */}
+          <section ref={blogRef} id="blog" className={`py-28 bg-slate-50 relative overflow-hidden transition-all duration-1000 ${blogVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_#5c6eff05_0%,_transparent_40%)] pointer-events-none"></div>
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-none">Blog Educativo</h2>
+                <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Ingeniería Pedagógica & Futuro</p>
               </div>
-            </div>
-            <div className="relative h-[550px] w-full flex items-center justify-center animate-fade-in-left delay-300 order-1 lg:order-2">
-              <div key={currentHeroSlide} className={`relative z-10 w-full max-w-[500px] aspect-[4/5] rounded-[3rem] p-4 transition-all duration-700 shadow-2xl bg-gradient-to-br ${heroSlides[currentHeroSlide].gradient}`}>
-                <div className="w-full h-full rounded-[2.5rem] bg-white/20 backdrop-blur-md border border-white/30 relative flex items-end justify-center">
-                  <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
-                  <img src={heroSlides[currentHeroSlide].image} alt="Ilustración 3D" className={`relative z-10 w-auto object-contain drop-shadow-2xl transition-all duration-500 ${heroSlides[currentHeroSlide].imageStyling}`} />
-                  {heroSlides[currentHeroSlide].cards.map((card) => (
-                    <div key={card.id} className={`absolute bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white/60 animate-float-slow z-30 ${card.position}`} style={{ animationDelay: card.delay || '0s' }}>{card.content}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
 
-      {/* --- FRANJA DE PILARES --- */}
-      <div className="w-full bg-gradient-to-r from-[#5c6eff] via-indigo-600 to-violet-600 py-6 relative z-20 shadow-lg text-left">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12 opacity-95 text-white font-black text-[10px] uppercase tracking-widest">
-            <div className="flex items-center gap-2"><Cpu className="w-5 h-5" /> Tecnología</div>
-            <div className="hidden md:block opacity-30">•</div>
-            <div className="flex items-center gap-2"><GraduationCap className="w-5 h-5" /> Educación</div>
-            <div className="hidden md:block opacity-30">•</div>
-            <div className="flex items-center gap-2"><Bot className="w-5 h-5" /> Inteligencia Artificial</div>
-            <div className="hidden md:block opacity-30">•</div>
-            <div className="flex items-center gap-2"><Cloud className="w-5 h-5" /> Cloud</div>
-            <div className="hidden md:block opacity-30">•</div>
-            <div className="flex items-center gap-2"><ShieldCheck className="w-5 h-5" /> Seguridad</div>
-          </div>
-        </div>
-      </div>
-
-      {/* --- MISION --- */}
-      <section ref={missionRef} className={`py-28 bg-white relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50"></div>
-        <div className="max-w-6xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center text-left">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#5c6eff] to-violet-600 rounded-[48px] transform rotate-3 scale-[1.02] opacity-10 blur-xl group-hover:rotate-6 transition-transform duration-500"></div>
-            <img src="/mision.png" alt="Misión" className="relative z-10 rounded-[48px] shadow-3xl object-cover w-full h-[400px]" />
-          </div>
-          <div className="text-left">
-            <Heart className="w-10 h-10 text-[#ffca5c] mb-8 fill-current text-left" />
-            <h2 className="text-5xl font-black mb-8 tracking-tighter uppercase italic leading-none text-slate-900 font-black text-left">Nuestra Misión</h2>
-            <p className="text-2xl font-medium text-slate-500 italic leading-relaxed text-left">
-              "Democratizar la gestión educativa de excelencia, permitiendo que cada colegio tenga las herramientas para <span className="text-[#5c6eff] font-black not-italic border-b-4 border-[#5c6eff]/20">formar el futuro</span>."
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECCIÓN DE BENEFICIOS (NUEVAS CARDS) --- */}
-      <section ref={benefitsRef} id="beneficios" className="py-28 px-6 relative bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 overflow-hidden text-left">
-        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff10_0%,_transparent_50%)] pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-left">
-          <div className={`text-center mb-24 transition-all duration-700 ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter mb-4 leading-none font-black text-center">¿Por qué elegir EduSis?</h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto font-medium text-center">Dejamos atrás los sistemas grises y complicados para ofrecerte una experiencia fluida.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-              <div className="w-16 h-16 rounded-2xl bg-[#5be6b4] text-white flex items-center justify-center mb-10 shadow-xl shadow-green-500/10"><ShieldCheck className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Cumplimiento Normativo</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Diseñado bajo los estándares de la <strong>Circular N°30</strong> y el <strong>Decreto 67</strong>. Asegura la subvención y los procesos de evaluación formativa con un sistema 100% legal.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">100% Legal</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
-            </div>
-            <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '100ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-[#5c6eff] text-white flex items-center justify-center mb-10 shadow-xl shadow-indigo-500/10"><Zap className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Planificación Inteligente</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Accede a las Bases Curriculares Mineduc precargadas. Selecciona tus OAs y automatiza tu leccionario en segundos sin perder tiempo administrativo.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Fricción Cero</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
-            </div>
-            <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '200ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-[#5cb4ff] text-white flex items-center justify-center mb-10 shadow-xl shadow-blue-400/10"><Clock className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Gestión Inteligente de Atrasos</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Controla atrasos en tiempo real con registro ágil y alertas automáticas. Identificación inmediata de reincidencias para apoyar la toma de decisiones y mejorar la convivencia escolar.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Hasta 70% menos tiempo en gestión manual</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
-            </div>
-            <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '300ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-[#ff6b9c] text-white flex items-center justify-center mb-10 shadow-xl shadow-pink-500/10"><Target className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Radar de Riesgo (RAT)</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Cruce de datos estratégico. Identifica automáticamente a estudiantes en riesgo por inasistencia o notas bajo 4.0 antes de que ocurran casos críticos.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Gestión Proactiva</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
-            </div>
-            <div className={`p-12 rounded-[48px] border border-white/30 bg-white/20 backdrop-blur-md shadow-2xl hover:scale-105 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '400ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-[#ffca5c] text-slate-900 flex items-center justify-center mb-10 shadow-xl shadow-yellow-500/20"><BellRing className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Automatización de Alertas</h3>
-              <p className="text-white text-sm leading-relaxed mb-10 font-medium opacity-90 text-left">EduBot monitorea tus datos 24/7 bajo reglas programadas. Recibe avisos automáticos si un alumno falta 3 lunes seguidos o bajan los promedios.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">IA Paramétrica</span><ArrowRight className="w-5 h-5 text-white" /></div>
-            </div>
-            <div className={`p-12 rounded-[48px] border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all group ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '500ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-slate-800 text-white flex items-center justify-center mb-10 shadow-xl"><MessageCircle className="w-8 h-8" /></div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tighter italic leading-none text-left">Comunicación Fluida</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-10 font-medium text-left">Mantén a los apoderados informados en tiempo real. Notificaciones automáticas de asistencia, atrasos y reuniones agendadas directamente desde el libro.</p>
-              <div className="mt-auto pt-6 border-t border-white/10 flex justify-between items-center"><span className="text-[10px] font-black bg-white/10 px-4 py-1.5 rounded-full uppercase text-white tracking-widest text-left">Vínculo Familia</span><ArrowRight className="w-5 h-5 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" /></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECCIÓN DEMO INTERACTIVA (Rediseñada con Tabs y enfoque UX moderno) --- */}
-      <section ref={demoRef} id="demo" className="py-24 px-6 bg-slate-50 relative border-t border-slate-100 overflow-hidden text-center">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[600px] bg-gradient-to-r from-blue-100/30 via-purple-100/30 blur-[120px] rounded-full z-0 pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto relative z-10 text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-none">Control Total Institucional</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Una plataforma, múltiples soluciones.</p>
-        </div>
-
-        {/* Componente de Tabs Interactivo */}
-        <div className={`max-w-6xl mx-auto relative transition-all duration-1000 ${demoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-          <DemoTabs />
-        </div>
-      </section>
-
-
-      {/* --- HISTORIA / EVOLUCIÓN (Con Animación del Cohete) --- */}
-      <section ref={storyRef} className={`py-28 bg-slate-900 text-white relative overflow-hidden transition-all duration-1000 ${storyVisible ? 'opacity-100' : 'opacity-0'} text-left`}>
-        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff08_0%,_transparent_50%)] pointer-events-none"></div>
-        <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-20 relative z-10 text-left">
-
-          <div className="lg:w-1/2 w-full perspective-1000 text-left">
-            <div className="relative w-full aspect-[4/3] bg-white/5 backdrop-blur-md border border-white/10 rounded-[48px] overflow-hidden shadow-2xl p-12 flex items-center justify-center">
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-              <div className="relative w-full max-w-lg z-10">
-                <div className="absolute top-6 left-0 w-full h-1 bg-white/10 rounded-full"></div>
-                <div className={`absolute top-6 left-0 h-1 bg-gradient-to-r from-white to-[#5cb4ff] rounded-full origin-left w-full transition-transform duration-[4000ms] ease-linear ${storyVisible ? 'scale-x-100' : 'scale-x-0'}`}></div>
-                <div className="flex justify-between relative mt-1">
-                  <div className={`flex flex-col items-center gap-4 transition-all duration-700 ${storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="w-12 h-12 rounded-full border-2 border-white/20 bg-slate-800 flex items-center justify-center z-10 shadow-lg text-white font-black italic"><FileText className="w-5 h-5" /></div>
-                    <div className="text-center w-24"><p className="text-[10px] font-black uppercase tracking-widest text-blue-100">Manual</p></div>
-                  </div>
-                  <div className={`flex flex-col items-center gap-4 transition-all duration-700 delay-[2000ms] ${storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="w-12 h-12 rounded-full bg-slate-800 border-2 border-white/40 flex items-center justify-center text-white z-10 shadow-lg relative">
-                      <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-md"></div>
-                      <Monitor className="w-5 h-5 relative z-10" />
-                      <div className={`absolute inset-0 rounded-full border-2 border-white/50 opacity-0 ${storyVisible ? 'animate-ping-once' : ''}`} style={{ animationDelay: '2.5s' }}></div>
-                    </div>
-                    <div className="text-center w-24"><p className="text-[10px] font-black uppercase tracking-widest text-blue-100">Digital</p></div>
-                  </div>
-                  <div className={`flex flex-col items-center gap-4 transition-all duration-700 delay-[4000ms] ${storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="w-16 h-16 rounded-3xl bg-white text-[#5c6eff] flex items-center justify-center z-10 shadow-2xl relative transform scale-110 shadow-[#5c6eff]/40">
-                      <Rocket className="w-8 h-8" />
-                      <div className={`absolute inset-0 rounded-3xl border-2 border-white opacity-0 ${storyVisible ? 'animate-ping-once' : ''}`} style={{ animationDelay: '4.5s' }}></div>
-                    </div>
-                    <div className="text-center w-28"><p className="text-sm font-black uppercase italic text-white tracking-tighter drop-shadow-md text-center">Optimizado</p></div>
+              <article className="bg-white rounded-[48px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row items-center gap-0 lg:gap-12 group hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-1">
+                <div className="w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden relative">
+                  <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                  <img
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2070"
+                    alt="IA en Educación"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute top-8 left-8 z-20">
+                    <span className="bg-blue-600 text-white px-4 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-blue-500/30">
+                      Caso de Éxito
+                    </span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <div className="lg:w-1/2 text-left">
-            <h3 className="text-[#ffca5c] font-black uppercase tracking-[0.3em] text-[10px] mb-4 flex items-center gap-2 leading-none text-left"><span className="w-8 h-[2px] bg-[#ffca5c] rounded-full"></span> Nuestra Evolución</h3>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] tracking-tighter uppercase italic text-left">Más que software, <br /><span className="text-[#5cb4ff]">somos tus socios.</span></h2>
-            <p className="text-blue-100/70 text-lg mb-10 font-medium leading-relaxed max-w-lg text-left">Entendemos que cada colegio está en una etapa distinta. EduSIS te acompaña desde la digitalización básica hasta la automatización inteligente paramétrica bajo normativa vigente.</p>
-          </div>
-        </div>
-      </section>
+                <div className="w-full lg:w-1/2 p-8 lg:p-12 lg:pl-0 flex flex-col">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="flex -space-x-2">
+                      <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center overflow-hidden">
+                        <img src="/fabian.png" alt="Autor" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-black text-slate-900 uppercase tracking-wider">Equipo EduSis</span>
+                      <span className="text-[10px] text-slate-400 font-bold">24 de Febrero, 2026</span>
+                    </div>
+                  </div>
 
-      {/* --- EQUIPO --- */}
-      <section ref={teamRef} id="equipo" className="py-28 bg-slate-50 border-t border-slate-100 text-center transition-all duration-700 text-left">
-        <div className={`max-w-7xl mx-auto px-6 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl font-black mb-4 tracking-tighter uppercase italic text-slate-900 leading-none text-center">Liderado por Expertos</h2>
-          <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] mb-20 opacity-60 text-center">Compromiso con la Transformación Digital</p>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { n: 'Fabián González', r: 'Director Educativo', c: 'border-indigo-100', img: '/fabian.png' },
-              { n: 'Roxana Rebolledo', r: 'Tecnología Educativa', c: 'border-purple-100', img: '/roxana.png' },
-              { n: 'José Mellado', r: 'Data Engineer', c: 'border-orange-100', img: '/jose.png' },
-              { n: 'Danae González', r: 'Frontend AI Lead', c: 'border-blue-100', img: '/danae.png' }
-            ].map((m, i) => (
-              <div key={i} className={`bg-white p-10 rounded-[40px] shadow-sm border ${m.c} hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group text-center`}>
-                <div className="w-24 h-24 rounded-[32px] bg-slate-50 mx-auto mb-6 flex items-center justify-center overflow-hidden border-2 border-slate-100 group-hover:border-[#5c6eff]/20 transition-all duration-500">
-                  <img src={m.img} alt={m.n} className="w-full h-full object-cover" />
-                </div>
-                <h3 className="font-black text-slate-900 tracking-tighter uppercase italic text-sm text-center">{m.n}</h3>
-                <p className="text-[10px] text-blue-600 uppercase font-black mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                  <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-8 tracking-tighter uppercase italic">
+                    IA vs. Burocracia: Cómo EduBot reduce el tiempo de planificación en un 60%
+                  </h1>
 
-      {/* --- BLOG SECTION --- */}
-      <section ref={blogRef} id="blog" className={`py-28 bg-slate-50 relative overflow-hidden transition-all duration-1000 ${blogVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_#5c6eff05_0%,_transparent_40%)] pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-none">Blog Educativo</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Ingeniería Pedagógica & Futuro</p>
-          </div>
+                  <div className="max-w-none space-y-6 text-slate-600 font-medium leading-relaxed">
+                    <p>
+                      En la última década, la labor docente en Chile se ha visto inundada por una "marea administrativa". Según diversos estudios sobre la carga laboral, un profesor promedio dedica más tiempo a gestionar papeles y cumplir con la Circular 30 que a la enseñanza directa en el aula.
+                    </p>
+                    <p className="border-l-4 border-blue-500 pl-6 italic text-lg text-slate-900 font-bold">
+                      Pero, ¿qué pasaría si la Inteligencia Artificial no viniera a reemplazar al profesor, sino a liberarlo de su mayor enemigo: la burocracia?
+                    </p>
 
-          <article className="bg-white rounded-[48px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row items-center gap-0 lg:gap-12 group hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-1">
-            <div className="w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden relative">
-              <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-              <img
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2070"
-                alt="IA en Educación"
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-              <div className="absolute top-8 left-8 z-20">
-                <span className="bg-blue-600 text-white px-4 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-blue-500/30">
-                  Caso de Éxito
-                </span>
-              </div>
-            </div>
+                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mt-10">La Realidad de los Datos: El tiempo "robado" al docente</h3>
+                    <p>
+                      Un estudio global de McKinsey & Company reveló que los docentes trabajan un promedio de 50 horas a la semana. Lo alarmante es que solo dedican el 49% de ese tiempo a la instrucción directa. ¿El resto? Se pierde en preparación, administración y evaluación.
+                    </p>
+                    <p>
+                      El informe destaca que aproximadamente entre el 20% y el 40% de las tareas docentes actuales pueden ser automatizadas con la tecnología disponible hoy. En el área específica de la preparación y planificación de clases, la IA puede reducir el tiempo invertido hasta en un 45%.
+                    </p>
 
-            <div className="w-full lg:w-1/2 p-8 lg:p-12 lg:pl-0 flex flex-col">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center overflow-hidden">
-                    <img src="/fabian.png" alt="Autor" className="w-full h-full object-cover" />
+                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mt-10">EduBot: Transformando el "Copiar y Pegar" en Ingeniería Pedagógica</h3>
+                    <p>
+                      En EduSIS, hemos llevado estos datos al contexto chileno. La planificación curricular (ajustada a los Objetivos de Aprendizaje del Mineduc) suele ser un proceso de "copiar y pegar" tedioso. EduBot cambia las reglas del juego:
+                    </p>
+
+                    <ul className="space-y-4 pt-4">
+                      <li className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                          <Zap className="w-3.5 h-3.5" />
+                        </div>
+                        <span><strong>Integración Curricular Instantánea:</strong> Al tener las bases del Mineduc precargadas, EduBot permite al docente seleccionar un OA y generar sugerencias de inicio, desarrollo y cierre en segundos.</span>
+                      </li>
+                      <li className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                          <FileCheck className="w-3.5 h-3.5" />
+                        </div>
+                        <span><strong>Sincronización con el Libro Digital:</strong> Lo que se planifica, se inyecta automáticamente en el leccionario del Libro de Clases Digital.</span>
+                      </li>
+                      <li className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                          <BarChart3 className="w-3.5 h-3.5" />
+                        </div>
+                        <span><strong>Análisis de Cobertura en Tiempo Real:</strong> EduBot avisa proactivamente sobre el porcentaje de cobertura curricular y sugiere priorizaciones estratégicas.</span>
+                      </li>
+                    </ul>
+
+                    <div className="bg-slate-900 rounded-3xl p-8 my-10 text-white relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
+                      <h4 className="text-2xl font-black uppercase italic mb-4">¿Por qué hablamos de un ahorro del 60%?</h4>
+                      <p className="text-blue-100/80">
+                        Nuestras pruebas internas con el prototipo de EduSIS muestran que un docente que antes tardaba 3 horas semanales en documentar y alinear sus planificaciones, hoy lo hace en menos de 70 minutos.
+                      </p>
+                    </div>
+
+                    <p>
+                      <strong>Conclusión:</strong> El foco vuelve al alumno. Al automatizar la burocracia con EduBot, logramos que el sistema escolar deje de ser una fábrica de registros para convertirse en lo que siempre debió ser: un espacio de aprendizaje activo y proactivo.
+                    </p>
+
+                    <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-slate-100">
+                      <div className="text-[10px] font-bold text-slate-400 space-y-1">
+                        <p className="uppercase tracking-widest">Fuentes:</p>
+                        <p>McKinsey & Company (2020) • UNESCO-IBE Reports</p>
+                      </div>
+                      <button
+                        onClick={() => setPage('edubot')}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-xl shadow-blue-500/20 flex items-center gap-2"
+                      >
+                        Conocer EduBot <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-black text-slate-900 uppercase tracking-wider">Equipo EduSis</span>
-                  <span className="text-[10px] text-slate-400 font-bold">24 de Febrero, 2026</span>
+              </article>
+            </div>
+          </section>
+
+          {/* --- MISION --- */}
+          <section ref={missionRef} className={`py-28 bg-gradient-to-br from-blue-600 via-indigo-700 to-violet-800 relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff10_0%,_transparent_50%)] pointer-events-none"></div>
+            <div className="max-w-6xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center text-left">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-white/20 rounded-[48px] transform rotate-3 scale-[1.02] blur-xl group-hover:rotate-6 transition-transform duration-500"></div>
+                <img src="/mision.png" alt="Misión" className="relative z-10 rounded-[48px] shadow-3xl border border-white/20 object-cover w-full h-[400px]" />
+              </div>
+              <div className="text-left">
+                <Heart className="w-10 h-10 text-[#ffca5c] mb-8 fill-current text-left" />
+                <h2 className="text-5xl font-black mb-8 tracking-tighter uppercase italic leading-none text-white font-black text-left">Nuestra Misión</h2>
+                <p className="text-2xl font-medium text-blue-100 italic leading-relaxed text-left">
+                  "Democratizar la gestión educativa de excelencia, permitiendo que cada colegio tenga las herramientas para <span className="text-white font-black not-italic border-b-4 border-white/30">formar el futuro</span>."
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* --- FAQ --- */}
+          <section ref={faqRef} className={`py-28 bg-white px-6 transition-all duration-1000 ${faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} text-left`}>
+            <div className="max-w-4xl mx-auto text-left">
+              <h2 className="text-4xl font-black text-center mb-16 tracking-tighter uppercase italic text-slate-900 leading-none">Preguntas Frecuentes</h2>
+              <div className="space-y-4">
+                {[
+                  { q: "¿Cómo es el proceso de migración de datos?", a: "Evaluamos y migramos tu data histórica con los más altos estándares de seguridad e integridad técnica en Google Cloud." },
+                  { q: "¿Qué tan seguros están los datos del colegio?", a: "Totalmente. Usamos encriptación bancaria y respaldos automáticos diarios. Tus datos nunca se comparten con terceros." },
+                  { q: "¿Cumple con la normativa del Mineduc?", a: "Sí, EduSIS está diseñado específicamente bajo los lineamientos de la Circular 30 y el Decreto 67 de evaluación formativa." },
+                  { q: "¿Ofrecen soporte y facilidad de uso?", a: "Tenemos un enfoque de 'Cero Curva de Aprendizaje' y soporte técnico prioritario 24/7 para todos los docentes." }
+                ].map((f, i) => (
+                  <div key={i} className="border border-slate-100 rounded-[24px] overflow-hidden shadow-sm hover:border-blue-200 transition-all text-left">
+                    <button onClick={() => toggleFaq(i)} className="w-full p-8 text-left font-black text-slate-800 uppercase tracking-tighter text-sm flex justify-between items-center group outline-none">
+                      <span>{f.q}</span>
+                      <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#5c6eff] group-hover:text-white transition-all duration-300">
+                        {openFaq === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      </div>
+                    </button>
+                    {openFaq === i && <div className="p-8 pt-0 text-slate-500 font-medium leading-relaxed text-sm animate-fade-in-up text-left">{f.a}</div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* --- CONTACTO --- */}
+          <section ref={contactRef} id="contacto" className="py-32 bg-gradient-to-br from-[#5c6eff] via-indigo-600 to-violet-600 px-6 relative overflow-hidden transition-all duration-700 text-left">
+            <div className={`max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10 ${contactVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} text-left`}>
+              <div className="text-white text-left">
+                <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mb-8 leading-[0.9] text-left">Transforma tu <br /> comunidad.</h2>
+                <p className="text-xl opacity-90 mb-12 font-medium leading-relaxed max-w-md text-blue-50 text-left">Agenda una demo personalizada y optimiza tu gestión administrativa en 15 minutos.</p>
+                <div className="flex flex-col gap-6 text-left">
+                  <div className="flex items-center gap-4 text-left"><div className="w-6 h-6 rounded-full bg-[#5be6b4] flex items-center justify-center shadow-lg shadow-green-500/20"><Check className="w-3 h-3 text-white" strokeWidth={5} /></div><span className="font-black text-[11px] uppercase tracking-widest text-left">Asesoría Estratégica</span></div>
+                  <div className="flex items-center gap-4 text-left"><div className="w-6 h-6 rounded-full bg-[#5be6b4] flex items-center justify-center shadow-lg shadow-green-500/20"><Check className="w-3 h-3 text-white" strokeWidth={5} /></div><span className="font-black text-[11px] uppercase tracking-widest text-left">Soporte Prioritario 24/7</span></div>
                 </div>
               </div>
+              <div className="glass-form p-12 rounded-[56px] shadow-3xl text-left">
+                <form className="space-y-5 text-left">
+                  <input type="text" placeholder="Nombre y Apellido" className="w-full bg-white/10 border border-white/20 p-4 rounded-2xl text-white outline-none focus:bg-white/20 transition-all font-medium placeholder:text-white/30 text-left" />
+                  <input type="email" placeholder="Email Institucional" className="w-full bg-white/10 border border-white/20 p-4 rounded-2xl text-white outline-none focus:bg-white/20 transition-all font-medium placeholder:text-white/30 text-left" />
+                  <input type="text" placeholder="Institución Educativa" className="w-full bg-white/10 border border-white/20 p-4 rounded-2xl text-white outline-none focus:bg-white/20 transition-all font-medium placeholder:text-white/30 text-left" />
+                  <button className="w-full bg-white text-[#5c6eff] font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs mt-6 hover:scale-[1.02] transition-all active:scale-95 shadow-2xl text-center">Agendar Demo Gratis</button>
+                </form>
+              </div>
+            </div>
+          </section>
 
-              <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-8 tracking-tighter uppercase italic">
-                IA vs. Burocracia: Cómo EduBot reduce el tiempo de planificación en un 60%
-              </h1>
-
-              <div className="max-w-none space-y-6 text-slate-600 font-medium leading-relaxed">
-                <p>
-                  En la última década, la labor docente en Chile se ha visto inundada por una "marea administrativa". Según diversos estudios sobre la carga laboral, un profesor promedio dedica más tiempo a gestionar papeles y cumplir con la Circular 30 que a la enseñanza directa en el aula.
-                </p>
-                <p className="border-l-4 border-blue-500 pl-6 italic text-lg text-slate-900 font-bold">
-                  Pero, ¿qué pasaría si la Inteligencia Artificial no viniera a reemplazar al profesor, sino a liberarlo de su mayor enemigo: la burocracia?
-                </p>
-
-                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mt-10">La Realidad de los Datos: El tiempo "robado" al docente</h3>
-                <p>
-                  Un estudio global de McKinsey & Company reveló que los docentes trabajan un promedio de 50 horas a la semana. Lo alarmante es que solo dedican el 49% de ese tiempo a la instrucción directa. ¿El resto? Se pierde en preparación, administración y evaluación.
-                </p>
-                <p>
-                  El informe destaca que aproximadamente entre el 20% y el 40% de las tareas docentes actuales pueden ser automatizadas con la tecnología disponible hoy. En el área específica de la preparación y planificación de clases, la IA puede reducir el tiempo invertido hasta en un 45%.
-                </p>
-
-                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mt-10">EduBot: Transformando el "Copiar y Pegar" en Ingeniería Pedagógica</h3>
-                <p>
-                  En EduSIS, hemos llevado estos datos al contexto chileno. La planificación curricular (ajustada a los Objetivos de Aprendizaje del Mineduc) suele ser un proceso de "copiar y pegar" tedioso. EduBot cambia las reglas del juego:
-                </p>
-
-                <ul className="space-y-4 pt-4">
-                  <li className="flex gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                      <Zap className="w-3.5 h-3.5" />
-                    </div>
-                    <span><strong>Integración Curricular Instantánea:</strong> Al tener las bases del Mineduc precargadas, EduBot permite al docente seleccionar un OA y generar sugerencias de inicio, desarrollo y cierre en segundos.</span>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                      <FileCheck className="w-3.5 h-3.5" />
-                    </div>
-                    <span><strong>Sincronización con el Libro Digital:</strong> Lo que se planifica, se inyecta automáticamente en el leccionario del Libro de Clases Digital.</span>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-                      <BarChart3 className="w-3.5 h-3.5" />
-                    </div>
-                    <span><strong>Análisis de Cobertura en Tiempo Real:</strong> EduBot avisa proactivamente sobre el porcentaje de cobertura curricular y sugiere priorizaciones estratégicas.</span>
-                  </li>
+          {/* --- FOOTER --- */}
+          <footer className="bg-slate-900 pt-32 pb-16 px-6 text-slate-400 text-left">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-16 border-b border-slate-800 pb-20 mb-16 text-left">
+              <div className="space-y-6 text-left">
+                <div className="flex items-center gap-3 mb-4 text-left">
+                  <img src="/logosolo.png" className="h-10 object-contain text-left" />
+                  <span className="font-display font-bold text-white text-2xl text-left">EduSis</span>
+                </div>
+                <p className="text-sm leading-relaxed font-medium text-left">Tecnología inteligente y gestión de ingeniería pedagógica bajo normativa Mineduc.</p>
+              </div>
+              <div className="text-left text-left">
+                <h4 className="text-white font-black uppercase text-[10px] tracking-[0.3em] mb-8 italic text-left">Plataforma</h4>
+                <ul className="text-sm space-y-4 font-black text-left">
+                  <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Gestión Académica</a></li>
+                  <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">App para Familias</a></li>
+                  <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Reportes SIGE</a></li>
                 </ul>
-
-                <div className="bg-slate-900 rounded-3xl p-8 my-10 text-white relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
-                  <h4 className="text-2xl font-black uppercase italic mb-4">¿Por qué hablamos de un ahorro del 60%?</h4>
-                  <p className="text-blue-100/80">
-                    Nuestras pruebas internas con el prototipo de EduSIS muestran que un docente que antes tardaba 3 horas semanales en documentar y alinear sus planificaciones, hoy lo hace en menos de 70 minutos.
-                  </p>
-                </div>
-
-                <p>
-                  <strong>Conclusión:</strong> El foco vuelve al alumno. Al automatizar la burocracia con EduBot, logramos que el sistema escolar deje de ser una fábrica de registros para convertirse en lo que siempre debió ser: un espacio de aprendizaje activo y proactivo.
-                </p>
-
-                <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-slate-100">
-                  <div className="text-[10px] font-bold text-slate-400 space-y-1">
-                    <p className="uppercase tracking-widest">Fuentes:</p>
-                    <p>McKinsey & Company (2020) • UNESCO-IBE Reports</p>
-                  </div>
-                  <button
-                    onClick={() => setPage('edubot')}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-xl shadow-blue-500/20 flex items-center gap-2"
-                  >
-                    Conocer EduBot <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+              </div>
+              <div className="text-left text-left">
+                <h4 className="text-white font-black uppercase text-[10px] tracking-[0.3em] mb-8 italic text-left">Compañía</h4>
+                <ul className="text-sm space-y-4 font-black text-left">
+                  <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Sobre Nosotros</a></li>
+                  <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Seguridad</a></li>
+                  <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Contacto</a></li>
+                </ul>
+              </div>
+              <div className="text-left text-left">
+                <h4 className="text-white font-black uppercase text-[10px] tracking-[0.3em] mb-8 italic text-left">Contacto</h4>
+                <ul className="text-sm space-y-4 font-black text-left">
+                  <li className="flex items-center gap-3 text-left"><Mail className="w-4 h-4 text-blue-500 text-left" /> contacto@edusis.cl</li>
+                  <li className="flex items-center gap-3 text-left"><Phone className="w-4 h-4 text-blue-500 text-left" /> +56 9 455 37 056</li>
+                </ul>
               </div>
             </div>
-          </article>
-        </div>
-      </section>
-
-      {/* --- FAQ --- */}
-      <section ref={faqRef} className={`py-28 bg-white px-6 transition-all duration-1000 ${faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} text-left`}>
-        <div className="max-w-4xl mx-auto text-left">
-          <h2 className="text-4xl font-black text-center mb-16 tracking-tighter uppercase italic text-slate-900 leading-none">Preguntas Frecuentes</h2>
-          <div className="space-y-4">
-            {[
-              { q: "¿Cómo es el proceso de migración de datos?", a: "Evaluamos y migramos tu data histórica con los más altos estándares de seguridad e integridad técnica en Google Cloud." },
-              { q: "¿Qué tan seguros están los datos del colegio?", a: "Totalmente. Usamos encriptación bancaria y respaldos automáticos diarios. Tus datos nunca se comparten con terceros." },
-              { q: "¿Cumple con la normativa del Mineduc?", a: "Sí, EduSIS está diseñado específicamente bajo los lineamientos de la Circular 30 y el Decreto 67 de evaluación formativa." },
-              { q: "¿Ofrecen soporte y facilidad de uso?", a: "Tenemos un enfoque de 'Cero Curva de Aprendizaje' y soporte técnico prioritario 24/7 para todos los docentes." }
-            ].map((f, i) => (
-              <div key={i} className="border border-slate-100 rounded-[24px] overflow-hidden shadow-sm hover:border-blue-200 transition-all text-left">
-                <button onClick={() => toggleFaq(i)} className="w-full p-8 text-left font-black text-slate-800 uppercase tracking-tighter text-sm flex justify-between items-center group outline-none">
-                  <span>{f.q}</span>
-                  <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#5c6eff] group-hover:text-white transition-all duration-300">
-                    {openFaq === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                  </div>
-                </button>
-                {openFaq === i && <div className="p-8 pt-0 text-slate-500 font-medium leading-relaxed text-sm animate-fade-in-up text-left">{f.a}</div>}
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase font-black tracking-[0.3em] text-slate-600 text-left">
+              <p>© 2026 EduSis SpA. Todos los derechos reservados.</p>
+              <div className="flex gap-10 text-left">
+                <a href="#" className="hover:text-[#5c6eff] transition-all text-left">Privacidad</a>
+                <a href="#" className="hover:text-[#5c6eff] transition-all text-left">Términos</a>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- CONTACTO --- */}
-      <section ref={contactRef} id="contacto" className="py-32 bg-gradient-to-br from-[#5c6eff] via-indigo-600 to-violet-600 px-6 relative overflow-hidden transition-all duration-700 text-left">
-        <div className={`max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10 ${contactVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} text-left`}>
-          <div className="text-white text-left">
-            <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mb-8 leading-[0.9] text-left">Transforma tu <br /> comunidad.</h2>
-            <p className="text-xl opacity-90 mb-12 font-medium leading-relaxed max-w-md text-blue-50 text-left">Agenda una demo personalizada y optimiza tu gestión administrativa en 15 minutos.</p>
-            <div className="flex flex-col gap-6 text-left">
-              <div className="flex items-center gap-4 text-left"><div className="w-6 h-6 rounded-full bg-[#5be6b4] flex items-center justify-center shadow-lg shadow-green-500/20"><Check className="w-3 h-3 text-white" strokeWidth={5} /></div><span className="font-black text-[11px] uppercase tracking-widest text-left">Asesoría Estratégica</span></div>
-              <div className="flex items-center gap-4 text-left"><div className="w-6 h-6 rounded-full bg-[#5be6b4] flex items-center justify-center shadow-lg shadow-green-500/20"><Check className="w-3 h-3 text-white" strokeWidth={5} /></div><span className="font-black text-[11px] uppercase tracking-widest text-left">Soporte Prioritario 24/7</span></div>
             </div>
-          </div>
-          <div className="glass-form p-12 rounded-[56px] shadow-3xl text-left">
-            <form className="space-y-5 text-left">
-              <input type="text" placeholder="Nombre y Apellido" className="w-full bg-white/10 border border-white/20 p-4 rounded-2xl text-white outline-none focus:bg-white/20 transition-all font-medium placeholder:text-white/30 text-left" />
-              <input type="email" placeholder="Email Institucional" className="w-full bg-white/10 border border-white/20 p-4 rounded-2xl text-white outline-none focus:bg-white/20 transition-all font-medium placeholder:text-white/30 text-left" />
-              <input type="text" placeholder="Institución Educativa" className="w-full bg-white/10 border border-white/20 p-4 rounded-2xl text-white outline-none focus:bg-white/20 transition-all font-medium placeholder:text-white/30 text-left" />
-              <button className="w-full bg-white text-[#5c6eff] font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs mt-6 hover:scale-[1.02] transition-all active:scale-95 shadow-2xl text-center">Agendar Demo Gratis</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* --- FOOTER --- */}
-      <footer className="bg-slate-900 pt-32 pb-16 px-6 text-slate-400 text-left">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-16 border-b border-slate-800 pb-20 mb-16 text-left">
-          <div className="space-y-6 text-left">
-            <div className="flex items-center gap-3 mb-4 text-left">
-              <img src="/logosolo.png" className="h-10 object-contain text-left" />
-              <span className="font-display font-bold text-white text-2xl text-left">EduSis</span>
-            </div>
-            <p className="text-sm leading-relaxed font-medium text-left">Tecnología inteligente y gestión de ingeniería pedagógica bajo normativa Mineduc.</p>
-          </div>
-          <div className="text-left text-left">
-            <h4 className="text-white font-black uppercase text-[10px] tracking-[0.3em] mb-8 italic text-left">Plataforma</h4>
-            <ul className="text-sm space-y-4 font-black text-left">
-              <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Gestión Académica</a></li>
-              <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">App para Familias</a></li>
-              <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Reportes SIGE</a></li>
-            </ul>
-          </div>
-          <div className="text-left text-left">
-            <h4 className="text-white font-black uppercase text-[10px] tracking-[0.3em] mb-8 italic text-left">Compañía</h4>
-            <ul className="text-sm space-y-4 font-black text-left">
-              <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Sobre Nosotros</a></li>
-              <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Seguridad</a></li>
-              <li><a href="#" className="hover:text-blue-500 transition-all uppercase tracking-widest text-left">Contacto</a></li>
-            </ul>
-          </div>
-          <div className="text-left text-left">
-            <h4 className="text-white font-black uppercase text-[10px] tracking-[0.3em] mb-8 italic text-left">Contacto</h4>
-            <ul className="text-sm space-y-4 font-black text-left">
-              <li className="flex items-center gap-3 text-left"><Mail className="w-4 h-4 text-blue-500 text-left" /> contacto@edusis.cl</li>
-              <li className="flex items-center gap-3 text-left"><Phone className="w-4 h-4 text-blue-500 text-left" /> +56 9 455 37 056</li>
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase font-black tracking-[0.3em] text-slate-600 text-left">
-          <p>© 2026 EduSis SpA. Todos los derechos reservados.</p>
-          <div className="flex gap-10 text-left">
-            <a href="#" className="hover:text-[#5c6eff] transition-all text-left">Privacidad</a>
-            <a href="#" className="hover:text-[#5c6eff] transition-all text-left">Términos</a>
-          </div>
-        </div>
-      </footer>
+          </footer>
+        </>
+      )}
     </div>
   );
 };
