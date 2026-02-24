@@ -640,6 +640,21 @@ const LandingPage = () => {
         @keyframes grow-height { from { height: 0%; } to { height: var(--target-height); } }
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(3deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
         @keyframes ping-once { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+
+        .marquee-mask {
+          mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
         
         .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
         .animate-fade-in-left { animation: fade-in-left 0.8s ease-out forwards; }
@@ -766,18 +781,35 @@ const LandingPage = () => {
           </header>
 
           {/* --- FRANJA DE PILARES (REDISEÑADA) --- */}
-          <div className="w-full bg-white py-12 relative z-20 border-b border-slate-100 text-left">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 md:gap-x-16 text-slate-400 font-black text-[11px] uppercase tracking-[0.2em]">
-                <div className="flex items-center gap-3 hover:text-blue-600 transition-colors"><Cpu className="w-5 h-5 text-blue-500" /> Tecnología</div>
-                <div className="hidden md:block opacity-20 text-slate-300">•</div>
-                <div className="flex items-center gap-3 hover:text-indigo-600 transition-colors"><GraduationCap className="w-5 h-5 text-indigo-500" /> Educación</div>
-                <div className="hidden md:block opacity-20 text-slate-300">•</div>
-                <div className="flex items-center gap-3 hover:text-violet-600 transition-colors"><Bot className="w-5 h-5 text-violet-500" /> Inteligencia Artificial</div>
-                <div className="hidden md:block opacity-20 text-slate-300">•</div>
-                <div className="flex items-center gap-3 hover:text-sky-600 transition-colors"><Cloud className="w-5 h-5 text-sky-500" /> Cloud</div>
-                <div className="hidden md:block opacity-20 text-slate-300">•</div>
-                <div className="flex items-center gap-3 hover:text-emerald-600 transition-colors"><ShieldCheck className="w-5 h-5 text-green-500" /> Seguridad</div>
+          <div className="w-full bg-white py-6 relative z-20 border-b border-slate-100 text-left overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 marquee-mask">
+              <div className="animate-marquee items-center gap-12 md:gap-16 text-slate-400 font-black text-[11px] uppercase tracking-[0.2em]">
+                {/* original items group */}
+                <div className="flex items-center gap-12 md:gap-16 shrink-0">
+                  <div className="flex items-center gap-3 hover:text-blue-600 transition-colors"><Cpu className="w-5 h-5 text-blue-500" /> Tecnología</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-indigo-600 transition-colors"><GraduationCap className="w-5 h-5 text-indigo-500" /> Educación</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-violet-600 transition-colors"><Bot className="w-5 h-5 text-violet-500" /> Inteligencia Artificial</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-sky-600 transition-colors"><Cloud className="w-5 h-5 text-sky-500" /> Cloud</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-emerald-600 transition-colors"><ShieldCheck className="w-5 h-5 text-green-500" /> Seguridad</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                </div>
+                {/* duplicated items group for loop */}
+                <div className="flex items-center gap-12 md:gap-16 shrink-0">
+                  <div className="flex items-center gap-3 hover:text-blue-600 transition-colors"><Cpu className="w-5 h-5 text-blue-500" /> Tecnología</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-indigo-600 transition-colors"><GraduationCap className="w-5 h-5 text-indigo-500" /> Educación</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-violet-600 transition-colors"><Bot className="w-5 h-5 text-violet-500" /> Inteligencia Artificial</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-sky-600 transition-colors"><Cloud className="w-5 h-5 text-sky-500" /> Cloud</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                  <div className="flex items-center gap-3 hover:text-emerald-600 transition-colors"><ShieldCheck className="w-5 h-5 text-green-500" /> Seguridad</div>
+                  <div className="opacity-20 text-slate-300">•</div>
+                </div>
               </div>
             </div>
           </div>
