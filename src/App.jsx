@@ -78,7 +78,232 @@ const DemoTabs = () => {
   );
 };
 
+const LoginPage = ({ onBack }) => {
+  return (
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-blue-600/20 blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-600/20 blur-[150px] animate-float-slow"></div>
+
+      <div className="relative z-10 w-full max-w-md animate-fade-in-up">
+        {/* Logo and Back button */}
+        <div className="flex flex-col items-center mb-10">
+          <div className="cursor-pointer group flex flex-col items-center" onClick={onBack}>
+            <div className="bg-white/10 backdrop-blur-xl p-4 rounded-3xl border border-white/20 mb-4 group-hover:scale-110 transition-transform shadow-2xl">
+              <img src="/logosolo.png" alt="Logo" className="h-12 w-auto" />
+            </div>
+            <h1 className="font-display text-4xl text-white font-bold tracking-tight">EduSis</h1>
+          </div>
+        </div>
+
+        {/* Glassmorphism Card */}
+        <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[48px] p-10 shadow-3xl relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-black text-white uppercase italic tracking-tighter mb-2">Bienvenido</h2>
+            <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">Gestión Educativa Inteligente</p>
+          </div>
+
+          <form className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-[10px] font-black text-blue-400 uppercase tracking-widest ml-4">Email Institucional</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-500 transition-colors">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <input
+                  type="email"
+                  placeholder="ejemplo@colegio.cl"
+                  className="w-full bg-white/5 border border-white/10 p-4 pl-14 rounded-2xl text-white outline-none focus:bg-white/10 focus:border-blue-500/50 transition-all font-medium placeholder:text-slate-600"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex justify-between items-center ml-4 pr-4">
+                <label className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Contraseña</label>
+                <a href="#" className="text-[9px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-colors">¿Olvidaste tu clave?</a>
+              </div>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-500 transition-colors">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full bg-white/5 border border-white/10 p-4 pl-14 rounded-2xl text-white outline-none focus:bg-white/10 focus:border-blue-500/50 transition-all font-medium placeholder:text-slate-600"
+                />
+              </div>
+            </div>
+
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs mt-4 hover:scale-[1.02] transition-all active:scale-95 shadow-2xl shadow-blue-600/20 group flex items-center justify-center gap-3">
+              Entrar al Ecosistema <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </form>
+
+          <div className="mt-10 pt-8 border-t border-white/5 text-center">
+            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+              ¿No tienes cuenta? <a href="#" className="text-white hover:text-blue-400 transition-colors">Contacta a tu administrador</a>
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={onBack}
+          className="mt-8 mx-auto flex items-center gap-2 text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-colors group"
+        >
+          <ChevronRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Volver al Inicio
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const FlipCard = ({ icon, title, description, detailedInfo, colorClass }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div
+      className="perspective-1000 w-full aspect-square cursor-pointer"
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
+        {/* Front Side */}
+        <div className="absolute inset-0 backface-hidden bg-slate-50 rounded-[40px] p-10 border border-slate-100 flex flex-col justify-between hover:shadow-2xl transition-all duration-500">
+          <div className={`w-16 h-16 rounded-2xl ${colorClass} text-white flex items-center justify-center shadow-lg transition-transform`}>
+            {icon}
+          </div>
+          <div>
+            <h3 className="text-2xl font-black text-slate-900 uppercase italic tracking-tighter mb-4">{title}</h3>
+            <p className="text-slate-500 font-medium text-sm leading-relaxed">
+              {description}
+            </p>
+          </div>
+          <div className="flex justify-start items-center gap-2">
+            <span className="text-[10px] font-black uppercase tracking-widest text-blue-600/50">Haz clic para saber más</span>
+          </div>
+        </div>
+
+        {/* Back Side */}
+        <div className="absolute inset-0 backface-hidden rotate-y-180 bg-slate-900 rounded-[40px] p-10 border border-slate-800 flex flex-col justify-center text-center">
+          <div className="mb-6 flex justify-center">
+            <div className={`w-12 h-12 rounded-xl ${colorClass} text-white flex items-center justify-center shadow-lg opacity-80`}>
+              {icon}
+            </div>
+          </div>
+          <h3 className="text-xl font-black text-white uppercase italic tracking-tighter mb-4">{title}</h3>
+          <p className="text-slate-400 font-medium text-[13px] leading-relaxed">
+            {detailedInfo}
+          </p>
+          <div className="mt-8">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">Haz clic para volver</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const EduBotPage = ({ onBack }) => {
+  return (
+    <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
+      {/* Navbar Minimalista para EduBot */}
+      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 py-4">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={onBack}>
+            <img src="/logosolo.png" alt="Logo EduSis" className="h-10 w-auto object-contain" />
+            <span className="font-bold text-xl tracking-normal text-slate-900 font-display">EduSis</span>
+          </div>
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors"
+          >
+            <ChevronRight className="w-4 h-4 rotate-180" /> Volver al Inicio
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero EduBot */}
+      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 min-h-[600px] flex items-center">
+        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,_#5c6eff10_0%,_transparent_50%)]"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-bold uppercase tracking-widest mb-6 uppercase">
+                Inteligencia Artificial Educativa
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-tight mb-6 tracking-tighter uppercase italic">
+                Conoce a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">EduBot</span>
+              </h1>
+              <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg">
+                El asistente de IA diseñado específicamente para ecosistemas educativos. Potencia la labor docente y optimiza la gestión institucional en tiempo real.
+              </p>
+              <div className="flex gap-4">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-500/20 transition-all active:scale-95">Solicitar Demo de EduBot</button>
+              </div>
+            </div>
+            <div className="relative flex justify-center items-center">
+              <div className="relative w-full max-w-md aspect-square bg-gradient-to-br from-blue-600 to-indigo-600 rounded-[3rem] p-8 shadow-2xl overflow-hidden animate-float-slow">
+                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-[2.5rem]"></div>
+                <img src="/edubot.png" alt="EduBot" className="relative z-10 w-full h-full object-contain drop-shadow-2xl" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Tarjetas Modern Square */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic">Potencia tu Colegio</h2>
+            <p className="text-slate-500 font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Funcionalidades Core de EduBot</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <FlipCard
+              icon={<Zap className="w-8 h-8" />}
+              title="Ayuda a Planificar"
+              description="Genera sugerencias de inicio, desarrollo y cierre alineadas al Mineduc en segundos. Automatiza la carga administrativa docente."
+              detailedInfo="EduBot analiza los Objetivos de Aprendizaje (OA) y genera secuencias didácticas personalizadas, actividades de evaluación y recursos sugeridos, ahorrando hasta 3 horas semanales de trabajo administrativo."
+              colorClass="bg-blue-600"
+            />
+            <FlipCard
+              icon={<BookOpen className="w-8 h-8" />}
+              title="Domina la Plataforma"
+              description="Resuelve dudas técnicas y operativas de EduSis al instante. EduBot conoce cada detalle del sistema para guiarte."
+              detailedInfo="Acceso inmediato a manuales, flujos de trabajo y mejores prácticas. EduBot responde preguntas como: ¿Cómo firmo el leccionario? o ¿Cómo cargo notas masivamente?, permitiendo una adopción rápida y sin fricciones."
+              colorClass="bg-indigo-600"
+            />
+            <FlipCard
+              icon={<Target className="w-8 h-8" />}
+              title="Radar de Riesgo"
+              description="Identifica patrones de ausentismo y bajo rendimiento preventivamente. Actúa antes de que ocurra la deserción escolar."
+              detailedInfo="Utiliza algoritmos predictivos para detectar alumnos con alta probabilidad de reprobación o deserción basándose en asistencia, comportamiento y rendimiento histórico, entregando reportes accionables a Orientación y UTP."
+              colorClass="bg-purple-600"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Minimal para EduBot */}
+      <footer className="bg-slate-900 py-12 px-6 text-center">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+          <div className="flex items-center gap-3">
+            <img src="/logosolo.png" alt="Logo" className="h-8 w-auto" />
+            <span className="font-display font-bold text-white text-xl">EduSis</span>
+          </div>
+          <p className="text-slate-500 text-xs uppercase tracking-[0.2em] font-black">© 2026 EduSis SpA • Ingeniería Pedagógica</p>
+          <button onClick={onBack} className="text-blue-500 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors">Volver al Inicio</button>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
 const LandingPage = () => {
+  const [page, setPage] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -90,6 +315,7 @@ const LandingPage = () => {
   const [demoVisible, setDemoVisible] = useState(false);
   const [faqVisible, setFaqVisible] = useState(false);
   const [missionVisible, setMissionVisible] = useState(false);
+  const [blogVisible, setBlogVisible] = useState(false);
 
   const [openFaq, setOpenFaq] = useState(null);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -102,6 +328,7 @@ const LandingPage = () => {
   const demoRef = useRef(null);
   const faqRef = useRef(null);
   const missionRef = useRef(null);
+  const blogRef = useRef(null);
 
   // Datos del Carrusel del Hero
   const heroSlides = [
@@ -262,11 +489,12 @@ const LandingPage = () => {
           if (entry.target === demoRef.current) setDemoVisible(true);
           if (entry.target === faqRef.current) setFaqVisible(true);
           if (entry.target === missionRef.current) setMissionVisible(true);
+          if (entry.target === blogRef.current) setBlogVisible(true);
         }
       });
     }, observerOptions);
 
-    const elementsToObserve = [storyRef, benefitsRef, teamRef, contactRef, demoRef, faqRef, missionRef];
+    const elementsToObserve = [storyRef, benefitsRef, teamRef, contactRef, demoRef, faqRef, missionRef, blogRef];
     elementsToObserve.forEach(ref => {
       if (ref.current) observer.observe(ref.current);
     });
@@ -279,6 +507,14 @@ const LandingPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (page === 'edubot') {
+    return <EduBotPage onBack={() => setPage('home')} />;
+  }
+
+  if (page === 'login') {
+    return <LoginPage onBack={() => setPage('home')} />;
+  }
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
@@ -305,6 +541,9 @@ const LandingPage = () => {
         
         .glass-form { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2); }
         .perspective-1000 { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
       `}</style>
 
       {/* --- NAVBAR --- */}
@@ -319,7 +558,16 @@ const LandingPage = () => {
             <a href="#beneficios" className="hover:text-blue-600 transition-colors">Beneficios</a>
             <a href="#equipo" className="hover:text-blue-600 transition-colors">Equipo</a>
             <a href="#blog" className="hover:text-blue-600 transition-colors">Blog</a>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2.5 rounded-full shadow-lg shadow-blue-500/20 transition-all active:scale-95 font-bold flex items-center gap-2 text-left">
+            <button
+              onClick={() => setPage('edubot')}
+              className="hover:text-blue-600 transition-colors"
+            >
+              EduBot
+            </button>
+            <button
+              onClick={() => setPage('login')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2.5 rounded-full shadow-lg shadow-blue-500/20 transition-all active:scale-95 font-bold flex items-center gap-2 text-left"
+            >
               Iniciar sesión <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -333,7 +581,18 @@ const LandingPage = () => {
             <a href="#beneficios" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Beneficios</a>
             <a href="#equipo" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Equipo</a>
             <a href="#blog" className="text-base font-medium py-2" onClick={() => setMobileMenuOpen(false)}>Blog</a>
-            <button className="bg-blue-600 text-white px-4 py-3 rounded-xl w-full font-bold shadow-md">Iniciar sesión</button>
+            <button
+              onClick={() => { setPage('edubot'); setMobileMenuOpen(false); }}
+              className="text-base font-medium py-2 text-left hover:text-blue-600 transition-colors"
+            >
+              EduBot
+            </button>
+            <button
+              onClick={() => { setPage('login'); setMobileMenuOpen(false); }}
+              className="bg-blue-600 text-white px-4 py-3 rounded-xl w-full font-bold shadow-md"
+            >
+              Iniciar sesión
+            </button>
           </div>
         )}
       </nav>
@@ -371,8 +630,8 @@ const LandingPage = () => {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <button className="bg-[#5c6eff] hover:bg-blue-700 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:shadow-blue-600/30 flex items-center justify-center gap-2">Solicitar Asesoría</button>
-                <button className="px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest text-slate-600 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md"><Play className="w-4 h-4 fill-current" /> Ver Demo</button>
+                <a href="#contacto" className="bg-[#5c6eff] hover:bg-blue-700 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-600/20 transition-all hover:-translate-y-0.5 hover:shadow-blue-600/30 flex items-center justify-center gap-2">Solicitar Asesoría</a>
+                <a href="#demo" className="px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest text-slate-600 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md"><Play className="w-4 h-4 fill-current" /> Ver Demo</a>
               </div>
             </div>
             <div className="relative h-[550px] w-full flex items-center justify-center animate-fade-in-left delay-300 order-1 lg:order-2">
@@ -555,6 +814,119 @@ const LandingPage = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* --- BLOG SECTION --- */}
+      <section ref={blogRef} id="blog" className={`py-28 bg-slate-50 relative overflow-hidden transition-all duration-1000 ${blogVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_#5c6eff05_0%,_transparent_40%)] pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-none">Blog Educativo</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Ingeniería Pedagógica & Futuro</p>
+          </div>
+
+          <article className="bg-white rounded-[48px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row items-center gap-0 lg:gap-12 group hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-1">
+            <div className="w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden relative">
+              <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+              <img
+                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2070"
+                alt="IA en Educación"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute top-8 left-8 z-20">
+                <span className="bg-blue-600 text-white px-4 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-blue-500/30">
+                  Caso de Éxito
+                </span>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-1/2 p-8 lg:p-12 lg:pl-0 flex flex-col">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center overflow-hidden">
+                    <img src="/fabian.png" alt="Autor" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-black text-slate-900 uppercase tracking-wider">Equipo EduSis</span>
+                  <span className="text-[10px] text-slate-400 font-bold">24 de Febrero, 2026</span>
+                </div>
+              </div>
+
+              <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-8 tracking-tighter uppercase italic">
+                IA vs. Burocracia: Cómo EduBot reduce el tiempo de planificación en un 60%
+              </h1>
+
+              <div className="max-w-none space-y-6 text-slate-600 font-medium leading-relaxed">
+                <p>
+                  En la última década, la labor docente en Chile se ha visto inundada por una "marea administrativa". Según diversos estudios sobre la carga laboral, un profesor promedio dedica más tiempo a gestionar papeles y cumplir con la Circular 30 que a la enseñanza directa en el aula.
+                </p>
+                <p className="border-l-4 border-blue-500 pl-6 italic text-lg text-slate-900 font-bold">
+                  Pero, ¿qué pasaría si la Inteligencia Artificial no viniera a reemplazar al profesor, sino a liberarlo de su mayor enemigo: la burocracia?
+                </p>
+
+                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mt-10">La Realidad de los Datos: El tiempo "robado" al docente</h3>
+                <p>
+                  Un estudio global de McKinsey & Company reveló que los docentes trabajan un promedio de 50 horas a la semana. Lo alarmante es que solo dedican el 49% de ese tiempo a la instrucción directa. ¿El resto? Se pierde en preparación, administración y evaluación.
+                </p>
+                <p>
+                  El informe destaca que aproximadamente entre el 20% y el 40% de las tareas docentes actuales pueden ser automatizadas con la tecnología disponible hoy. En el área específica de la preparación y planificación de clases, la IA puede reducir el tiempo invertido hasta en un 45%.
+                </p>
+
+                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mt-10">EduBot: Transformando el "Copiar y Pegar" en Ingeniería Pedagógica</h3>
+                <p>
+                  En EduSIS, hemos llevado estos datos al contexto chileno. La planificación curricular (ajustada a los Objetivos de Aprendizaje del Mineduc) suele ser un proceso de "copiar y pegar" tedioso. EduBot cambia las reglas del juego:
+                </p>
+
+                <ul className="space-y-4 pt-4">
+                  <li className="flex gap-4">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                      <Zap className="w-3.5 h-3.5" />
+                    </div>
+                    <span><strong>Integración Curricular Instantánea:</strong> Al tener las bases del Mineduc precargadas, EduBot permite al docente seleccionar un OA y generar sugerencias de inicio, desarrollo y cierre en segundos.</span>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                      <FileCheck className="w-3.5 h-3.5" />
+                    </div>
+                    <span><strong>Sincronización con el Libro Digital:</strong> Lo que se planifica, se inyecta automáticamente en el leccionario del Libro de Clases Digital.</span>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                      <BarChart3 className="w-3.5 h-3.5" />
+                    </div>
+                    <span><strong>Análisis de Cobertura en Tiempo Real:</strong> EduBot avisa proactivamente sobre el porcentaje de cobertura curricular y sugiere priorizaciones estratégicas.</span>
+                  </li>
+                </ul>
+
+                <div className="bg-slate-900 rounded-3xl p-8 my-10 text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
+                  <h4 className="text-2xl font-black uppercase italic mb-4">¿Por qué hablamos de un ahorro del 60%?</h4>
+                  <p className="text-blue-100/80">
+                    Nuestras pruebas internas con el prototipo de EduSIS muestran que un docente que antes tardaba 3 horas semanales en documentar y alinear sus planificaciones, hoy lo hace en menos de 70 minutos.
+                  </p>
+                </div>
+
+                <p>
+                  <strong>Conclusión:</strong> El foco vuelve al alumno. Al automatizar la burocracia con EduBot, logramos que el sistema escolar deje de ser una fábrica de registros para convertirse en lo que siempre debió ser: un espacio de aprendizaje activo y proactivo.
+                </p>
+
+                <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-slate-100">
+                  <div className="text-[10px] font-bold text-slate-400 space-y-1">
+                    <p className="uppercase tracking-widest">Fuentes:</p>
+                    <p>McKinsey & Company (2020) • UNESCO-IBE Reports</p>
+                  </div>
+                  <button
+                    onClick={() => setPage('edubot')}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-xl shadow-blue-500/20 flex items-center gap-2"
+                  >
+                    Conocer EduBot <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
