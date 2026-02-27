@@ -6,7 +6,8 @@ import {
   Phone, Linkedin, Facebook, Instagram, Twitter, FileText, Monitor,
   Rocket, Check, BarChart3, PieChart, Search, Bell, Settings, LogOut,
   Calendar, BookOpen, Clock, AlertCircle, FileCheck, MoreHorizontal,
-  ChevronRight, Plus, Minus, HelpCircle, Heart, Server, MessageCircle, Bot, BellRing, Cpu, Table, Target, RotateCcw
+  ChevronRight, Plus, Minus, HelpCircle, Heart, Server, MessageCircle, Bot, BellRing, Cpu, Table, Target, RotateCcw,
+  FilePlus2, ScanLine, Tags, Sparkles
 } from 'lucide-react';
 
 const DemoTabs = () => {
@@ -224,85 +225,62 @@ const LoginPage = ({ onBack }) => {
   );
 };
 
-const FlipCard = React.memo(({ icon, title, description, detailedInfo, colorClass }) => {
+const FlipCard = React.memo(({ icon, title, description, detailedInfo, colorScheme = 'blue' }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const getTextColor = () => {
-    if (colorClass.startsWith('bg-[')) return 'text-' + colorClass.slice(3, -1);
-    return colorClass.replace('bg-', 'text-');
+  const colors = {
+    blue: { bg: 'bg-[#f0f9ff]', text: 'text-[#0ea5e9]', border: 'border-[#e0f2fe]', shadow: 'shadow-blue-100/50' },
+    purple: { bg: 'bg-[#f5f3ff]', text: 'text-[#8b5cf6]', border: 'border-[#ede9fe]', shadow: 'shadow-purple-100/50' },
+    rose: { bg: 'bg-[#fff1f2]', text: 'text-[#f43f5e]', border: 'border-[#ffe4e6]', shadow: 'shadow-rose-100/50' },
+    amber: { bg: 'bg-[#fffbeb]', text: 'text-[#f59e0b]', border: 'border-[#fef3c7]', shadow: 'shadow-amber-100/50' },
+    emerald: { bg: 'bg-[#f0fdf4]', text: 'text-[#10b981]', border: 'border-[#dcfce7]', shadow: 'shadow-emerald-100/50' },
+    orange: { bg: 'bg-[#fff7ed]', text: 'text-[#f97316]', border: 'border-[#ffedd5]', shadow: 'shadow-orange-100/50' }
   };
+
+  const current = colors[colorScheme] || colors.blue;
 
   return (
     <div
-      className="w-full aspect-[4/5] cursor-pointer group"
-      style={{ perspective: '2000px' }}
+      className="w-full aspect-[4/5.2] cursor-pointer group perspective-1000"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <div
-        className="relative w-full h-full"
+        className="relative w-full h-full transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] preserve-3d"
         style={{
-          transformStyle: 'preserve-3d',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.7s ease',
-          willChange: 'transform'
         }}
       >
-        {/* Front Face - Light Purple Gradient */}
+        {/* Front Face */}
         <div
-          className="absolute inset-0 w-full h-full bg-gradient-to-br from-indigo-50 via-white to-violet-50 rounded-[48px] p-12 flex flex-col items-center justify-center text-center shadow-2xl border border-white"
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'translate3d(0, 0, 1px)', // Force GPU and order
-            willChange: 'transform'
-          }}
+          className={`absolute inset-0 w-full h-full ${current.bg} rounded-[48px] p-10 flex flex-col items-center justify-center text-center border ${current.border} backface-hidden shadow-sm transition-all duration-500 group-hover:shadow-xl ${current.shadow}`}
         >
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,_rgba(139,92,246,0.05)_0%,_transparent_70%)] pointer-events-none"></div>
-          <div className={`w-24 h-24 rounded-[32px] ${colorClass} text-white flex items-center justify-center shadow-2xl mb-12 group-hover:scale-110 transition-all duration-500`}>
-            {React.cloneElement(icon, { size: 36, strokeWidth: 2.5 })}
+          <div className={`${current.text} mb-8 transform transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2`}>
+            {React.cloneElement(icon, { size: 64, strokeWidth: 1.2 })}
           </div>
-          <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter leading-none mb-16">
+          <h3 className={`text-3xl font-black ${current.text} leading-tight tracking-tighter uppercase italic px-4 mb-4`}>
             {title}
           </h3>
-          <div className="mt-auto flex items-center justify-between w-full px-2 opacity-60">
-            <RotateCcw className="w-4 h-4 text-indigo-400" />
-            <span className="text-[10px] font-black uppercase tracking-[0.25em] text-indigo-500">HAZ CLIC PARA DESCUBRIR</span>
-            <div className="w-4"></div>
+          <div className={`mt-4 flex items-center gap-2 opacity-30 group-hover:opacity-60 transition-opacity duration-300`}>
+            <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${current.text}`}>Ver más</span>
+            <RotateCcw className={`w-3 h-3 ${current.text} group-hover:rotate-45 transition-transform duration-500`} />
           </div>
         </div>
 
         {/* Back Face */}
         <div
-          className="absolute inset-0 w-full h-full bg-white rounded-[48px] border-4 border-blue-600 flex flex-col items-center shadow-2xl"
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg) translate3d(0, 0, 1px)', // Force GPU and order
-            willChange: 'transform'
-          }}
+          className={`absolute inset-0 w-full h-full bg-white rounded-[48px] border-2 ${current.border} flex flex-col items-center p-10 shadow-2xl ${current.shadow} backface-hidden rotate-y-180`}
         >
-          <div className="flex-1 flex flex-col items-center text-center p-10 justify-center">
-            <div className="mb-8">
-              <div className={getTextColor()}>
-                {React.cloneElement(icon, { size: 48, strokeWidth: 2.5 })}
-              </div>
+          <div className="flex-1 flex flex-col items-center text-center justify-center">
+            <div className={`${current.text} mb-8`}>
+              {React.cloneElement(icon, { size: 40, strokeWidth: 1.5 })}
             </div>
-
-            <h3 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter mb-8 leading-tight">{title}</h3>
-
-            <div className="space-y-6">
-              <p className="text-slate-600 font-bold text-sm leading-relaxed px-2">
-                {description}
-              </p>
-              <p className="text-slate-400 font-semibold text-[11px] leading-relaxed px-4">
-                {detailedInfo}
-              </p>
-            </div>
+            <p className="text-slate-600 font-bold text-base leading-relaxed mb-6 px-4">
+              {description}
+            </p>
           </div>
-
-          <div className="pb-10 flex items-center gap-2">
-            <span className={`text-[11px] font-black uppercase tracking-[0.25em] ${getTextColor()} font-bold`}>Volver</span>
-            <RotateCcw className={`w-4 h-4 ${getTextColor()}`} />
+          <div className="flex items-center gap-2 opacity-50 mt-auto pt-4">
+            <span className={`text-[10px] font-black uppercase tracking-[0.25em] ${current.text}`}>Volver</span>
+            <RotateCcw className={`w-3 h-3 ${current.text}`} />
           </div>
         </div>
       </div>
@@ -312,7 +290,7 @@ const FlipCard = React.memo(({ icon, title, description, detailedInfo, colorClas
 
 const EduBotPage = ({ onBack }) => {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900 relative">
+    <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900 relative">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div
           className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-600/5 blur-[120px] animate-pulse"
@@ -376,28 +354,72 @@ const EduBotPage = ({ onBack }) => {
             <p className="text-slate-500 font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Funcionalidades Core de EduBot</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             <FlipCard
               icon={<Zap />}
               title="Ayuda a Planificar"
-              description="Genera sugerencias de inicio, desarrollo y cierre alineadas al Mineduc en segundos. Automatiza la carga administrativa docente."
-              detailedInfo="EduBot analiza los Objetivos de Aprendizaje (OA) y genera secuencias didácticas personalizadas, actividades de evaluación y recursos sugeridos."
-              colorClass="bg-blue-600"
+              description="Genera sugerencias de planificación alineadas al Mineduc en segundos. Optimiza tu tiempo administrativo docente."
+              colorScheme="blue"
             />
             <FlipCard
               icon={<BookOpen />}
               title="Domina la Plataforma"
               description="Resuelve dudas técnicas y operativas de EduSis al instante. EduBot conoce cada detalle del sistema para guiarte."
-              detailedInfo="Acceso inmediato a manuales, flujos de trabajo y mejores prácticas. EduBot responde preguntas como: ¿Cómo firmo el leccionario? o ¿Cómo cargo notas masivamente?."
-              colorClass="bg-[#ffca5c]"
+              colorScheme="purple"
             />
             <FlipCard
               icon={<Target />}
               title="Radar de Riesgo"
               description="Identifica patrones de ausentismo y bajo rendimiento preventivamente. Actúa antes de que ocurra la deserción escolar."
-              detailedInfo="Utiliza algoritmos predictivos para detectar alumnos con alta probabilidad de reprobación o deserción basándose en asistencia."
-              colorClass="bg-[#ff6b8f]"
+              colorScheme="rose"
             />
+            <FlipCard
+              icon={<Tags />}
+              title="Categorizador"
+              description="Clasifica tus recursos por unidades, niveles y OA automáticamente para un orden institucional perfecto."
+              colorScheme="orange"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Motivational Engagement Section */}
+      <section className="relative mt-32 min-h-[600px] flex items-center">
+        {/* Wave Background SVG */}
+        <div className="absolute inset-0 pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0 80C300 150 600 0 900 0C1150 0 1300 220 1440 100V800H0V80Z"
+              fill="url(#blue_gradient_wave)"
+            />
+            <defs>
+              <linearGradient id="blue_gradient_wave" x1="720" y1="0" x2="720" y2="800" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#2563EB" />
+                <stop offset="1" stopColor="#4F46E5" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="absolute top-[10%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[80px]"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-20 text-center lg:text-left">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter uppercase italic mb-8">
+                Transforma tu <br />
+                colegio en una <br />
+                <span className="text-white/80">fábrica de futuro.</span>
+              </h2>
+              <p className="text-xl text-white font-medium mb-10 max-w-xl opacity-90">
+                Libera a tus docentes de la carga administrativa y permíteles enfocarse en lo que realmente importa: la formación de sus alumnos.
+              </p>
+              <button className="bg-white text-blue-600 px-10 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:shadow-white/20 hover:scale-105 transition-all active:scale-95 group flex items-center gap-3">
+                Comenzar ahora <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+            <div className="hidden lg:flex justify-end opacity-20 transform rotate-12">
+              <Cpu size={300} className="text-white" strokeWidth={0.5} />
+            </div>
           </div>
         </div>
       </section>
@@ -815,9 +837,30 @@ const LandingPage = () => {
           </div>
 
           {/* --- SECCIÓN INTRO: QUE ES EDUSIS --- */}
-          <section ref={introRef} className={`py-20 relative overflow-hidden transition-all duration-1000 ${introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-100/50 via-blue-50/50 to-violet-100/50"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_white_0%,_transparent_70%)] opacity-40"></div>
+          <section ref={introRef} className={`py-32 relative overflow-hidden transition-all duration-1000 ${introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="absolute inset-0 bg-white"></div>
+
+            {/* Refined Subtle Blobs & Solid Shapes */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-[10%] left-[-10%] w-[35vw] h-[35vw] rounded-full bg-blue-500/5 blur-[100px] animate-pulse"></div>
+              <div className="absolute bottom-[-15%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-indigo-500/8 blur-[120px] animate-float-slow"></div>
+
+              {/* Large Circle behind the card */}
+              <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/[0.08] blur-[40px]"></div>
+
+              {/* Solid Orange Shapes (Reference Image Style) - More vibrant */}
+              <div className="absolute top-[5%] right-[-5%] w-[400px] h-[400px] rounded-full bg-orange-500/[0.12] blur-[2px]"></div>
+              {/* Connected smaller circle - adjusted size and opacity */}
+              <div className="absolute top-[30%] right-[2%] w-[280px] h-[280px] rounded-full bg-orange-500/[0.08] blur-[1px]"></div>
+              <div className="absolute bottom-[5%] left-[-15%] w-[500px] h-[500px] rounded-full bg-orange-600/[0.07] blur-[1px]"></div>
+            </div>
+
+            {/* Top Wave Transition */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
+              <svg className="relative block w-full h-[60px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 45C840 60 960 90 1080 105C1200 120 1320 120 1380 120L1440 120V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0V120Z" fill="#ffffff" opacity="0.5"></path>
+              </svg>
+            </div>
 
             <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
               <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[48px] p-12 lg:p-16 shadow-[0_32px_64px_-16px_rgba(31,38,135,0.1)]">
@@ -853,7 +896,14 @@ const LandingPage = () => {
 
 
           {/* --- SECCIÓN DE BENEFICIOS (NUEVAS CARDS) --- */}
-          <section ref={benefitsRef} id="beneficios" className="py-28 px-6 relative bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 overflow-hidden text-left">
+          <section ref={benefitsRef} id="beneficios" className="py-32 px-6 relative bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 overflow-hidden text-left">
+            {/* Top Wave for Benefits - Crescendo Effect */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+              <svg className="relative block w-full h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0L48 15C96 30 192 60 288 75.8C384 92 480 93 576 84.2C672 75 768 55 864 45.8C960 37 1056 38 1152 35.8C1248 33 1344 27 1392 23.3L1440 20V0H0V0Z" fill="#ffffff"></path>
+              </svg>
+            </div>
+
             <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff10_0%,_transparent_50%)] pointer-events-none"></div>
             <div className="max-w-7xl mx-auto px-4 relative z-10 text-left">
               <div className={`text-center mb-24 transition-all duration-700 ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -1099,18 +1149,30 @@ const LandingPage = () => {
           </section>
 
           {/* --- MISION --- */}
-          <section ref={missionRef} className={`py-28 bg-gradient-to-br from-blue-600 via-indigo-700 to-violet-800 relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_#ffffff10_0%,_transparent_50%)] pointer-events-none"></div>
+          <section ref={missionRef} className={`py-32 bg-slate-50 relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            {/* Soft Background Blobs & Shapes */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px]"></div>
+              <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-500/5 blur-[120px]"></div>
+
+              {/* Solid Decorative Circles - Concentric Effect */}
+              <div className="absolute top-[-5%] left-[5%] w-[300px] h-[300px] rounded-full bg-blue-500/[0.04] blur-[2px]"></div>
+              <div className="absolute bottom-[5%] right-[5%] w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-[2px] flex items-center justify-center">
+                <div className="w-[180px] h-[180px] rounded-full bg-indigo-600/[0.1] blur-[1px]"></div>
+              </div>
+              <div className="absolute top-[40%] left-[45%] w-[150px] h-[150px] rounded-full bg-violet-500/[0.03] blur-[1px]"></div>
+            </div>
+
             <div className="max-w-6xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center text-left">
               <div className="relative group">
-                <div className="absolute inset-0 bg-white/20 rounded-[48px] transform rotate-3 scale-[1.02] blur-xl group-hover:rotate-6 transition-transform duration-500"></div>
-                <img src="/mision.png" alt="Misión" className="relative z-10 rounded-[48px] shadow-3xl border border-white/20 object-cover w-full h-[400px]" />
+                <div className="absolute inset-0 bg-blue-600/10 rounded-[48px] transform rotate-3 scale-[1.02] blur-xl group-hover:rotate-6 transition-transform duration-500"></div>
+                <img src="/mision.png" alt="Misión" className="relative z-10 rounded-[48px] shadow-2xl border border-slate-200 object-cover w-full h-[400px]" />
               </div>
               <div className="text-left">
-                <Heart className="w-10 h-10 text-[#ffca5c] mb-8 fill-current text-left" />
-                <h2 className="text-5xl font-black mb-8 tracking-tighter uppercase italic leading-none text-white font-black text-left">Nuestra Misión</h2>
-                <p className="text-2xl font-medium text-blue-100 italic leading-relaxed text-left">
-                  "Democratizar la gestión educativa de excelencia, permitiendo que cada colegio tenga las herramientas para <span className="text-white font-black not-italic border-b-4 border-white/30">formar el futuro</span>."
+                <Heart className="w-10 h-10 text-blue-600 mb-8 fill-current text-left opacity-80" />
+                <h2 className="text-5xl font-black mb-8 tracking-tighter uppercase italic leading-none text-slate-900 font-black text-left">Nuestra Misión</h2>
+                <p className="text-2xl font-medium text-slate-600 italic leading-relaxed text-left">
+                  "Democratizar la gestión educativa de excelencia, permitiendo que cada colegio tenga las herramientas para <span className="text-blue-600 font-black not-italic border-b-4 border-blue-600/20">formar el futuro</span>."
                 </p>
               </div>
             </div>
@@ -1142,8 +1204,15 @@ const LandingPage = () => {
           </section>
 
           {/* --- CONTACTO --- */}
-          <section ref={contactRef} id="contacto" className="py-32 bg-gradient-to-br from-[#5c6eff] via-indigo-600 to-violet-600 px-6 relative overflow-hidden transition-all duration-700 text-left">
-            <div className={`max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10 ${contactVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} text-left`}>
+          <section ref={contactRef} id="contacto" className="py-24 bg-gradient-to-br from-[#5c6eff] via-indigo-600 to-violet-600 px-6 relative overflow-hidden transition-all duration-700 text-left">
+            {/* Top Wave for Contact */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+              <svg className="relative block w-full h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0L40 10C80 20 160 40 240 46.7C320 53 400 47 480 43.3C560 40 640 40 720 45C800 50 880 60 960 63.3C1040 67 1120 63 1200 53.3C1280 43 1360 27 1400 18.3L1440 10V0H1400C1360 0 1280 0 1200 0C1120 0 1040 0 960 0C880 0 800 0 720 0C640 0 560 0 480 0C400 0 320 0 240 0C160 0 80 0 40 0H0V0Z" fill="#ffffff"></path>
+              </svg>
+            </div>
+
+            <div className={`max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10 pt-20 ${contactVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} text-left`}>
               <div className="text-white text-left">
                 <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mb-8 leading-[0.9] text-left">Transforma tu <br /> comunidad.</h2>
                 <p className="text-xl opacity-90 mb-12 font-medium leading-relaxed max-w-md text-blue-50 text-left">Agenda una demo personalizada y optimiza tu gestión administrativa en 15 minutos.</p>
