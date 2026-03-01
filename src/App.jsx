@@ -386,8 +386,8 @@ const EduBotPage = ({ onBack }) => {
       {/* Motivational Engagement Section */}
       <section className="relative mt-32 min-h-[600px] flex items-center">
         {/* Wave Background SVG */}
-        <div className="absolute inset-0 pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="absolute inset-x-0 top-0 bottom-0 pointer-events-none">
+          <svg className="w-full h-[150px] md:h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0 80C300 150 600 0 900 0C1150 0 1300 220 1440 100V800H0V80Z"
               fill="url(#blue_gradient_wave)"
@@ -840,24 +840,23 @@ const LandingPage = () => {
           <section ref={introRef} className={`py-32 relative overflow-hidden transition-all duration-1000 ${introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <div className="absolute inset-0 bg-white"></div>
 
-            {/* Refined Subtle Blobs & Solid Shapes */}
+            {/* Refined Subtle Blobs & Solid Shapes - Responsive */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute top-[10%] left-[-10%] w-[35vw] h-[35vw] rounded-full bg-blue-500/5 blur-[100px] animate-pulse"></div>
-              <div className="absolute bottom-[-15%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-indigo-500/8 blur-[120px] animate-float-slow"></div>
+              <div className="absolute top-[10%] left-[-10%] w-[35vw] h-[35vw] rounded-full bg-blue-500/5 blur-[60px] md:blur-[100px] animate-pulse"></div>
+              <div className="absolute bottom-[-15%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-indigo-500/8 blur-[80px] md:blur-[120px] animate-float-slow"></div>
 
-              {/* Large Circle behind the card */}
-              <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/[0.08] blur-[40px]"></div>
 
-              {/* Solid Orange Shapes (Reference Image Style) - More vibrant */}
-              <div className="absolute top-[5%] right-[-5%] w-[400px] h-[400px] rounded-full bg-orange-500/[0.12] blur-[2px]"></div>
-              {/* Connected smaller circle - adjusted size and opacity */}
-              <div className="absolute top-[30%] right-[2%] w-[280px] h-[280px] rounded-full bg-orange-500/[0.08] blur-[1px]"></div>
-              <div className="absolute bottom-[5%] left-[-15%] w-[500px] h-[500px] rounded-full bg-orange-600/[0.07] blur-[1px]"></div>
+
+              {/* Solid Orange Shapes (Reference Image Style) - Responsive sizes */}
+              <div className="absolute top-[5%] right-[-5%] w-[150px] md:w-[400px] h-[150px] md:h-[400px] rounded-full bg-orange-500/[0.12] blur-[2px]"></div>
+              {/* Connected smaller circle */}
+              <div className="absolute top-[30%] right-[2%] w-[100px] md:w-[280px] h-[100px] md:h-[280px] rounded-full bg-orange-500/[0.08] blur-[1px]"></div>
+              <div className="absolute bottom-[5%] left-[-15%] w-[200px] md:w-[500px] h-[200px] md:h-[500px] rounded-full bg-orange-600/[0.07] blur-[1px]"></div>
             </div>
 
-            {/* Top Wave Transition */}
+            {/* Top Wave Transition - Responsive */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
-              <svg className="relative block w-full h-[60px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="relative block w-full h-[40px] md:h-[60px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 45C840 60 960 90 1080 105C1200 120 1320 120 1380 120L1440 120V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0V120Z" fill="#ffffff" opacity="0.5"></path>
               </svg>
             </div>
@@ -897,9 +896,9 @@ const LandingPage = () => {
 
           {/* --- SECCIÓN DE BENEFICIOS (NUEVAS CARDS) --- */}
           <section ref={benefitsRef} id="beneficios" className="py-32 px-6 relative bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 overflow-hidden text-left">
-            {/* Top Wave for Benefits - Crescendo Effect */}
+            {/* Top Wave for Benefits - Crescendo Effect - Responsive */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
-              <svg className="relative block w-full h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="relative block w-full h-[50px] md:h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L48 15C96 30 192 60 288 75.8C384 92 480 93 576 84.2C672 75 768 55 864 45.8C960 37 1056 38 1152 35.8C1248 33 1344 27 1392 23.3L1440 20V0H0V0Z" fill="#ffffff"></path>
               </svg>
             </div>
@@ -1150,17 +1149,17 @@ const LandingPage = () => {
 
           {/* --- MISION --- */}
           <section ref={missionRef} className={`py-32 bg-slate-50 relative overflow-hidden transition-all duration-700 ${missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {/* Soft Background Blobs & Shapes */}
+            {/* Soft Background Blobs & Shapes - Responsive */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px]"></div>
-              <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-500/5 blur-[120px]"></div>
+              <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[60px] md:blur-[100px]"></div>
+              <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-500/5 blur-[80px] md:blur-[120px]"></div>
 
-              {/* Solid Decorative Circles - Concentric Effect */}
-              <div className="absolute top-[-5%] left-[5%] w-[300px] h-[300px] rounded-full bg-blue-500/[0.04] blur-[2px]"></div>
-              <div className="absolute bottom-[5%] right-[5%] w-[400px] h-[400px] rounded-full bg-indigo-500/[0.04] blur-[2px] flex items-center justify-center">
-                <div className="w-[180px] h-[180px] rounded-full bg-indigo-600/[0.1] blur-[1px]"></div>
+              {/* Solid Decorative Circles - Concentric Effect - Responsive */}
+              <div className="absolute top-[-5%] left-[5%] w-[150px] md:w-[300px] h-[150px] md:h-[300px] rounded-full bg-blue-500/[0.04] blur-[2px]"></div>
+              <div className="absolute bottom-[5%] right-[5%] w-[200px] md:w-[400px] h-[200px] md:h-[400px] rounded-full bg-indigo-500/[0.04] blur-[2px] flex items-center justify-center">
+                <div className="w-[80px] md:w-[180px] h-[80px] md:h-[180px] rounded-full bg-indigo-600/[0.1] blur-[1px]"></div>
               </div>
-              <div className="absolute top-[40%] left-[45%] w-[150px] h-[150px] rounded-full bg-violet-500/[0.03] blur-[1px]"></div>
+              <div className="absolute top-[40%] left-[45%] w-[80px] md:w-[150px] h-[80px] md:h-[150px] rounded-full bg-violet-500/[0.03] blur-[1px]"></div>
             </div>
 
             <div className="max-w-6xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center text-left">
@@ -1205,9 +1204,9 @@ const LandingPage = () => {
 
           {/* --- CONTACTO --- */}
           <section ref={contactRef} id="contacto" className="py-24 bg-gradient-to-br from-[#5c6eff] via-indigo-600 to-violet-600 px-6 relative overflow-hidden transition-all duration-700 text-left">
-            {/* Top Wave for Contact */}
+            {/* Top Wave for Contact - Responsive */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
-              <svg className="relative block w-full h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="relative block w-full h-[50px] md:h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L40 10C80 20 160 40 240 46.7C320 53 400 47 480 43.3C560 40 640 40 720 45C800 50 880 60 960 63.3C1040 67 1120 63 1200 53.3C1280 43 1360 27 1400 18.3L1440 10V0H1400C1360 0 1280 0 1200 0C1120 0 1040 0 960 0C880 0 800 0 720 0C640 0 560 0 480 0C400 0 320 0 240 0C160 0 80 0 40 0H0V0Z" fill="#ffffff"></path>
               </svg>
             </div>
