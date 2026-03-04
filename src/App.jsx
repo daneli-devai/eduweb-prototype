@@ -29,8 +29,8 @@ const DemoTabs = () => {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 ${activeTab === tab.id
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
-              : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50'
+              ? 'bg-blue-700 text-white shadow-lg shadow-blue-500/30 scale-105'
+              : 'text-slate-500 hover:text-blue-700 hover:bg-blue-50'
               }`}
           >
             {tab.icon}
@@ -148,7 +148,7 @@ const LoginPage = ({ onBack }) => {
               <img src="/logosolo.png" alt="Logo" className="h-12 w-auto" />
             </div>
             <h1 className="text-2xl font-semibold text-slate-900 tracking-tight text-center leading-none">
-              Bienvenido a <span className="text-[#FF9D42]">EduSis</span>
+              Bienvenido a <span className="text-[#1D4ED8] uppercase">EduSis</span>
             </h1>
             <p className="mt-3 text-slate-700 font-medium text-[10px] uppercase tracking-[0.2em] text-center">
               Construyendo el futuro de la educación, hoy.
@@ -158,7 +158,7 @@ const LoginPage = ({ onBack }) => {
 
         {/* High-End Glassmorphism Card */}
         <div className="glass-card !p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-orange via-brand-teal to-brand-purple opacity-50"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-teal-400 to-indigo-600 opacity-50"></div>
 
           <p className="text-slate-700 text-[10px] font-semibold uppercase tracking-[0.2em] leading-none">Acceso Seguro al Ecosistema</p>
 
@@ -183,7 +183,7 @@ const LoginPage = ({ onBack }) => {
                 <button
                   type="button"
                   onClick={() => setView('forgot')}
-                  className="text-[9px] font-semibold text-[#690efe] hover:text-brand-purple uppercase tracking-widest transition-colors"
+                  className="text-[9px] font-semibold text-[#1D4ED8] hover:text-brand-purple uppercase tracking-widest transition-colors"
                 >
                   ¿Olvidaste tu clave?
                 </button>
@@ -207,7 +207,7 @@ const LoginPage = ({ onBack }) => {
 
           <div className="mt-10 pt-8 border-t border-white/20 text-center">
             <p className="text-slate-700 text-[10px] font-semibold uppercase tracking-widest">
-              ¿Problemas para entrar? <a href="#" className="text-[#690efe] hover:underline transition-colors font-semibold">Contactar Soporte</a>
+              ¿Problemas para entrar? <a href="#" className="text-[#1D4ED8] hover:underline transition-colors font-semibold">Contactar Soporte</a>
             </p>
           </div>
         </div>
@@ -227,13 +227,14 @@ const FlipCard = React.memo(({ icon, title, description, colorScheme = 'blue' })
   const [isFlipped, setIsFlipped] = useState(false);
 
   const colors = {
-    pink: { text: '#9D174D', iconBg: '#FCE7F3', iconColor: '#BE185D', border: '#FBCFE8', bg: '#FCE7F3' },
-    green: { text: '#166534', iconBg: '#DCFCE7', iconColor: '#15803D', border: '#BBF7D0', bg: '#DCFCE7' },
-    yellow: { text: '#854D0E', iconBg: '#FEF9C3', iconColor: '#A16207', border: '#FEF08A', bg: '#FEF9C3' },
-    lila: { text: '#5B21B6', iconBg: '#EDE9FE', iconColor: '#7C3AED', border: '#DDD6FE', bg: '#EDE9FE' },
-    purple: { text: '#5B21B6', iconBg: '#EDE9FE', iconColor: '#7C3AED', border: '#DDD6FE', bg: '#EDE9FE' },
-    cyan: { text: '#155E75', iconBg: '#CFFAFE', iconColor: '#0891B2', border: '#A5F3FC', bg: '#CFFAFE' },
-    orange: { text: '#9A3412', iconBg: '#FFEDD5', iconColor: '#EA580C', border: '#FED7AA', bg: '#FFEDD5' }
+    pink: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #EC4899 0%, #BE185D 100%)' },
+    blue: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)' },
+    green: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #22C55E 0%, #15803D 100%)' },
+    yellow: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #EAB308 0%, #A16207 100%)' },
+    lila: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)' },
+    purple: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)' },
+    cyan: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)' },
+    orange: { text: '#FFFFFF', iconBg: 'rgba(255,255,255,0.2)', iconColor: '#FFFFFF', border: 'rgba(255,255,255,0.3)', bg: 'linear-gradient(135deg, #FB923C 0%, #F97316 100%)' }
   };
 
   const current = colors[colorScheme] || colors.purple;
@@ -248,9 +249,12 @@ const FlipCard = React.memo(({ icon, title, description, colorScheme = 'blue' })
       >
         {/* Front Face: Pastel Background */}
         <div
-          className="absolute inset-0 w-full h-full p-8 flex flex-col items-center justify-center text-center backface-hidden rounded-[2.5rem] shadow-xl transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 border"
-          style={{ backgroundColor: current.bg, borderColor: current.border }}
+          className="absolute inset-0 w-full h-full p-8 flex flex-col items-center justify-center text-center backface-hidden rounded-[2.5rem] shadow-xl transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 border overflow-hidden"
+          style={{ background: current.bg, borderColor: current.border }}
         >
+          {/* Glossy Overlay */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
+          <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/20 blur-3xl rounded-full pointer-events-none"></div>
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-white/60 transform transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: current.iconBg }}>
             <div style={{ color: current.iconColor }}>
               {React.cloneElement(icon, { size: 28, strokeWidth: 2 })}
@@ -268,9 +272,11 @@ const FlipCard = React.memo(({ icon, title, description, colorScheme = 'blue' })
 
         {/* Back Face: Pastel Background */}
         <div
-          className="absolute inset-0 w-full h-full rounded-[2.5rem] flex flex-col items-center justify-center p-8 shadow-2xl backface-hidden rotate-y-180 border"
-          style={{ backgroundColor: current.bg, borderColor: current.border }}
+          className="absolute inset-0 w-full h-full rounded-[2.5rem] flex flex-col items-center justify-center p-8 shadow-2xl backface-hidden rotate-y-180 border overflow-hidden"
+          style={{ background: current.bg, borderColor: current.border }}
         >
+          {/* Glossy Overlay */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
           <div className="mb-6 text-left italic">
             <div className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-2" style={{ color: current.text }}>Detalles:</div>
             <p className="font-bold text-sm leading-relaxed" style={{ color: current.text }}>
@@ -289,17 +295,8 @@ const FlipCard = React.memo(({ icon, title, description, colorScheme = 'blue' })
 
 const EduBotPage = ({ onBack, onStartNow }) => {
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-[#3B82F6]/10 selection:text-[#3B82F6] relative">
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div
-          className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#3B82F6]/5 blur-[120px] animate-pulse"
-          style={{ willChange: 'transform, opacity' }}
-        ></div>
-        <div
-          className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#3B82F6]/5 blur-[150px] animate-float-slow"
-          style={{ willChange: 'transform, opacity' }}
-        ></div>
-      </div>
+    <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-[#1D4ED8]/10 selection:text-[#1D4ED8] relative">
+
 
       {/* Navbar Minimalista para EduBot */}
       <nav className="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100 py-4">
@@ -318,11 +315,11 @@ const EduBotPage = ({ onBack, onStartNow }) => {
       </nav>
 
       {/* Hero EduBot */}
-      <header className="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden flex items-center min-h-[700px]" style={{ backgroundColor: '#F5F3FF' }}>
+      <header className="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden flex items-center min-h-[700px] bg-white">
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FF9D42]/10 border border-[#FF9D42]/20 text-[#FF9D42] text-[11px] font-bold uppercase tracking-widest mb-6 uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-[11px] font-bold uppercase tracking-widest mb-6 uppercase">
                 Inteligencia Artificial Educativa
               </div>
               <h1 className="text-4xl lg:text-5xl font-semibold text-slate-900 leading-tight mb-6 tracking-tight text-left uppercase">
@@ -381,9 +378,8 @@ const EduBotPage = ({ onBack, onStartNow }) => {
                 </div>
               </div>
 
-              <div className="relative w-full max-w-sm lg:max-w-md aspect-square bg-white rounded-[3rem] p-8 shadow-2xl overflow-hidden animate-float-slow border border-slate-100">
-                <div className="absolute inset-0 bg-slate-50/50 backdrop-blur-sm border border-white/20 rounded-[2.5rem]"></div>
-                <img src="/edubot.png" alt="EduBot" className="relative z-10 w-full h-full object-contain drop-shadow-2xl" />
+              <div className="relative w-full max-w-2xl lg:max-w-4xl aspect-square animate-float-slow lg:scale-110">
+                <img src="/edubot.png" alt="EduBot" className="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(29,78,216,0.35)]" />
               </div>
             </div>
           </div>
@@ -397,14 +393,56 @@ const EduBotPage = ({ onBack, onStartNow }) => {
         </div>
       </header>
 
+      {/* --- STRIP SECTION (POTENCIA TU COLEGIO) --- */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Vibrant Gradient Background (Matches Strip) */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #6D28D9 0%, #1E40AF 100%)' }}></div>
+
+        {/* Blended Background Image */}
+        <div className="absolute inset-0 opacity-15 mix-blend-overlay pointer-events-none">
+          <img src="/edubot-banner.png" alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* Tech Textures */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Subtle Cyber Grid */}
+          <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '60px 60px' }}></div>
+
+          {/* Light Beams */}
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+          <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+
+          {/* Dynamic Glows */}
+          <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-white/5 blur-[120px] animate-pulse-soft"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center justify-center">
+          {/* Minimal Tech Badge */}
+          <div className="flex items-center gap-4 px-5 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-10 shadow-xl">
+            <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse"></span>
+            <span className="text-[10px] font-bold text-white/80 uppercase tracking-[0.5em]">Tecnología Inteligente</span>
+            <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse"></span>
+          </div>
+
+          <div className="relative">
+            <h2 className="text-4xl md:text-8xl font-light text-white tracking-[0.1em] leading-none text-center uppercase" style={{ fontFamily: "'Unbounded', sans-serif" }}>
+              Potencia tu <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white/60 to-white/30">Colegio</span>
+            </h2>
+
+            <div className="mt-14 flex justify-center items-center gap-8">
+              <div className="h-px w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+              <div className="w-2 h-2 border border-white/40 rotate-45"></div>
+              <div className="h-px w-48 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+              <div className="w-2 h-2 border border-white/40 rotate-45"></div>
+              <div className="h-px w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Tarjetas Modern Square */}
       <section className="py-24 relative z-10 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight uppercase">Potencia tu Colegio</h2>
-            <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-8"></div>
-            <p className="text-slate-400 font-medium uppercase text-[10px] tracking-[0.2em] opacity-80">Funcionalidades Core de EduBot</p>
-          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             <FlipCard
@@ -429,14 +467,14 @@ const EduBotPage = ({ onBack, onStartNow }) => {
               icon={<Tags />}
               title="Categorizador"
               description="Clasifica tus recursos por unidades, niveles y OA automáticamente para un orden institucional perfecto."
-              colorScheme="yellow"
+              colorScheme="orange"
             />
           </div>
         </div>
       </section>
 
       {/* Motivational Engagement Section */}
-      <section className="relative mt-20 md:mt-32 min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden bg-[#FFB163]">
+      <section className="relative mt-20 md:mt-32 min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden bg-white">
         {/* Wave Background SVG */}
         <div className="absolute inset-x-0 top-0 bottom-0 pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -446,9 +484,9 @@ const EduBotPage = ({ onBack, onStartNow }) => {
             />
             <defs>
               <linearGradient id="blue_gradient_wave" x1="720" y1="0" x2="720" y2="800" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#FFB163" />
-                <stop offset="0.7" stopColor="#FFB163" />
-                <stop offset="1" stopColor="#C4B5FD" />
+                <stop stopColor="#6D28D9" />
+                <stop offset="0.7" stopColor="#4F46E5" />
+                <stop offset="1" stopColor="#1E40AF" />
               </linearGradient>
             </defs>
           </svg>
@@ -610,11 +648,7 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden selection:bg-brand-blue/10 selection:text-brand-blue">
-      {/* Dynamic Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-brand-teal/5 blur-[120px] animate-pulse-soft"></div>
-        <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-brand-purple/5 blur-[150px] animate-float"></div>
-      </div>
+
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Anta&family=Orbitron:wght@400;500;600;700&family=Allerta+Stencil&family=Noto+Sans:wght@200;300;400;500;700&family=Baumans&family=Inter:wght@400;700;900&display=swap');
@@ -710,15 +744,7 @@ const LandingPage = () => {
 
           {/* --- HERO SECTION --- */}
           <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center bg-white">
-            {/* Diffused Gradient Aura - Lowered and more compact */}
-            <div className="absolute bottom-0 left-0 w-full h-[40%] pointer-events-none opacity-20 overflow-hidden">
-              <div
-                className="absolute bottom-[-20%] left-[-15%] right-[-15%] h-full blur-[110px]"
-                style={{
-                  background: 'linear-gradient(to top, rgba(124, 58, 237, 0.3) 0%, rgba(236, 72, 153, 0.4) 30%, rgba(249, 115, 22, 0.4) 60%, transparent 100%)'
-                }}
-              ></div>
-            </div>
+
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-left">
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -749,10 +775,8 @@ const LandingPage = () => {
                   </div>
                 </div>
                 <div className="hidden lg:flex relative h-[650px] w-full items-center justify-center animate-fade-in-left delay-300 order-1 lg:order-2">
-                  <div key={currentHeroSlide} className="relative z-10 w-full max-w-[750px] transition-all duration-700 px-4">
-
-
-                    <img src="/edusis-plataformas.png" alt="EduSis Plataformas" className="w-full h-auto rounded-[2.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-100 relative z-10" />
+                  <div key={currentHeroSlide} className="relative z-10 w-full max-w-[900px] transition-all duration-700 px-4">
+                    <img src="/edusis-plataformas.png" alt="EduSis Plataformas" className="w-full h-auto drop-shadow-[0_30px_60px_rgba(59,130,246,0.25)] relative z-10 scale-110" />
 
                     {/* Persistent Floating Notifications - Fixed for all slides */}
 
@@ -798,11 +822,66 @@ const LandingPage = () => {
             </div>
           </header>
 
+          {/* --- STRIP SECTION (SUTIL & TECNOLOGICO) --- */}
+          <section className="relative py-32 overflow-hidden">
+            {/* Vibrant Gradient Background (Matches Form) */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #6D28D9 0%, #1E40AF 100%)' }}></div>
+
+            {/* Blended Background Image */}
+            <div className="absolute inset-0 opacity-15 mix-blend-overlay pointer-events-none">
+              <img src="/que-edusis.png" alt="" className="w-full h-full object-cover" />
+            </div>
+
+            {/* Tech Textures */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Subtle Cyber Grid */}
+              <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '60px 60px' }}></div>
+
+              {/* Light Beams */}
+              <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+              <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+
+              {/* Dynamic Glows */}
+              <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-white/5 blur-[120px] animate-pulse-soft"></div>
+              <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-300/10 blur-[100px] animate-float"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center justify-center">
+              {/* Minimal Tech Badge */}
+              <div className="flex items-center gap-4 px-5 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-10 shadow-xl">
+                <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse"></span>
+                <span className="text-[10px] font-bold text-white/80 uppercase tracking-[0.5em]">Sistema Inteligente</span>
+                <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse"></span>
+              </div>
+
+              <div className="relative">
+                <h2 className="text-4xl md:text-8xl font-light text-white tracking-[0.1em] leading-none text-center uppercase" style={{ fontFamily: "'Unbounded', sans-serif" }}>
+                  Que es <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white/60 to-white/30">EduSis</span>
+                </h2>
+
+                <div className="mt-14 flex justify-center items-center gap-8">
+                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                  <div className="w-2 h-2 border border-white/40 rotate-45"></div>
+                  <div className="h-px w-48 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+                  <div className="w-2 h-2 border border-white/40 rotate-45"></div>
+                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
 
 
           <section ref={introRef} className={`py-40 relative overflow-hidden transition-all duration-1000 ${introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} bg-white text-left`}>
             {/* Clean Background */}
             <div className="absolute inset-0 pointer-events-none bg-white"></div>
+
+            {/* Decorative Corner Curve (Top-Left Blue) - Mirrored Style */}
+            <div className="absolute -top-20 -left-20 w-96 h-96 pointer-events-none z-0 opacity-80">
+              <svg viewBox="0 0 200 200" className="w-full h-full transform -scale-x-100">
+                <path d="M20,0 C20,100 100,180 200,180" fill="none" stroke="#3B82F6" strokeWidth="32" strokeLinecap="round" />
+              </svg>
+            </div>
 
 
 
@@ -815,9 +894,9 @@ const LandingPage = () => {
                       La Nueva Era Educativa
                     </div>
                     <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-[1.1]">
-                      ¿Qué es <span className="text-[#FF9D42] capitalize">EduSis</span> y por qué elegir el cambio?
+                      El Primer Ecosistema <br /><span className="text-[#1D4ED8] uppercase">Pedagógico Inteligente</span>
                     </h2>
-                    <div className="h-1.5 w-20 bg-[#690efe]/30 rounded-full mt-6 mb-8"></div>
+                    <div className="h-1.5 w-20 bg-[#1D4ED8]/30 rounded-full mt-6 mb-8"></div>
                     <p className="text-base text-slate-500 font-bold leading-relaxed max-w-2xl mx-auto mb-12">
                       EduSis es el primer ecosistema inteligente diseñado para liberar a los colegios del peso de la burocracia. Elegir el cambio significa priorizar la enseñanza sobre el papeleo, integrando IA de vanguardia y cumplimiento normativo en una experiencia fluida que empodera a toda la comunidad escolar.
                     </p>
@@ -870,20 +949,18 @@ const LandingPage = () => {
             </div>
           </section>
 
+          <hr className="border-t border-slate-100 w-full" />
+
           {/* --- SECCIÓN DE BENEFICIOS --- */}
           <section ref={benefitsRef} id="beneficios" className="py-48 px-6 relative bg-white overflow-hidden text-left">
             {/* Clean Background */}
             <div className="absolute inset-0 pointer-events-none bg-white"></div>
 
-
-
-            {/* Premium Transition Line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-
             <div className="max-w-7xl mx-auto px-4 relative z-10 text-left">
               <div className={`text-center mb-24 transition-all duration-700 ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Cuadrícula de Beneficios</h2>
-                <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4"></div>
+                <div className="h-1.5 w-24 bg-[#1D4ED8]/30 mx-auto rounded-full mt-4"></div>
+                <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] opacity-60 text-center mt-4">Eficiencia en cada proceso</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
@@ -891,7 +968,7 @@ const LandingPage = () => {
                   icon={<Target />}
                   title="IA Predictiva"
                   description="Análisis de patrones en tiempo real para alertar sobre riesgos de deserción y rendimiento académico."
-                  colorScheme="pink"
+                  colorScheme="blue"
                 />
                 <FlipCard
                   icon={<LayoutGrid />}
@@ -919,8 +996,8 @@ const LandingPage = () => {
           <section ref={demoRef} id="demo" className="py-24 px-6 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #F5F3FF 0%, #FFFFFF 50%, #FDF2F8 100%)' }}>
             <div className="max-w-7xl mx-auto relative z-10 text-center mb-20">
               <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Nuestros Módulos</h2>
-              <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-4"></div>
-              <p className="text-slate-400 max-w-2xl mx-auto font-black uppercase text-[9px] tracking-[0.3em] opacity-80 italic">Gestión educativa 360°</p>
+              <div className="h-1.5 w-24 bg-[#1D4ED8]/30 mx-auto rounded-full mt-4"></div>
+              <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] opacity-60 text-center mt-4">Gestión educativa 360°</p>
             </div>
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -1021,8 +1098,8 @@ const LandingPage = () => {
             <div className="absolute inset-0 pointer-events-none bg-white"></div>
             <div className={`max-w-7xl mx-auto px-6 relative z-10 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Liderado por Expertos</h2>
-              <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-4"></div>
-              <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] mb-20 opacity-60 text-center">Compromiso con la Transformación Digital</p>
+              <div className="h-1.5 w-24 bg-[#1D4ED8]/30 mx-auto rounded-full mt-4"></div>
+              <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] opacity-60 text-center mt-4 mb-20">Compromiso con la Transformación Digital</p>
               <div className="grid md:grid-cols-4 gap-8">
                 {[
                   { n: 'Fabián González', r: 'Director Educativo', c: 'border-indigo-100', img: '/fabian.png' },
@@ -1035,7 +1112,7 @@ const LandingPage = () => {
                       <img src={m.img} alt={m.n} className="w-full h-full object-cover" />
                     </div>
                     <h3 className="font-semibold text-slate-900 tracking-tight text-base text-center">{m.n}</h3>
-                    <p className="text-[10px] text-[#690efe] uppercase font-semibold mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
+                    <p className="text-[10px] text-[#1D4ED8] uppercase font-semibold mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
                   </div>
                 ))}
               </div>
@@ -1047,8 +1124,8 @@ const LandingPage = () => {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Blog Educativo</h2>
-                <div className="h-1.5 w-20 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-4"></div>
-                <p className="text-slate-400 font-medium uppercase text-[10px] tracking-[0.2em] opacity-80">Ingeniería Pedagógica & IA</p>
+                <div className="h-1.5 w-20 bg-[#1D4ED8]/30 mx-auto rounded-full mt-4"></div>
+                <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] opacity-60 text-center mt-4">Ingeniería Pedagógica & IA</p>
               </div>
 
               <article className="bg-white rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-xl border border-purple-50 group cursor-pointer transition-all hover:shadow-2xl">
@@ -1075,7 +1152,7 @@ const LandingPage = () => {
 
                   <div className="space-y-4">
                     <p className="text-slate-700 font-medium leading-relaxed text-base">
-                      <span className="text-[#FF9D42]">EduBot elimina el 70% de la carga administrativa</span> automatizando planificaciones y reportes Mineduc en segundos.
+                      <span className="text-[#1D4ED8] uppercase">EduBot elimina el 70% de la carga administrativa</span> automatizando planificaciones y reportes Mineduc en segundos.
                     </p>
                     <p className="text-slate-400 font-medium leading-relaxed text-sm italic">
                       Hoy, gracias a la inteligencia pedagógica, el foco vuelve a ser la interacción humana y el aprendizaje profundo, liberando a los docentes del papeleo para siempre.
@@ -1090,10 +1167,28 @@ const LandingPage = () => {
 
           {/* --- FAQ SECTION (MINIMALIST) --- */}
           <section ref={faqRef} className={`py-24 bg-white px-6 relative overflow-hidden transition-all duration-1000 ${faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            {/* Clean Background */}
+            <div className="absolute inset-0 pointer-events-none bg-white"></div>
+
+            {/* Decorative Corner Curve (Bottom-Left Orange) - Classic swoop style */}
+            <div className="absolute -bottom-20 -left-20 w-96 h-96 pointer-events-none z-0 opacity-60">
+              <svg viewBox="0 0 200 200" className="w-full h-full">
+                <path d="M0,180 C100,180 180,100 180,0" fill="none" stroke="#F97316" strokeWidth="32" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            {/* Decorative Corner Curve (Top-Right Blue) */}
+            <div className="absolute -top-20 -right-20 w-96 h-96 pointer-events-none z-0 opacity-80">
+              <svg viewBox="0 0 200 200" className="w-full h-full">
+                <path d="M20,0 C20,100 100,180 200,180" fill="none" stroke="#3B82F6" strokeWidth="32" strokeLinecap="round" />
+              </svg>
+            </div>
+
             <div className="max-w-3xl mx-auto relative z-10">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Preguntas Frecuentes</h2>
-                <div className="h-1.5 w-20 bg-[#690efe]/30 mx-auto rounded-full mt-4"></div>
+                <div className="h-1.5 w-20 bg-[#1D4ED8]/30 mx-auto rounded-full mt-4"></div>
+                <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] opacity-60 text-center mt-4">Resolver tus dudas es nuestra prioridad</p>
               </div>
 
               <div className="space-y-4">
@@ -1130,20 +1225,29 @@ const LandingPage = () => {
             </div>
           </section >
 
-          {/* --- CONTACTO --- */}
-          <section ref={contactRef} id="contacto" className="pt-16 pb-40 relative overflow-hidden transition-all duration-700 text-left" style={{ background: 'linear-gradient(to bottom, #FFB163 0%, #FFB163 70%, #C4B5FD 100%)' }}>
-            {/* Minimal, almost straight curvature */}
+          <section ref={contactRef} id="contacto" className="pt-24 pb-48 relative overflow-hidden transition-all duration-700 text-left" style={{ background: 'linear-gradient(135deg, #6D28D9 0%, #1E40AF 100%)' }}>
+            {/* Minimal, elegant curvature */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
               <svg className="relative block w-full h-[40px] md:h-[80px]" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#ffffff" d="M0,0 L1440,0 L1440,20 C1000,20 440,100 0,100 Z"></path>
               </svg>
             </div>
+
+            {/* Subtle Background Pattern like the image */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+            </div>
+
+            {/* Decorative Floating Elements */}
+            <div className="absolute top-[20%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-400/20 blur-[120px] animate-pulse-soft"></div>
+            <div className="absolute bottom-[-10%] right-[-5%] w-[30vw] h-[30vw] rounded-full bg-purple-400/20 blur-[100px] animate-float"></div>
+
             <div className={`max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10 pt-10 ${contactVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} text-left`}>
               <div className="text-white text-left">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-white/20 backdrop-blur-md">
                   Únete al Cambio
                 </div>
-                <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8 leading-tight text-left text-slate-900 uppercase">
+                <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8 leading-tight text-left text-white uppercase">
                   Agenda <br />
                   tu Demo hoy.
                 </h2>
@@ -1153,7 +1257,7 @@ const LandingPage = () => {
                   <div className="flex items-center gap-4 text-left"><div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shadow-lg"><Check className="w-3 h-3 text-white" strokeWidth={5} /></div><span className="font-black text-[11px] uppercase tracking-widest text-white text-left">Soporte Prioritario 24/7</span></div>
                 </div>
               </div>
-              <div className="glass-card !bg-white/40 !border-white/40 p-12 lg:p-16 shadow-2xl text-left relative overflow-hidden group backdrop-blur-[60px] rounded-[3rem]">
+              <div className="glass-card !bg-white/60 !border-white/40 p-12 lg:p-16 shadow-2xl text-left relative overflow-hidden group backdrop-blur-[60px] rounded-[3rem] before:absolute before:inset-0 before:bg-gradient-to-br before:from-blue-500/5 before:to-emerald-400/5 before:pointer-events-none">
                 <h3 className="text-xl font-semibold text-slate-900 tracking-[0.2em] mb-10 text-left uppercase">Agenda tu Demo</h3>
                 <form className="space-y-6 text-left">
                   <input type="text" placeholder="Nombre y Apellido" className="w-full bg-white/40 border border-white/60 p-5 rounded-2xl text-slate-900 outline-none focus:bg-white/60 focus:border-white transition-all font-bold placeholder:text-slate-500 text-left" />

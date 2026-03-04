@@ -23,7 +23,9 @@
   --glass-border: rgba(255, 255, 255, 0.9);
   --glass-shadow: 0 25px 50px -12px rgba(31, 38, 135, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.1);
-  --brand-primary: #690efe;
+  --brand-primary: #1D4ED8;
+  --brand-blue: #1D4ED8;
+  --brand-turquoise: #2DD4BF;
   --brand-orange: #FF9D42;
 }
 
@@ -149,11 +151,11 @@ p {
 }
 
 .btn-outline-purple {
-  @apply btn-premium bg-transparent border-2 border-[#FF9D42] text-[#FF9D42] hover:bg-[#FF9D42] hover:text-white shadow-sm hover:shadow-[#FF9D42]/20;
+  @apply btn-premium bg-transparent border-2 border-[#1D4ED8] text-[#1D4ED8] hover:bg-[#1D4ED8] hover:text-white shadow-sm hover:shadow-[#1D4ED8]/20;
 }
 
 .btn-black {
-  @apply btn-premium bg-slate-900 text-white shadow-lg hover:bg-black hover:shadow-xl;
+  @apply btn-premium bg-gradient-to-r from-[#FFA045] to-[#F97316] text-white shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-1.5;
 }
 
 /* Small variants for nav */
