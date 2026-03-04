@@ -1,12 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500;1,600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.text-romantic {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: -0.02em;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+
 :root {
   color-scheme: light;
+  /* Ultra-Premium Glass Variables from User Photo */
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 25px 50px -12px rgba(31, 38, 135, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  background-color: white;
-  color: #0f172a;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.glass-card {
+  @apply glass rounded-[3rem] p-10 transition-all duration-700 ease-in-out;
+}
+
+.glass-card:hover {
+  @apply -translate-y-4;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 40px 80px -15px rgba(31, 38, 135, 0.2);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+/* Specific section backgrounds as per photo */
+.bg-glass-gradient {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e0f2fe 50%, #fce7f3 100%);
+}
+
+.bg-glass-gradient-dark {
+  background: linear-gradient(135deg, #2e1065 0%, #0f172a 50%, #172554 100%);
+}
+
+.bg-brand-soft-gradient {
+  background: linear-gradient(135deg, #bae6fd 0%, #dcfce7 50%, #fbcfe8 100%);
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 10s ease-in-out infinite;
+}
+
+/* Custom shadow utility for better glass depth */
+.shadow-glass {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+/* --- BUTTON SYSTEM --- */
+.btn-premium {
+  @apply px-10 py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3;
+}
+
+.btn-gradient {
+  @apply btn-premium bg-gradient-to-r from-[#FF8A00] to-[#7E22CE] text-white shadow-lg shadow-brand-orange/20 hover:shadow-2xl hover:shadow-brand-orange/30;
+}
+
+.btn-outline-purple {
+  @apply btn-premium bg-transparent border-2 border-[#FF9D42] text-[#FF9D42] hover:bg-[#FF9D42] hover:text-white shadow-sm hover:shadow-[#FF9D42]/20;
+}
+
+.btn-black {
+  @apply btn-premium bg-slate-900 text-white shadow-lg hover:bg-black hover:shadow-xl;
+}
+
+/* Small variants for nav */
+.btn-small {
+  @apply px-6 py-3 rounded-xl;
 }
