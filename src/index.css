@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700;800;900&family=Unbounded:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -23,13 +23,36 @@
   --glass-border: rgba(255, 255, 255, 0.9);
   --glass-shadow: 0 25px 50px -12px rgba(31, 38, 135, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.1);
+  --brand-primary: #690efe;
+  --brand-orange: #FF9D42;
 }
 
 body {
   background-color: #F8FAFC;
-  color: #0F172A;
+  color: #334155;
+  /* slate-700 - Balanced dark grey for readability */
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 600 !important;
+  /* Semi-bold instead of heavy black */
+  color: #0f172a;
+  /* slate-900 - Primary dark color */
+}
+
+p {
+  color: #475569;
+  /* slate-600 - Softer body text */
+  line-height: 1.6;
 }
 
 .glass {

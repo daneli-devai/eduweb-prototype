@@ -28,7 +28,7 @@ const DemoTabs = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 transition-all duration-300 ${activeTab === tab.id
+            className={`px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 ${activeTab === tab.id
               ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
               : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50'
               }`}
@@ -67,7 +67,7 @@ const DemoTabs = () => {
 
                 {/* Floating Caption/Badge */}
                 <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 bg-white/90 backdrop-blur-xl p-6 rounded-2xl border border-white/40 shadow-xl text-left translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  <h4 className="text-lg font-black text-slate-900 mb-2">{tab.title}</h4>
+                  <h4 className="text-lg font-semibold text-slate-900 mb-2">{tab.title}</h4>
                   <p className="text-xs font-medium text-slate-500 leading-relaxed">{tab.desc}</p>
                 </div>
               </div>
@@ -94,8 +94,8 @@ const LoginPage = ({ onBack }) => {
               <div className="bg-brand-blue/10 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-brand-blue/20">
                 <ShieldCheck className="w-8 h-8 text-brand-blue" />
               </div>
-              <h2 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter mb-4">¿Olvidaste tu contraseña?</h2>
-              <p className="text-slate-500 font-bold text-sm leading-relaxed mb-2 px-4">
+              <h2 className="text-2xl font-semibold text-slate-900 tracking-tight mb-4">¿Olvidaste tu contraseña?</h2>
+              <p className="text-slate-700 font-medium text-sm leading-relaxed mb-2 px-4">
                 Ingresa tu correo institucional y te enviaremos un código de 6 dígitos para cambiar tu clave.
               </p>
               <p className="text-slate-400 font-medium text-[10px] uppercase tracking-widest italic">Recuerda revisar tu correo spam.</p>
@@ -147,10 +147,10 @@ const LoginPage = ({ onBack }) => {
             <div className="bg-white/40 backdrop-blur-xl p-4 rounded-[2rem] border border-white/40 mb-6 group-hover:scale-110 transition-transform shadow-xl">
               <img src="/logosolo.png" alt="Logo" className="h-12 w-auto" />
             </div>
-            <h1 className="text-3xl font-black text-slate-900 tracking-tighter uppercase italic text-center leading-none">
+            <h1 className="text-2xl font-semibold text-slate-900 tracking-tight text-center leading-none">
               Bienvenido a <span className="text-[#FF9D42]">EduSis</span>
             </h1>
-            <p className="mt-3 text-slate-500 font-bold text-[10px] uppercase tracking-[0.2em] text-center">
+            <p className="mt-3 text-slate-700 font-medium text-[10px] uppercase tracking-[0.2em] text-center">
               Construyendo el futuro de la educación, hoy.
             </p>
           </div>
@@ -160,13 +160,11 @@ const LoginPage = ({ onBack }) => {
         <div className="glass-card !p-10 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-orange via-brand-teal to-brand-purple opacity-50"></div>
 
-          <div className="text-center mb-10">
-            <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.3em] leading-none">Acceso Seguro al Ecosistema</p>
-          </div>
+          <p className="text-slate-700 text-[10px] font-semibold uppercase tracking-[0.2em] leading-none">Acceso Seguro al Ecosistema</p>
 
           <form className="space-y-6">
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-800 uppercase tracking-widest ml-4">Email Corporativo</label>
+              <label className="text-[10px] font-semibold text-slate-800 uppercase tracking-widest ml-4">Email Corporativo</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-brand-blue transition-colors">
                   <Mail className="w-4 h-4" />
@@ -174,18 +172,18 @@ const LoginPage = ({ onBack }) => {
                 <input
                   type="email"
                   placeholder="usuario@edusis.cl"
-                  className="w-full bg-white/40 border border-white/60 p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-brand-blue/30 focus:shadow-lg transition-all font-bold placeholder:text-slate-400 text-sm"
+                  className="w-full bg-white/40 border border-white/60 p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-brand-blue/30 focus:shadow-lg transition-all font-semibold placeholder:text-slate-400 text-sm"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
               <div className="flex justify-between items-center ml-4 pr-4">
-                <label className="text-[10px] font-black text-slate-800 uppercase tracking-widest">Contraseña</label>
+                <label className="text-[10px] font-semibold text-slate-800 uppercase tracking-widest">Contraseña</label>
                 <button
                   type="button"
                   onClick={() => setView('forgot')}
-                  className="text-[9px] font-black text-brand-blue hover:text-brand-purple uppercase tracking-widest transition-colors"
+                  className="text-[9px] font-semibold text-[#690efe] hover:text-brand-purple uppercase tracking-widest transition-colors"
                 >
                   ¿Olvidaste tu clave?
                 </button>
@@ -197,7 +195,7 @@ const LoginPage = ({ onBack }) => {
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="w-full bg-white/40 border border-white/60 p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-brand-blue/30 focus:shadow-lg transition-all font-bold placeholder:text-slate-400 text-sm"
+                  className="w-full bg-white/40 border border-white/60 p-4 pl-14 rounded-2xl text-slate-900 outline-none focus:bg-white focus:border-brand-blue/30 focus:shadow-lg transition-all font-semibold placeholder:text-slate-400 text-sm"
                 />
               </div>
             </div>
@@ -208,15 +206,15 @@ const LoginPage = ({ onBack }) => {
           </form>
 
           <div className="mt-10 pt-8 border-t border-white/20 text-center">
-            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-              ¿Problemas para entrar? <a href="#" className="text-brand-blue hover:underline transition-colors font-black">Contactar Soporte</a>
+            <p className="text-slate-700 text-[10px] font-semibold uppercase tracking-widest">
+              ¿Problemas para entrar? <a href="#" className="text-[#690efe] hover:underline transition-colors font-semibold">Contactar Soporte</a>
             </p>
           </div>
         </div>
 
         <button
           onClick={onBack}
-          className="mt-8 mx-auto flex items-center gap-2 text-[10px] font-black text-slate-500 hover:text-slate-900 uppercase tracking-widest transition-colors group"
+          className="mt-8 mx-auto flex items-center gap-2 text-[10px] font-semibold text-slate-700 hover:text-slate-900 uppercase tracking-widest transition-colors group"
         >
           <RotateCcw className="w-4 h-4 group-hover:rotate-[-45deg] transition-transform" /> Volver al Inicio
         </button>
@@ -229,13 +227,13 @@ const FlipCard = React.memo(({ icon, title, description, colorScheme = 'blue' })
   const [isFlipped, setIsFlipped] = useState(false);
 
   const colors = {
-    pink: { text: '#9D174D', iconBg: '#FCE7F3', iconColor: '#BE185D', border: '#FBCFE8', bg: '#FDF2F8' },
-    green: { text: '#166534', iconBg: '#DCFCE7', iconColor: '#15803D', border: '#BBF7D0', bg: '#F0FDF4' },
-    yellow: { text: '#854D0E', iconBg: '#FEF9C3', iconColor: '#A16207', border: '#FEF08A', bg: '#FFFBEB' },
-    lila: { text: '#5B21B6', iconBg: '#EDE9FE', iconColor: '#7C3AED', border: '#DDD6FE', bg: '#F5F3FF' },
-    purple: { text: '#5B21B6', iconBg: '#EDE9FE', iconColor: '#7C3AED', border: '#DDD6FE', bg: '#F5F3FF' },
-    cyan: { text: '#155E75', iconBg: '#CFFAFE', iconColor: '#0891B2', border: '#A5F3FC', bg: '#F0FDFA' },
-    orange: { text: '#9A3412', iconBg: '#FFEDD5', iconColor: '#EA580C', border: '#FED7AA', bg: '#FFF7ED' }
+    pink: { text: '#9D174D', iconBg: '#FCE7F3', iconColor: '#BE185D', border: '#FBCFE8', bg: '#FCE7F3' },
+    green: { text: '#166534', iconBg: '#DCFCE7', iconColor: '#15803D', border: '#BBF7D0', bg: '#DCFCE7' },
+    yellow: { text: '#854D0E', iconBg: '#FEF9C3', iconColor: '#A16207', border: '#FEF08A', bg: '#FEF9C3' },
+    lila: { text: '#5B21B6', iconBg: '#EDE9FE', iconColor: '#7C3AED', border: '#DDD6FE', bg: '#EDE9FE' },
+    purple: { text: '#5B21B6', iconBg: '#EDE9FE', iconColor: '#7C3AED', border: '#DDD6FE', bg: '#EDE9FE' },
+    cyan: { text: '#155E75', iconBg: '#CFFAFE', iconColor: '#0891B2', border: '#A5F3FC', bg: '#CFFAFE' },
+    orange: { text: '#9A3412', iconBg: '#FFEDD5', iconColor: '#EA580C', border: '#FED7AA', bg: '#FFEDD5' }
   };
 
   const current = colors[colorScheme] || colors.purple;
@@ -258,7 +256,7 @@ const FlipCard = React.memo(({ icon, title, description, colorScheme = 'blue' })
               {React.cloneElement(icon, { size: 28, strokeWidth: 2 })}
             </div>
           </div>
-          <h3 className="text-lg font-black leading-tight tracking-tight uppercase italic mb-3" style={{ color: current.text }}>
+          <h3 className="text-xl font-semibold leading-tight tracking-tight mb-3" style={{ color: current.text }}>
             {title}
           </h3>
           <div className="h-0.5 w-12 rounded-full mb-4 opacity-30" style={{ backgroundColor: current.text }}></div>
@@ -304,40 +302,40 @@ const EduBotPage = ({ onBack, onStartNow }) => {
       </div>
 
       {/* Navbar Minimalista para EduBot */}
-      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 py-4">
+      <nav className="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100 py-4">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={onBack}>
-            <img src="/logosolo.png" alt="Logo EduSis" className="h-10 w-auto object-contain" />
-            <span className="font-bold text-xl tracking-normal text-slate-900 font-display">EduSis</span>
+            <img src="/logosolo.png" alt="Logo EduSis" className="h-10 w-auto object-contain transition-transform group-hover:scale-110" />
+            <span className="text-lg tracking-tight text-slate-900" style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 300 }}>EDUSIS</span>
           </div>
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-[#3B82F6] transition-colors"
+            className="text-[11px] font-semibold uppercase tracking-widest text-slate-700 hover:text-brand-blue transition-colors flex items-center gap-2"
           >
-            <ChevronRight className="w-4 h-4 rotate-180" /> Volver al Inicio
+            <ChevronRight className="w-3 h-3 rotate-180" /> Volver al Inicio
           </button>
         </div>
       </nav>
 
       {/* Hero EduBot */}
-      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[600px]">
+      <header className="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden flex items-center min-h-[700px]" style={{ backgroundColor: '#F5F3FF' }}>
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FF9D42]/10 border border-[#FF9D42]/20 text-[#FF9D42] text-[11px] font-bold uppercase tracking-widest mb-6 uppercase">
                 Inteligencia Artificial Educativa
               </div>
-              <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-tight mb-6 tracking-tighter uppercase italic text-left">
-                Conoce a <span className="text-[#FF9D42]">EduBot</span>
+              <h1 className="text-4xl lg:text-5xl font-semibold text-slate-900 leading-tight mb-6 tracking-tight text-left uppercase">
+                Conoce a <span className="text-slate-900">EduBot</span>
               </h1>
-              <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg mx-auto lg:mx-0">
+              <p className="text-base text-slate-700 mb-10 leading-relaxed font-medium max-w-lg mx-auto lg:mx-0">
                 El asistente de IA diseñado específicamente para ecosistemas educativos. Potencia la labor docente y optimiza la gestión institucional en tiempo real.
               </p>
               <div className="flex gap-4 justify-center lg:justify-start">
                 <button className="btn-black">Solicitar Demo de EduBot</button>
               </div>
             </div>
-            <div className="relative flex justify-center items-center px-10">
+            <div className="hidden lg:flex relative justify-center items-center px-10">
               {/* Floating Notifications */}
               {/* 1. Planificación (Green) */}
               <div className="absolute -top-8 -right-4 bg-[#F0FDF4] backdrop-blur-xl p-4 rounded-[2rem] shadow-2xl border border-[#BBF7D0]/60 animate-float z-30 flex items-center gap-3">
@@ -390,14 +388,22 @@ const EduBotPage = ({ onBack, onStartNow }) => {
             </div>
           </div>
         </div>
+
+        {/* Wave Wave Finish */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+          <svg className="relative block w-full h-[60px] md:h-[120px]" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#ffffff" d="M0,0 C480,100 960,100 1440,0 V120 H0 Z"></path>
+          </svg>
+        </div>
       </header>
 
       {/* Tarjetas Modern Square */}
-      <section className="py-24 relative z-10">
+      <section className="py-24 relative z-10 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic">Potencia tu Colegio</h2>
-            <p className="text-slate-500 font-black uppercase text-[10px] tracking-[0.3em] opacity-60">Funcionalidades Core de EduBot</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight uppercase">Potencia tu Colegio</h2>
+            <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-8"></div>
+            <p className="text-slate-400 font-medium uppercase text-[10px] tracking-[0.2em] opacity-80">Funcionalidades Core de EduBot</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -430,12 +436,12 @@ const EduBotPage = ({ onBack, onStartNow }) => {
       </section>
 
       {/* Motivational Engagement Section */}
-      <section className="relative mt-32 min-h-[600px] flex items-center">
+      <section className="relative mt-20 md:mt-32 min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden bg-[#FFB163]">
         {/* Wave Background SVG */}
         <div className="absolute inset-x-0 top-0 bottom-0 pointer-events-none">
-          <svg className="w-full h-[150px] md:h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M0 80C300 150 600 0 900 0C1150 0 1300 220 1440 100V800H0V80Z"
+              d="M0 0C300 100 600 0 900 0C1150 0 1300 150 1440 50V800H0V0Z"
               fill="url(#blue_gradient_wave)"
             />
             <defs>
@@ -449,13 +455,13 @@ const EduBotPage = ({ onBack, onStartNow }) => {
           <div className="absolute top-[10%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[80px]"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-20 text-center lg:text-left">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter uppercase italic mb-8">
+              <h2 className="text-4xl lg:text-5xl font-semibold text-white leading-[1.1] tracking-tight mb-8 uppercase">
                 Transforma tu <br />
                 colegio en una <br />
-                <span className="text-white/80">fábrica de futuro.</span>
+                fábrica de futuro.
               </h2>
               <p className="text-xl text-white font-medium mb-10 max-w-xl opacity-90">
                 Libera a tus docentes de la carga administrativa y permíteles enfocarse en lo que realmente importa: la formación de sus alumnos.
@@ -475,14 +481,19 @@ const EduBotPage = ({ onBack, onStartNow }) => {
       </section>
 
       {/* Footer Minimal para EduBot */}
-      <footer className="bg-slate-900 py-12 px-6 text-center">
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
-          <div className="flex items-center gap-3">
-            <img src="/logosolo.png" alt="Logo" className="h-8 w-auto" />
-            <span className="font-display font-bold text-white text-xl">EduSis</span>
+      <footer className="bg-gradient-to-br from-[#2D1B69] via-[#1E1B4B] to-[#0F172A] py-16 px-6 text-center relative overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 relative z-10">
+          <div className="flex items-center gap-4">
+            <img src="/logosolo.png" alt="Logo" className="h-10 w-auto object-contain" />
+            <span className="text-xl tracking-tight text-white" style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 300 }}>EDUSIS</span>
           </div>
-          <p className="text-slate-500 text-xs uppercase tracking-[0.2em] font-black">© 2026 EduSis SpA • Ingeniería Pedagógica</p>
-          <button onClick={onBack} className="text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors" style={{ color: '#3B82F6' }}>Volver al Inicio</button>
+          <p className="text-slate-400 text-[10px] uppercase tracking-[0.3em] font-semibold">© 2026 EduSis SpA • Ingeniería Pedagógica</p>
+          <button
+            onClick={onBack}
+            className="text-[10px] font-semibold uppercase tracking-widest text-white/60 hover:text-white transition-all underline underline-offset-8 decoration-white/20 hover:decoration-white"
+          >
+            Volver al Inicio
+          </button>
         </div>
       </footer>
     </div>
@@ -534,24 +545,21 @@ const LandingPage = () => {
     {
       id: 0,
       badge: "Ecosistema v3.0",
-      title: "Gestión escolar",
-      highlight: "inteligente.",
+      title: "GESTIÓN ESCOLAR INTELIGENTE",
       desc: "La plataforma integral que conecta directivos, docentes y familias. Automatiza lo administrativo y enfócate 100% en educar.",
       image: "/edusis-plataformas.png"
     },
     {
       id: 1,
       badge: "Nuevo: EduBot IA",
-      title: "Tu asistente",
-      highlight: "virtual.",
+      title: "TU ASISTENTE VIRTUAL CON IA",
       desc: "Resuelve dudas de apoderados y docentes al instante. Nuestro Chatbot con IA optimiza la comunicación interna y externa 24/7.",
       image: "/edusis-plataformas.png"
     },
     {
       id: 2,
       badge: "Cumplimiento Normativo",
-      title: "Eficiencia y",
-      highlight: "Circular N°30.",
+      title: "EFICIENCIA BAJO CIRCULAR N°30",
       desc: "Automatización de procesos críticos y Libro de Clases Digital diseñado específicamente para cumplir con los estándares del MINEDUC.",
       image: "/edusis-plataformas.png"
     }
@@ -654,9 +662,9 @@ const LandingPage = () => {
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
               <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <img src="/logosolo.png" alt="Logo EduSis" className="h-12 w-auto object-contain transition-transform group-hover:scale-110" />
-                <span className="font-bold text-2xl tracking-normal text-slate-900 font-display">EduSis</span>
+                <span className="text-xl tracking-tight text-slate-900" style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 300 }}>EDUSIS</span>
               </div>
-              <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest text-slate-500 mr-2 lg:mr-6">
+              <div className="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-widest text-slate-700 mr-2 lg:mr-6">
                 <a href="#demo" className="hover:text-brand-blue transition-colors">Demo</a>
                 <a href="#beneficios" className="hover:text-brand-blue transition-colors">Beneficios</a>
                 <a href="#equipo" className="hover:text-brand-blue transition-colors">Equipo</a>
@@ -665,7 +673,7 @@ const LandingPage = () => {
                   onClick={() => setPage('edubot')}
                   className="hover:text-brand-blue transition-colors"
                 >
-                  EduBot
+                  EDUBOT
                 </button>
                 <button
                   onClick={() => setPage('login')}
@@ -703,7 +711,7 @@ const LandingPage = () => {
           {/* --- HERO SECTION --- */}
           <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center bg-white">
             {/* Diffused Gradient Aura - Lowered and more compact */}
-            <div className="absolute bottom-0 left-0 w-full h-[40%] pointer-events-none opacity-50 overflow-hidden">
+            <div className="absolute bottom-0 left-0 w-full h-[40%] pointer-events-none opacity-20 overflow-hidden">
               <div
                 className="absolute bottom-[-20%] left-[-15%] right-[-15%] h-full blur-[110px]"
                 style={{
@@ -723,13 +731,10 @@ const LandingPage = () => {
                       </span>
                       {heroSlides[currentHeroSlide].badge}
                     </div>
-                    <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter mb-6 uppercase italic text-left">
-                      {heroSlides[currentHeroSlide].title} <br />
-                      <span className="text-[#FF9D42]">
-                        {heroSlides[currentHeroSlide].highlight}
-                      </span>
+                    <h1 className="text-4xl lg:text-6xl font-semibold text-slate-900 leading-[1.1] tracking-tight mb-6 text-left uppercase">
+                      {heroSlides[currentHeroSlide].title}
                     </h1>
-                    <p className="text-lg text-slate-500 mb-10 leading-relaxed font-bold max-w-lg text-left">
+                    <p className="text-base text-slate-700 mb-10 leading-relaxed font-medium max-w-lg text-left">
                       {heroSlides[currentHeroSlide].desc}
                     </p>
                   </div>
@@ -743,7 +748,7 @@ const LandingPage = () => {
                     <a href="#demo" className="btn-outline-purple !rounded-full !px-12"><Play className="w-4 h-4 fill-current" /> Ver Demo</a>
                   </div>
                 </div>
-                <div className="relative h-[650px] w-full flex items-center justify-center animate-fade-in-left delay-300 order-1 lg:order-2">
+                <div className="hidden lg:flex relative h-[650px] w-full items-center justify-center animate-fade-in-left delay-300 order-1 lg:order-2">
                   <div key={currentHeroSlide} className="relative z-10 w-full max-w-[750px] transition-all duration-700 px-4">
 
 
@@ -809,9 +814,10 @@ const LandingPage = () => {
                     <div className="inline-block px-5 py-2 rounded-full bg-brand-blue/10 text-brand-blue text-[10px] font-black uppercase tracking-[0.3em] mb-8">
                       La Nueva Era Educativa
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter uppercase italic leading-[1.1]">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-[1.1]">
                       ¿Qué es <span className="text-[#FF9D42] capitalize">EduSis</span> y por qué elegir el cambio?
                     </h2>
+                    <div className="h-1.5 w-20 bg-[#690efe]/30 rounded-full mt-6 mb-8"></div>
                     <p className="text-base text-slate-500 font-bold leading-relaxed max-w-2xl mx-auto mb-12">
                       EduSis es el primer ecosistema inteligente diseñado para liberar a los colegios del peso de la burocracia. Elegir el cambio significa priorizar la enseñanza sobre el papeleo, integrando IA de vanguardia y cumplimiento normativo en una experiencia fluida que empodera a toda la comunidad escolar.
                     </p>
@@ -876,8 +882,8 @@ const LandingPage = () => {
 
             <div className="max-w-7xl mx-auto px-4 relative z-10 text-left">
               <div className={`text-center mb-24 transition-all duration-700 ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                <h2 className="text-4xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter mb-6 leading-none text-center">Cuadrícula de beneficios</h2>
-                <div className="h-2 w-32 bg-brand-blue mx-auto rounded-full opacity-20"></div>
+                <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Cuadrícula de Beneficios</h2>
+                <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4"></div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
@@ -910,10 +916,10 @@ const LandingPage = () => {
           </section>
 
           {/* --- SECCIÓN NUESTROS MÓDULOS (ESTILO PREMIUM COMPACTO) --- */}
-          <section ref={demoRef} id="demo" className="py-20 px-6 bg-white relative overflow-hidden">
+          <section ref={demoRef} id="demo" className="py-24 px-6 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #F5F3FF 0%, #FFFFFF 50%, #FDF2F8 100%)' }}>
             <div className="max-w-7xl mx-auto relative z-10 text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic leading-none">Nuestros Módulos</h2>
-              <div className="h-1 w-24 bg-gradient-to-r from-brand-blue via-brand-teal to-brand-purple mx-auto rounded-full mb-4 opacity-30"></div>
+              <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Nuestros Módulos</h2>
+              <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-4"></div>
               <p className="text-slate-400 max-w-2xl mx-auto font-black uppercase text-[9px] tracking-[0.3em] opacity-80 italic">Gestión educativa 360°</p>
             </div>
 
@@ -990,11 +996,11 @@ const LandingPage = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-black text-slate-900 tracking-tighter uppercase italic mb-3">
+                  <h3 className="text-xl font-semibold tracking-tight mb-3" style={{ color: m.color }}>
                     {m.t}
                   </h3>
 
-                  <p className="text-sm text-slate-500 font-bold leading-relaxed mb-6">
+                  <p className="text-sm text-slate-700 font-medium leading-relaxed mb-6">
                     {m.d}
                   </p>
 
@@ -1014,7 +1020,8 @@ const LandingPage = () => {
             {/* Clean Background */}
             <div className="absolute inset-0 pointer-events-none bg-white"></div>
             <div className={`max-w-7xl mx-auto px-6 relative z-10 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <h2 className="text-4xl font-black mb-4 tracking-tighter uppercase italic text-slate-900 leading-none text-center">Liderado por Expertos</h2>
+              <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Liderado por Expertos</h2>
+              <div className="h-1.5 w-24 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-4"></div>
               <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em] mb-20 opacity-60 text-center">Compromiso con la Transformación Digital</p>
               <div className="grid md:grid-cols-4 gap-8">
                 {[
@@ -1023,12 +1030,12 @@ const LandingPage = () => {
                   { n: 'José Mellado', r: 'Data Engineer', c: 'border-orange-100', img: '/jose.png' },
                   { n: 'Danae González', r: 'Frontend AI Lead', c: 'border-blue-100', img: '/danae.png' }
                 ].map((m, i) => (
-                  <div key={i} className={`bg-white p-10 rounded-[40px] shadow-sm border ${m.c} hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group text-center`}>
+                  <div key={i} className="bg-[#F8F7FF] p-10 rounded-[40px] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group text-center">
                     <div className="w-24 h-24 rounded-[32px] bg-slate-50 mx-auto mb-6 flex items-center justify-center overflow-hidden border-2 border-slate-100 group-hover:border-[#5c6eff]/20 transition-all duration-500">
                       <img src={m.img} alt={m.n} className="w-full h-full object-cover" />
                     </div>
-                    <h3 className="font-black text-slate-900 tracking-tighter uppercase italic text-sm text-center">{m.n}</h3>
-                    <p className="text-[10px] text-blue-600 uppercase font-black mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
+                    <h3 className="font-semibold text-slate-900 tracking-tight text-base text-center">{m.n}</h3>
+                    <p className="text-[10px] text-[#690efe] uppercase font-semibold mt-2 tracking-widest opacity-70 leading-none text-center">{m.r}</p>
                   </div>
                 ))}
               </div>
@@ -1039,9 +1046,9 @@ const LandingPage = () => {
           <section ref={blogRef} id="blog" className={`py-24 bg-white relative overflow-hidden transition-all duration-1000 ${blogVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic leading-none">Blog Educativo</h2>
-                <div className="h-1 w-20 bg-brand-purple mx-auto rounded-full mb-3 opacity-20"></div>
-                <p className="text-slate-400 font-black uppercase text-[9px] tracking-[0.3em] opacity-80">Ingeniería Pedagógica & IA</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Blog Educativo</h2>
+                <div className="h-1.5 w-20 bg-[#690efe]/30 mx-auto rounded-full mt-4 mb-4"></div>
+                <p className="text-slate-400 font-medium uppercase text-[10px] tracking-[0.2em] opacity-80">Ingeniería Pedagógica & IA</p>
               </div>
 
               <article className="bg-white rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-xl border border-purple-50 group cursor-pointer transition-all hover:shadow-2xl">
@@ -1059,25 +1066,20 @@ const LandingPage = () => {
                     <div className="w-8 h-8 rounded-full border border-slate-100 bg-slate-50 overflow-hidden">
                       <img src="/fabian.png" alt="Autor" className="w-full h-full object-cover" />
                     </div>
-                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">EduSis Team • 24 Feb</span>
+                    <span className="text-[10px] text-slate-700 font-semibold uppercase tracking-widest">EduSis Team • 24 Feb</span>
                   </div>
 
-                  <h3 className="text-2xl md:text-4xl font-black text-slate-900 leading-[1.15] mb-6 tracking-tighter uppercase italic">
-                    IA vs. Burocracia: <br />
-                    <span className="text-[#FF9D42]">EduBot reduce el tiempo administrativo</span>
+                  <h3 className="text-xl md:text-2xl font-semibold text-slate-900 leading-[1.15] mb-4 tracking-tight">
+                    IA vs. Burocracia
                   </h3>
 
-                  <p className="text-slate-500 font-bold leading-relaxed text-sm mb-8 line-clamp-3">
-                    Automatizando procesos rutinarios como la planificación y el seguimiento de casos mediante IA, permitiendo que el foco vuelva a ser la interacción humana y el aprendizaje profundo.
-                  </p>
-
-                  <div className="pt-6 border-t border-slate-50">
-                    <button
-                      onClick={() => setPage('edubot')}
-                      className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:gap-4 transition-all"
-                    >
-                      Leer artículo completo <ArrowRight className="w-4 h-4" style={{ color: '#FF9D42' }} />
-                    </button>
+                  <div className="space-y-4">
+                    <p className="text-slate-700 font-medium leading-relaxed text-base">
+                      <span className="text-[#FF9D42]">EduBot elimina el 70% de la carga administrativa</span> automatizando planificaciones y reportes Mineduc en segundos.
+                    </p>
+                    <p className="text-slate-400 font-medium leading-relaxed text-sm italic">
+                      Hoy, gracias a la inteligencia pedagógica, el foco vuelve a ser la interacción humana y el aprendizaje profundo, liberando a los docentes del papeleo para siempre.
+                    </p>
                   </div>
                 </div>
               </article>
@@ -1090,8 +1092,8 @@ const LandingPage = () => {
           <section ref={faqRef} className={`py-24 bg-white px-6 relative overflow-hidden transition-all duration-1000 ${faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="max-w-3xl mx-auto relative z-10">
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic leading-none text-center">Preguntas Frecuentes</h2>
-                <div className="h-1 w-20 bg-blue-200 mx-auto rounded-full opacity-40"></div>
+                <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-none text-center">Preguntas Frecuentes</h2>
+                <div className="h-1.5 w-20 bg-[#690efe]/30 mx-auto rounded-full mt-4"></div>
               </div>
 
               <div className="space-y-4">
@@ -1104,7 +1106,7 @@ const LandingPage = () => {
                   <div key={i} className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
                     <button
                       onClick={() => toggleFaq(i)}
-                      className="w-full p-8 text-left font-black text-slate-800 uppercase tracking-widest text-[10px] flex justify-between items-center group outline-none"
+                      className="w-full p-8 text-left font-semibold text-slate-900 tracking-tight text-sm flex justify-between items-center group outline-none"
                     >
                       <span className="max-w-[85%] leading-relaxed">{f.q}</span>
                       <div
@@ -1116,7 +1118,7 @@ const LandingPage = () => {
                     </button>
                     {openFaq === i && (
                       <div
-                        className="p-8 pt-0 text-slate-500 font-bold leading-relaxed text-xs animate-fade-in-up border-t border-slate-50"
+                        className="p-8 pt-0 text-slate-700 font-medium leading-relaxed text-xs animate-fade-in-up border-t border-slate-50"
                         style={{ backgroundColor: `${f.color}20` }}
                       >
                         {f.a}
@@ -1141,7 +1143,7 @@ const LandingPage = () => {
                 <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-white/20 backdrop-blur-md">
                   Únete al Cambio
                 </div>
-                <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none text-left text-white">
+                <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8 leading-tight text-left text-slate-900 uppercase">
                   Agenda <br />
                   tu Demo hoy.
                 </h2>
@@ -1152,7 +1154,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="glass-card !bg-white/40 !border-white/40 p-12 lg:p-16 shadow-2xl text-left relative overflow-hidden group backdrop-blur-[60px] rounded-[3rem]">
-                <h3 className="text-2xl font-black text-slate-900 uppercase italic tracking-tighter mb-10 text-center">Agenda tu Demo</h3>
+                <h3 className="text-xl font-semibold text-slate-900 tracking-[0.2em] mb-10 text-left uppercase">Agenda tu Demo</h3>
                 <form className="space-y-6 text-left">
                   <input type="text" placeholder="Nombre y Apellido" className="w-full bg-white/40 border border-white/60 p-5 rounded-2xl text-slate-900 outline-none focus:bg-white/60 focus:border-white transition-all font-bold placeholder:text-slate-500 text-left" />
                   <input type="email" placeholder="Email Institucional" className="w-full bg-white/40 border border-white/60 p-5 rounded-2xl text-slate-900 outline-none focus:bg-white/60 focus:border-white transition-all font-bold placeholder:text-slate-500 text-left" />
@@ -1173,7 +1175,7 @@ const LandingPage = () => {
               <div className="space-y-8 text-left">
                 <div className="flex items-center gap-4 text-left">
                   <img src="/logosolo.png" className="h-12 w-auto object-contain" />
-                  <span className="font-display font-bold text-white text-3xl">EduSis</span>
+                  <span className="text-2xl tracking-tight text-white" style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 300 }}>EDUSIS</span>
                 </div>
                 <p className="text-sm leading-relaxed font-bold">
                   Diseñando el futuro de la educación chilena con ingeniería pedagógica e IA de vanguardia.
