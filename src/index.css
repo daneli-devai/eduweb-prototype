@@ -23,10 +23,10 @@
   --glass-border: rgba(255, 255, 255, 0.9);
   --glass-shadow: 0 25px 50px -12px rgba(31, 38, 135, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.1);
-  --brand-primary: #1D4ED8;
-  --brand-blue: #1D4ED8;
-  --brand-turquoise: #2DD4BF;
-  --brand-orange: #FF9D42;
+  --brand-primary: #0b8393;
+  --brand-blue: #0b8393;
+  --brand-turquoise: #58b9cb;
+  --brand-orange: #fcc20f;
 }
 
 body {
@@ -147,15 +147,20 @@ p {
 }
 
 .btn-gradient {
-  @apply btn-premium bg-gradient-to-r from-[#FF8A00] to-[#7E22CE] text-white shadow-lg shadow-brand-orange/20 hover:shadow-2xl hover:shadow-brand-orange/30;
+  @apply btn-premium bg-gradient-to-r from-[#fcc20f] to-[#b157dd] text-white shadow-lg shadow-brand-orange/20 hover:shadow-2xl hover:shadow-brand-orange/30;
 }
 
 .btn-outline-purple {
-  @apply btn-premium bg-transparent border-2 border-[#1D4ED8] text-[#1D4ED8] hover:bg-[#1D4ED8] hover:text-white shadow-sm hover:shadow-[#1D4ED8]/20;
+  @apply btn-premium bg-transparent border-2 border-[#0b8393] text-[#0b8393] hover:bg-[#0b8393] hover:text-white shadow-sm hover:shadow-[#0b8393]/20;
 }
 
 .btn-black {
-  @apply btn-premium bg-gradient-to-r from-[#FFA045] to-[#F97316] text-white shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-1.5;
+  @apply btn-premium bg-gradient-to-r from-[#0b8393] to-[#58b9cb] text-white shadow-lg shadow-teal-900/20 hover:shadow-teal-900/40 hover:-translate-y-1.5;
+}
+
+.btn-solid-brand {
+  @apply btn-premium bg-[#0b8393] text-white shadow-lg shadow-teal-900/20 hover:bg-[#086a77] hover:shadow-teal-900/40 hover:-translate-y-1.5 transition-all duration-300;
+  background-image: none !important;
 }
 
 /* Small variants for nav */
