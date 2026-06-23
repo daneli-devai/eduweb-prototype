@@ -2299,9 +2299,6 @@ const BlogPage = ({ onBack, onStartNow, setPage }) => {
 
             {/* Author Meta */}
             <div className="flex items-center justify-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-slate-200 bg-slate-100 overflow-hidden shadow-sm">
-                <img src="/fabian.png" alt="Autor" className="w-full h-full object-cover" />
-              </div>
               <div className="text-left">
                 <p className="text-xs font-bold text-slate-800 leading-tight">Equipo de EduSis</p>
                 <p className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">24 de Febrero, 2026</p>
@@ -3189,9 +3186,6 @@ const LandingPage = () => {
 
                     <div className="w-full lg:w-[55%] p-10 lg:p-14 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-6">
-                        <div className="w-8 h-8 rounded-full border border-slate-100 bg-slate-50 overflow-hidden">
-                          <img src="/fabian.png" alt="Autor" className="w-full h-full object-cover" />
-                        </div>
                         <span className="text-[10px] text-slate-700 font-semibold uppercase tracking-widest">EduSis Team • 24 Feb</span>
                       </div>
 
